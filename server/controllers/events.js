@@ -3,6 +3,7 @@
 
   module.exports = function(app) {
     var Events = app.get('models').Events,
+      Reviews = app.get('models').Reviews,
       Images = app.get('models').Images;
 
     // Create event middlware
@@ -61,7 +62,7 @@
           where: {
             id: req.params.id,
           },
-          include: [Images]
+          include: [Images, Reviews]
         }).then(function(event) {
           if (!event) {
             return res.status(404).send({

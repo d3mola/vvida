@@ -9,6 +9,7 @@
         return Reviews.create({
           user_id: req.decoded.id,
           item_id: req.body.itemId,
+          event_id: req.body.eventId,
           review: req.body.review,
           review_title: req.body.review_title,
           rating: req.body.rating

@@ -2,9 +2,9 @@
   'use strict';
   angular.module('vvida.controllers')
     .controller('EventCtrl', ['$scope', '$state', '$stateParams', '$filter',
-      'Utils', 'Events',
+      'Utils', 'Events', 'Reviews',
       function($scope, $state, $stateParams, $filter,
-        Utils, Events) {
+        Utils, Events, Reviews) {
 
         // initialize state data
         $scope.init = function() {
@@ -83,6 +83,24 @@
             day: $filter('date')(eventTime, 'EEEE dd MMM yyyy'),
             time: $filter('date')(eventTime, 'hh:mm a')
           };
+        };
+
+        $scope.range = function(n) {
+          return new Array(n);
+        };
+
+        $scope.rate = function(n) {
+          $scope.itemReview.rating = n;
+        };
+
+        $scope.addEventReview = function() {
+          $scope.eventReview.eventId = $stateParams.id;
+          Reviews.save($scope.eventReview, function(review) {
+            if (review) {
+              $scope.event.Reviews.push(review);
+              $scope.eventReview = {};
+            }
+          });
         };
 
         $scope.averageReview = function(eventReviews) {

@@ -26,6 +26,10 @@
             type: Sequelize.INTEGER,
             allowNull: false
           },
+          event_id: {
+            type: Sequelize.INTEGER,
+            allowNull: false
+          },
           user_id: {
             type: Sequelize.INTEGER,
             allowNull: false
