@@ -61,6 +61,8 @@
           $scope.itemReview.itemId = $stateParams.id;
           Reviews.save($scope.itemReview, function(review) {
             if (review) {
+              console.log(Reviews);
+              console.log($scope);
               $scope.item.Reviews.push(review);
               $scope.itemReview = {};
             }
@@ -77,7 +79,14 @@
           // get selected category id
           $scope.categoryId = $stateParams.catId;
           // initialize scope.item for model
-          $scope.item = {};
+          $scope.getItem = function() {
+            $scope.itemId = $stateParams.id;
+            Items.get({
+              id: $stateParams.id
+            }, function(item) {
+              $scope.item = item;
+            });
+          };
           //initialize current tab
           $scope.tabIndex = $stateParams.tabIndex;
         };
