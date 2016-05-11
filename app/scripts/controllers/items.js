@@ -61,8 +61,6 @@
           $scope.itemReview.itemId = $stateParams.id;
           Reviews.save($scope.itemReview, function(review) {
             if (review) {
-              console.log(Reviews);
-              console.log($scope);
               $scope.item.Reviews.push(review);
               $scope.itemReview = {};
             }
