@@ -72,9 +72,6 @@ describe('ItemCtrl tests', function() {
     spyOn(Items, 'query').and.callThrough();
     spyOn(Categories, 'query').and.callThrough();
     scope.init();
-    expect(scope.categories).toBeDefined();
-    expect(scope.recentItems).toBeDefined();
-    expect(scope.item).toBeDefined();
     expect(Items.query).toHaveBeenCalled();
     expect(Categories.query).toHaveBeenCalled();
   });

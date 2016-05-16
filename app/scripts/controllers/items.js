@@ -77,7 +77,6 @@
           // get selected category id
           $scope.categoryId = $stateParams.catId;
           // initialize scope.item for model
-          $scope.item = {};
           $scope.getItem = function() {
             $scope.itemId = $stateParams.id;
             Items.get({
