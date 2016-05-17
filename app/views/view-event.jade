@@ -1,5 +1,5 @@
 md-content(layout='row' layout-margin layout-align="center start" flex="100" ng-init="getEvent()")
-  md-content.no-overflow(layout="column" layout-margin flex="60")
+  md-content.event-container.no-overflow(layout="column" layout-margin flex="60")
     h4.md-headline {{event.name}}
     p.md-subheader Gallery Images
     br
@@ -15,9 +15,9 @@ md-content(layout='row' layout-margin layout-align="center start" flex="100" ng-
           i.fa.fa-star-o.colorpink(ng-repeat="i in range(5 - averageReview(event.Reviews)) track by $index")
           p.small Average rating
     br
-    p.md-subheader Description
+    p.clear-top.md-subheader Description
     br
-    span.small-font {{event.description}}
+    span.event-decription.small-font {{event.description}}
     br
     p.md-subheader Details
     br
@@ -29,7 +29,7 @@ md-content(layout='row' layout-margin layout-align="center start" flex="100" ng-
     i.fa.fa-group &nbsp;&nbsp; 
       span.emphasis {{event.sponsor}}
 
-  md-content.no-overflow(layout="column" layout-margin flex="30")
+  md-content.costom-width.no-overflow(layout="column" layout-margin flex="30")
     h5.text-center Say something about this event
     md-divider
       md-input-container.no-padding

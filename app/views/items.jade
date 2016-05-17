@@ -42,11 +42,11 @@ div(layout="row")
             div(layout="row" layout-align="start center" layout-margin)
               i.fa.fa-star.colorpink(ng-if="averageReview(item.Reviews) > 0" ng-repeat="i in range(averageReview(item.Reviews)) track by $index")
               i.fa.fa-star-o.colorpink(ng-repeat="i in range(5 - averageReview(item.Reviews)) track by $index")
-              h4.md-subheader &nbsp;&nbsp;{{item.Reviews.length}} {{reviewNum(item.Reviews)}}
+              h4.review-block.md-subheader &nbsp;&nbsp;{{item.Reviews.length}} {{reviewNum(item.Reviews)}}
             div(layout="column" layout-margin)
               p.truncate {{maxReview(item.Reviews).review}}
               h4.md-subheader - {{maxReview(item.Reviews).User.username}}
-          md-card-actions(layout="row" layout-align="end center")
+          md-card-actions.review-card(layout="row" layout-align="end center")
             md-button.md-primary(ui-sref="viewItem({id:item.id})") Write Review
 
     md-content(ng-if="categoryId" ng-init="getCategory()")

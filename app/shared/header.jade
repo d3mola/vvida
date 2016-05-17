@@ -1,25 +1,25 @@
-md-toolbar.navbar.md-whiteframe-z3.header-spacing(ng-controller="HeaderCtrl" layout="row" layout-align="center center")
+md-toolbar.md-whiteframe-z3.navbar.header-spacing(ng-controller="HeaderCtrl" layout="row" layout-align="center center")
   .md-toolbar-tools
     md-button.md-icon-button.show-sm.hide-gt-sm(ng-click="openLeftMenu()", aria-label="openLeftMenu")
       i.fa.fa-bars.fa-2x
     a(ui-sref="home")
-      img(src="images/logo.png" height="24" hide-sm)
-    span(flex)
-    a(ng-repeat="menuItem in menu" ui-sref="{{menuItem.state}}" hide-sm)
-      md-button
-        | {{menuItem.name}}
-    a(ng-if="currentUser" ui-sref="userProfile({id:currentUser.id})" ui-sref-opts="{reload:true}")
-      md-button.md-icon-button.icon-button(aria-label="Comment")
-        img(ng-src="{{currentUser.img_url}}")
-        md-tooltip {{currentUser.name}}
-    a(ng-if="currentUser")
-      md-button.md-icon-button(aria-label="Sign out" ng-click="logout()")
-        i.md-accent.fa.fa-sign-out
-        md-tooltip Sign out
-    a(ng-if="!currentUser" ui-sref="login")
-      md-button.md-icon-button
-        span.md-accent.fa.fa-sign-in
-        md-tooltip Sign in
+      img(src="images/logo.png" height="24" align="middle" hide-sm)
+    .menu-container
+      a(ng-repeat="menuItem in menu" ui-sref="{{menuItem.state}}" hide-sm)
+        md-button
+          | {{menuItem.name}}
+      a(ng-if="currentUser" ui-sref="userProfile({id:currentUser.id})" ui-sref-opts="{reload:true}")
+        md-button.md-icon-button.icon-button(aria-label="Comment")
+          img(ng-src="{{currentUser.img_url}}")
+          md-tooltip {{currentUser.name}}
+      a(ng-if="currentUser")
+        md-button.md-icon-button(aria-label="Sign out" ng-click="logout()")
+          i.md-accent.fa.fa-sign-out
+          md-tooltip Sign out
+      a(ng-if="!currentUser" ui-sref="login")
+        md-button.md-icon-button
+          span.md-accent.fa.fa-sign-in
+          md-tooltip Sign in
 md-sidenav.md-sidenav-left(md-component-id="left" hide-gt-sm)
   md-toolbar.md-accent
     h1.md-toolbar-tools
