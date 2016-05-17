@@ -11,7 +11,7 @@ database:
     - cp config/database.yml.ci config/database.yml
     - sequelize db:migrate:undo:all
     - sequelize db:migrate --migrations-path migration_ci
-    - sequelize db:seed
+    - sequelize db:seed:all
 
 machine:
   environment:
