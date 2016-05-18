@@ -25,7 +25,7 @@ div.eventGridList(layout-padding layout="column")
           md-card-title-text(layout="column")
             span.md-subhead.category {{categoryName || event.Category.name}}
             span.md-subheadline.name(ui-sref="viewEvent({id: event.id})") {{event.name}}
-            span.time {{getTime(event.time).day}} @{{getTime(event.time).time}}
+            span.time {{getTime(event.start_time).day}} @{{getTime(event.start_time).time}}
         md-card-content
           md-button.md-raised(md-ink-ripple ui-sref="viewEvent({id: event.id})") Review
 
@@ -48,9 +48,9 @@ div.eventGridList(layout-padding layout="column")
               i.fa.fa-map-marker.location
                 | &nbsp;{{event.venue}}
               i.fa.fa-calendar.date.md-subheader
-                | &nbsp;{{getTime(event.time).day}}
+                | &nbsp;{{getTime(event.start_time).day}}
               i.fa.fa-at.time
-                | &nbsp;{{getTime(event.time).time}}
+                | &nbsp;{{getTime(event.start_time).time}}
           md-divider(ng-if="!$last")
 
   div(layout="row" layout-align="center center" ng-if="!categoryId")

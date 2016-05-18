@@ -17,7 +17,8 @@
           description: req.body.description,
           location: req.body.location,
           venue: req.body.venue,
-          time: req.body.time,
+          start_time: req.body.start_time,
+          end_time: req.body.end_time,
           sponsor: req.body.sponsor,
           category_id: req.body.category_id
         }).then(function(event) {
@@ -35,7 +36,7 @@
         var offset = req.query.limit * req.query.page || 0;
         var date = Date.now();
         var filter = (req.query.filter) ? {
-          time: {
+          start_time: {
             $gt: date
           }
         } : {};
@@ -43,7 +44,7 @@
         Events.findAll({
           where: filter,
           order: [
-            ['time', 'ASC']
+            ['start_time', 'ASC']
           ],
           offset: offset,
           limit: limit,
@@ -71,8 +72,9 @@
           'INNER JOIN public."Reviews" AS Rv1 ON Ev1.id=Rv1.event_id ' +
           'LEFT JOIN public."Images" AS Im1 ON Ev1.id=Im1.event_id ' +
           'GROUP BY Ev1.id, Ev1.name, Ev1.category_id, Ev1.description, ' +
-          'Ev1.location, Ev1.venue, Ev1.time, Ev1.sponsor, Ev1.created_at, ' +
-          'Ev1.updated_at, Ev1.user_id, Cat1.id, Cat1.name ' +
+          'Ev1.location, Ev1.venue, Ev1.start_time, Ev1.end_time, ' +
+          'Ev1.sponsor, Ev1.created_at, Ev1.updated_at, Ev1.user_id, ' +
+          'Cat1.id, Cat1.name ' +
           'ORDER BY review_count DESC ' +
           'LIMIT ' + limit + ' OFFSET ' + offset;
 

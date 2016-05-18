@@ -10,8 +10,8 @@ md-content.content.user-profile(ng-if="currentUser" ng-init="init()")
           i.fa.fa-map-marker.location.md-subheader 
             | {{event.venue}}
           span.md-caption {{event.location}}
-          span.md-caption {{parseDate(event.time).day}}
-          span.md-caption {{parseDate(event.time).time}}
+          span.md-caption {{parseDate(event.start_time).day}}
+          span.md-caption {{parseDate(event.start_time).time}}
         md-card-title-media
           .md-media-md(style="background-image: url({{event.Images[0].img_url}});")
       md-card-actions(layout="row" layout-align-gt-sm="end center" layout-align-sm="center center")

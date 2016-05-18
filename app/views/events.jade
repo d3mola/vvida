@@ -33,7 +33,7 @@
                 span.md-subheadline.name(ui-sref="viewEvent({id: event.id})") {{event.name}}
                 i.fa.fa-map-marker.location.md-subheader 
                   | {{event.venue}}
-                span.time {{getTime(event.time).day}} @{{getTime(event.time).time}}
+                span.time {{getTime(event.start_time).day}} @{{getTime(event.start_time).time}}
             md-card-content
               md-button.md-raised(md-ink-ripple ui-sref="viewEvent({id: event.id})") Review
 
@@ -50,7 +50,7 @@
                 span.md-subheadline.name(ui-sref="viewEvent({id: event.id})") {{event.name}}
                 i.fa.fa-map-marker.location.md-subheader 
                   | {{event.venue}}
-                span.time {{getTime(event.time).day}} @{{getTime(event.time).time}}
+                span.time {{getTime(event.start_time).day}} @{{getTime(event.start_time).time}}
             md-card-content
               md-button.md-raised(md-ink-ripple ui-sref="viewEvent({id: event.id})") Review
 

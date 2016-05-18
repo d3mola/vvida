@@ -52,7 +52,8 @@ describe('UserEventsCtrl tests', function() {
       get: function(id, cb) {
         cb({
           message: 'Sample Event Message',
-          time: null
+          start_time: new Date(),
+          end_time: new Date()
         });
       },
       query: function() {
@@ -110,7 +111,8 @@ describe('UserEventsCtrl tests', function() {
       description: 'Sample Event Description',
       location: 'Sample Event Location',
       venue: 'Sample Event Venue',
-      time: new Date(Date.now),
+      start_time: new Date(),
+      end_time: new Date(),
       sponsor: 'Sample Event Sponsor',
       message: 'Sample Event Message'
     };
@@ -140,7 +142,8 @@ describe('UserEventsCtrl tests', function() {
     expect(Events.get).toHaveBeenCalled();
     expect(scope.event).toEqual({
       message: 'Sample Event Message',
-      time: new Date(null)
+      start_time: new Date(),
+      end_time: new Date()
     });
   });
 
