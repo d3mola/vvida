@@ -10,7 +10,7 @@ database:
   override:
     - cp config/database.yml.ci config/database.yml
     - sequelize db:migrate:undo:all
-    - sequelize db:migrate --migrations-path migration_ci
+    - sequelize db:migrate
     - sequelize db:seed:all
 
 machine:
