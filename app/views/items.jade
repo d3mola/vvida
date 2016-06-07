@@ -32,7 +32,7 @@ div(layout="row")
       md-divider
 
       div.gridItems(flex layout="row" layout-sm="column" layout-align="start start")
-        md-card(flex flex-sm="50" flex-md="45" flex-gt-md="{{recentItems.length > 3? \"\": \"25\"}}" ng-repeat="item in recentItems | limitTo : 6")
+        md-card(flex flex-sm="50" flex-md="45" flex-gt-md="{{recentItems.length > 3? \"\": \"25\"}}"  ng-repeat="item in recentItems | limitTo : 6" ui-sref="viewItem({id: item.id})")
           img.md-card-image(ng-src="{{item.Images[0].img_url}}")
           md-card-title.itemCard(layout="column"  layout-align="end start")
             md-card-title-text(layout="column")

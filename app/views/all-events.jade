@@ -19,19 +19,20 @@ div.eventGridList(layout-padding layout="column")
 
   div.md-padding(ng-if="viewType === \"grid\"")
     div.gridItems(flex layout="row" layout-sm="column" layout-align="start start")
-      md-card(flex-sm="50" flex-md="45" ng-repeat="event in loadEvents | orderBy: 'Reviews.length':true")
-        img.md-card-image(ng-src="{{event.Images[0].img_url}}")
-        md-card-title(layout="column"  layout-align="end start")
-          md-card-title-text(layout="column")
-            span.md-subhead.category {{categoryName || event.Category.name}}
-            span.md-subheadline.name(ui-sref="viewEvent({id: event.id})") {{event.name}}
-            span.time {{getTime(event.time).day}} @{{getTime(event.time).time}}
-        md-card-content
-          md-button.md-raised(md-ink-ripple ui-sref="viewEvent({id: event.id})") Review
+      md-card(flex-sm="50" flex-md="45" ng-repeat="event in loadEvents | orderBy: 'Reviews.length':true" )
+        a(ui-sref="viewEvent({id: event.id})")
+          img.md-card-image(ng-src="{{event.Images[0].img_url}}")
+          md-card-title(layout="column"  layout-align="end start")
+            md-card-title-text(layout="column")
+              span.md-subhead.category {{categoryName || event.Category.name}}
+              span.md-subheadline.name(ui-sref="viewEvent({id: event.id})") {{event.name}}
+              span.time {{getTime(event.time).day}} @{{getTime(event.time).time}}
+          md-card-content
+            md-button.md-raised(md-ink-ripple ui-sref="viewEvent({id: event.id})") Review
 
   div(layout ng-if="viewType === \"list\"")
     md-list
-      md-list-item.md-3-line(ng-repeat="event in loadEvents | orderBy:'Reviews.length' :true")
+      md-list-item.md-3-line(ng-repeat="event in loadEvents | orderBy:'Reviews.length' :true" ui-sref="viewEvent({id: event.id})")
         img.face(ng-src="{{event.Images[0].img_url}}" ui-sref="viewEvent({id:event.id})")
         .md-list-item-text
           div(layout="row" layout-sm="column")
