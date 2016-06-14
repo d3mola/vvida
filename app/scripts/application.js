@@ -1,9 +1,9 @@
 (function() {
   'use strict';
-  angular.module('vvida.controllers', []);
-  angular.module('vvida.services', []);
   angular.module('vvida.filters', []);
+  angular.module('vvida.services', []);
   angular.module('vvida.directives', []);
+  angular.module('vvida.controllers', []);
 
   //Require Services
   require('./services/utils');
@@ -163,7 +163,7 @@
           controller: ['$stateParams', 'Auth', '$state',
             function($stateParams, Auth, $state) {
               Auth.setToken($stateParams.token);
-              var loc = $state.href('userProfile', 
+              var loc = $state.href('userProfile',
                 { id: $stateParams.id }, { absolute: true });
               window.location.href = loc;
             }
