@@ -74,7 +74,8 @@ angular.module('vvida.controllers')
           id: $stateParams.id
         }, function(event) {
           $scope.event = event;
-          $scope.event.time = new Date(event.time);
+          $scope.event.start_time = new Date(event.start_time);
+          $scope.event.end_time = new Date(event.end_time);
         });
 
         $scope.categories = Categories.query({

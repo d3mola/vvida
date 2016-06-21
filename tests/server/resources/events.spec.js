@@ -15,7 +15,8 @@
           description: faker.lorem.sentence(),
           location: faker.address.streetName(),
           venue: faker.address.streetAddress(),
-          time: faker.date.recent(),
+          start_time: faker.date.recent(),
+          end_time: faker.date.recent(),
           sponsor: faker.company.companyName(),
           category_id: faker.random.number(),
         };
