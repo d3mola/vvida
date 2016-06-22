@@ -49,9 +49,9 @@ div.eventGridList(layout-padding layout="column")
               i.fa.fa-map-marker.location
                 | &nbsp;{{event.venue}}
               i.fa.fa-calendar.date.md-subheader
-                | &nbsp;{{getTime(event.time).day}}
+                | &nbsp;{{getTime(event.start_time).day}}
               i.fa.fa-at.time
-                | &nbsp;{{getTime(event.time).time}}
+                | &nbsp;{{getTime(event.start_time).time}}
           md-divider(ng-if="!$last")
 
   div(layout="row" layout-align="center center" ng-if="!categoryId")
