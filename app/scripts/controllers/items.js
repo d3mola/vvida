@@ -33,6 +33,10 @@
           return review.length > 1 ? 'reviews' : 'review';
         };
 
+        $scope.pluralizeReview = function(review) {
+          return review > 1 ? 'reviews' : 'review';
+        };
+
         $scope.averageReview = function(itemReviews) {
           if (itemReviews) {
             var sum = 0;
@@ -74,8 +78,31 @@
           });
           // get Recent Items
           $scope.recentItems = Items.query();
+          // get Pouplar Items
+          Items.popularProducts(function(err, res) {
+            if (err) {
+              $scope.errMessage = 'Error Ecountered';
+              return;
+            }
+
+            $scope.popularItems = res;
+          });
           // get selected category id
           $scope.categoryId = $stateParams.catId;
+
+          // Watches the popularProducts state and set showPopularOnly true
+          $scope.$watch(function() {
+              return $state.current.name;
+            },
+            function(name) {
+              if (name === 'popularProducts') {
+                $scope.showPopularOnly = true;
+                return;
+              }
+
+              $scope.showPopularOnly = false;
+            });
+
           // initialize scope.item for model
           $scope.getItem = function() {
             $scope.itemId = $stateParams.id;

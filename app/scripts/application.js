@@ -161,10 +161,10 @@
         .state('authSuccess', {
           url: '/auth/success/{token}/{id}',
           controller: ['$stateParams', 'Auth', '$state',
-          function($stateParams, Auth, $state) {
+            function($stateParams, Auth, $state) {
               Auth.setToken($stateParams.token);
-              var loc = $state.href('userProfile',
-                {id : $stateParams.id}, {absolute:true});
+              var loc = $state.href('userProfile', 
+                { id: $stateParams.id }, { absolute: true });
               window.location.href = loc;
             }
           ]
@@ -241,10 +241,20 @@
           controller: 'ItemCtrl',
           templateUrl: 'views/view-item.html'
         })
+        .state('popularProducts', {
+          url: '/items/categories/popular',
+          controller: 'ItemCtrl',
+          templateUrl: 'views/items.html'
+        })
         .state('categoryItems', {
           url: '/items/categories/{catId}',
           controller: 'ItemCtrl',
           templateUrl: 'views/items.html'
+        })
+        .state('popularEvents', {
+          url: '/event/categories/popular',
+          controller: 'EventCtrl',
+          templateUrl: 'views/events.html'
         })
         .state('categoryEvents', {
           url: '/event/categories/{catId}',

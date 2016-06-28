@@ -21,6 +21,12 @@ describe('ItemCtrl tests', function() {
           message: 'I am groot',
           Images: [1, 3, 4]
         }];
+      },
+      popularProducts: function(cb) {
+        cb([{
+          message: 'I am groot',
+          Images: [1, 3, 4]
+        }]);
       }
     },
     currentUser = {

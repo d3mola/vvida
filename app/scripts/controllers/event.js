@@ -6,7 +6,6 @@
       function($scope, $state, $stateParams, $mdSidenav,
         Utils, Events, Categories, Reviews) {
 
-
         // initialize state data
         $scope.init = function() {
           // get all categories
@@ -41,9 +40,19 @@
             function(name) {
               if (name === 'events') {
                 $scope.nextView = false;
-              } else {
-                $scope.nextView = true;
+                $scope.popularEvent = false;
+                return;
               }
+
+              if (name === 'popularEvents') {
+                $scope.nextView = true;
+                $scope.popularEvent = true;
+                return;
+              }
+
+              $scope.nextView = true;
+              $scope.popularEvent = false;
+
             });
         };
 
