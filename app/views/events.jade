@@ -25,7 +25,7 @@
 
         md-divider
         div.gridItems(flex layout="row" layout-sm="column" layo ut-align="start start")
-          md-card(flex flex-sm="50" flex-md="45" ng-repeat="event in recentEvents | orderBy:'-time' ")
+          md-card(flex flex-sm="50" flex-md="45" ng-repeat="event in recentEvents | orderBy:'-time' " ui-sref="viewEvent({id: event.id})")
             img.md-card-image(ng-src="{{event.Images[0].img_url}}")
             md-card-title(layout="column"  layout-align="end start")
               md-card-title-text(layout="column")
@@ -42,7 +42,7 @@
           h3.md-subheader Popular Events
         md-divider
         div.gridItems(flex layout="row" layout-sm="column" layout-align="start start")
-          md-card(flex flex-sm="50" flex-md="45" ng-repeat="event in popularEvents")
+          md-card(flex flex-sm="50" flex-md="45" ng-repeat="event in popularEvents" ui-sref="viewEvent({id: event.id})")
             img.md-card-image(ng-src="{{event.images[0]}}")
             md-card-title(layout="column"  layout-align="end start")
               md-card-title-text(layout="column")
@@ -55,6 +55,3 @@
               md-button.md-raised(md-ink-ripple ui-sref="viewEvent({id: event.id})") Review
 
       div(ui-view="inner")
-
-
-

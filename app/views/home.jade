@@ -13,24 +13,26 @@ md-card.jumbotron.search-jumbotron
   md-tabs.md-dynamic-height(md-selected="data.selectedIndex")
     md-tab(label="Events")
       div.tabCards(ng-if="events.length > 0" layout="row" layout-sm="column" flex  layout-align="start center")
-        md-card(ng-repeat="event in events | limitTo : 4" flex flex-md="45" flex-gt-md="{{events.length > 3? \"\": \"25\"}}")
-          img.md-card-image(ng-src="{{event.Images[0].img_url}}")
-          md-card-title(layout="column"  layout-align="end start")
-            md-card-title-text(layout="column")
-              span.md-subhead.category {{event.Category.name}}
-              span.md-subheadline.name(ui-sref="viewEvent({id: event.id})") {{event.name}}
-              i.fa.fa-map-marker.location.md-subheader 
-                | {{event.venue}}
-          md-card-content
-            p {{event.description | ngClipText : 70}}
+        md-card(ng-repeat="event in events | limitTo : 4"  flex flex-md="45" flex-gt-md="{{events.length > 3? \"\": \"25\"}}")
+          a(ui-sref="viewEvent({id: event.id})")
+            img.md-card-image(ng-src="{{event.Images[0].img_url}}")
+            md-card-title(layout="column"  layout-align="end start")
+              md-card-title-text(layout="column")
+                span.md-subhead.category {{event.Category.name}}
+                span.md-subheadline.name(ui-sref="viewEvent({id: event.id})") {{event.name}}
+                i.fa.fa-map-marker.location.md-subheader 
+                  | {{event.venue}}
+            md-card-content
+              p {{event.description | ngClipText : 70}}
 
     md-tab(label="Products")
       div.tabCards(ng-if="items.length > 0" layout="row" layout-sm="column" flex  layout-align="start center")
-        md-card(ng-repeat="item in items | limitTo : 4" flex flex-md="45" flex-gt-md="{{items.length > 3? \"\": \"25\"}}")
-          img.md-card-image(ng-src="{{item.Images[0].img_url}}")
-          md-card-title
-            md-card-title-text(layout="column" layout-align="end start")
-              span.md-subhead.category {{item.Category.name}}
-              span.md-subheadline.name(ui-sref="viewItem({id: item.id})") {{item.name}}
-          md-card-content
-            p {{item.description | ngClipText : 70}}
+          md-card(ng-repeat="item in items | limitTo : 4"  flex flex-md="45" flex-gt-md="{{items.length > 3? \"\": \"25\"}}")
+          a(ui-sref="viewItem({id: item.id})")
+            img.md-card-image(ng-src="{{item.Images[0].img_url}}")
+            md-card-title(layout="column" layout-align="end start")
+              md-card-title-text(layout="column")
+                span.md-subhead.category {{item.Category.name}}
+                span.md-subheadline.name(ui-sref="viewItem({id: item.id})") {{item.name}}
+            md-card-content
+              p {{item.description | ngClipText : 70}}
