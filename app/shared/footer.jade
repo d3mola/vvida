@@ -6,16 +6,12 @@
         div.footer-links(ng-repeat="aboutItem in about" ui-sref="{{aboutItem.state}}", aria-label="aboutItem.name") {{aboutItem.name}}
 
       .footer-item-group(layout="column")
-        .md-title.footer-titles Discover
-        div.footer-links(ng-repeat="item in discover" ui-sref="{{item.state}}", aria-label="item.name") {{item.name}}
-
-      .footer-item-group(layout="column")
         .md-title.footer-titles Business
         div.footer-links(ng-repeat="item in business" ui-sref="{{item.state}}", aria-label="item.name") {{item.name}}
 
     md-divider.md-inset
 
-    .social_icons(layout="column" flex-gt-md="50" flex layout-align="start start" layout-padding)   
+    .social_icons(layout="column" flex-gt-md="50" flex layout-align="start start" layout-padding)
       .footer-titles Join Us
       div.icons(layout="row" layout-md="row" layout-sm="column")
         span.fa.fa-google-plus-square.fa-2x.text-white
@@ -28,4 +24,4 @@
 
   .md-padding
     md-divider.md-inset
-    .footer-text Copyright © 2015 Vvida Inc. Vvida, Vvida logo and related marks are registered trademarks of Vvida.
+    .footer-text Copyright © 2016 Vvida. Logo and related marks are registered trademarks of Vvida.
