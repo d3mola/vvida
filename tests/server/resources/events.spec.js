@@ -8,10 +8,11 @@
 
   describe('Events resource API tests', function() {
 
-    var generateFakeEvent = function() {
+    var initialEventName = faker.commerce.productName(),
+      generateFakeEvent = function() {
         return {
           // userId: faker.random.number(),
-          name: faker.commerce.productName(),
+          name: initialEventName,
           description: faker.lorem.sentence(),
           location: faker.address.streetName(),
           venue: faker.address.streetAddress(),
@@ -162,6 +163,29 @@
       // since the angular application will route to the edit form
       // and display it
       _expect(true).to.be(true);
+    });
+
+    /**
+     * Search for events by their name property
+     * GET /events?q={$searchTerm}
+     *
+     * @param  String  $searchTerm
+     * @return Response
+     */
+    it('should search and return for events matched', function(done) {
+      request
+        .get(resourceApiURL + '/search?q=' + initialEventName)
+        .set('X-Access-Token', authToken)
+        .accept('application/json')
+        .end(function(err, res) {
+          _expect(res.status).to.be(200);
+          _expect(res.body.length).to.be.above(0);
+          res.body.forEach(function (event) {
+            _expect(JSON.stringify(event))
+              .to.match(new RegExp(initialEventName, 'i'));
+          });
+          done();
+        });
     });
 
     /**

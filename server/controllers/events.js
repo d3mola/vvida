@@ -111,6 +111,48 @@
         });
       },
 
+      // Middleware to search for events
+      search: function(req, res) {
+        Events.findAll({
+          where: {
+            $or: [{
+              name: {
+                $ilike: '%' + decodeURIComponent(req.query.q) + '%'
+              }
+            },{
+              description: {
+                $ilike: '%' + decodeURIComponent(req.query.q) + '%'
+              }
+            }, {
+              location: {
+                $ilike: '%' + decodeURIComponent(req.query.q) + '%'
+              }
+            }, {
+              venue: {
+                $ilike: '%' + decodeURIComponent(req.query.q) + '%'
+              }
+            }, {
+              sponsor: {
+                $ilike: '%' + decodeURIComponent(req.query.q) + '%'
+              }
+            }]
+          },
+          include: [Images, Reviews, Categories]
+        }).then(function(events) {
+          if (!events) {
+            res.status(404).json({
+              error: 'Event not found'
+            });
+          } else {
+            res.json(events);
+          }
+        }).catch(function(err) {
+          res.status(500).json({
+            error: err.message || err.errors[0].message
+          });
+        });
+      },
+
       // Middlware to  update events
       update: function(req, res) {
         Events.update(req.body, {
