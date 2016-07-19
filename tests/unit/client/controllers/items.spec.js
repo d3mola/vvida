@@ -3,6 +3,26 @@ describe('ItemCtrl tests', function() {
   var scope,
     controller,
     Utils,
+    close,
+    nav,
+    $httpBackend,
+    state = {
+      current: {
+        name: ''
+      }
+    },
+    images,
+    mdSidenav = function(direction) {
+      return {
+        toggle: function() {
+          nav = direction;
+        },
+        close: function() {
+          console.log(direction);
+          close = direction;
+        }
+      };
+    },
     Items = {
       save: function(item, cb) {
         item ? cb(item) : cb(false);
@@ -72,14 +92,33 @@ describe('ItemCtrl tests', function() {
   beforeEach(inject(function($injector) {
     var $controller = $injector.get('$controller');
     scope = $injector.get('$rootScope');
+    images = $injector.get('Images');
+    $httpBackend = $injector.get('$httpBackend');
     controller = $controller('ItemCtrl', {
       $rootScope: rootScope,
       $scope: scope,
       Items: Items,
+      $mdSidenav: mdSidenav,
+      $state: state
     });
     Utils = $injector.get('Utils');
     Categories = $injector.get('Categories');
     Reviews = $injector.get('Reviews');
+
+    $httpBackend.when('GET', '/api/users/session')
+      .respond(200, [{
+        res: 'res'
+    }]);
+
+    $httpBackend.when('GET', '/api/categories/?type=Item')
+      .respond(200, [{
+        res: 'res'
+      }]);
+
+    $httpBackend.when('GET', 'views/home.html')
+      .respond(200, [{
+        res: 'res'
+      }]);
   }));
 
   it('should init the controller', function() {
@@ -131,6 +170,22 @@ describe('ItemCtrl tests', function() {
     }];
     var avgReview = scope.averageReview(reviews);
     expect(avgReview).toBe(5);
+  });
+
+  it('should close sidenav', function() {
+    scope.close();
+    expect(close).toEqual('catNav');
+  });
+
+  it('should toggle sidenav', function() {
+    scope.toggleSidenav();
+    expect(nav).toEqual('catNav');
+  });
+
+  it('should test watch', function(){
+    state.current.name = 'popularProducts';
+    scope.$apply();
+    expect(scope.showPopularOnly).toBe(true);
   });
 
 });

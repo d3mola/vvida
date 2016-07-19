@@ -3,6 +3,14 @@ describe('EventCtrl tests', function() {
   var scope,
     controller,
     Utils,
+    $httpBackend,
+    state = {
+      current: {
+        name: ''
+      }
+    },
+    nav,
+    close,
     Events = {
       save: function(evt, cb) {
         evt ? cb(evt) : cb(false);
@@ -90,24 +98,49 @@ describe('EventCtrl tests', function() {
     },
 
 
-    state, stateParams;
+    stateParams,
+    mdSidenav = function(direction) {
+      return {
+        toggle: function() {
+          nav = direction;
+        },
+        close: function() {
+          close = direction;
+        }
+      };
+    };
+
   beforeEach(function() {
     module('vvida');
   });
 
+
   beforeEach(inject(function($injector) {
     var $controller = $injector.get('$controller');
     scope = $injector.get('$rootScope');
+    $httpBackend = $injector.get('$httpBackend');
     controller = $controller('EventCtrl', {
       $rootScope: rootScope,
       $scope: scope,
       Events: Events,
       Categories: Categories,
-      Reviews: Reviews
+      Reviews: Reviews,
+      $mdSidenav: mdSidenav
     });
     state = $injector.get('$state');
     stateParams = $injector.get('$stateParams');
     Utils = $injector.get('Utils');
+
+    $httpBackend.when('GET', '/api/users/session')
+      .respond(200, [{
+        res: 'res'
+    }]);
+
+    $httpBackend.when('GET', 'views/home.html')
+      .respond(200, [{
+        res: 'res'
+    }]);
+
   }));
 
   // initialize state
@@ -184,6 +217,23 @@ describe('EventCtrl tests', function() {
     var img_url = './images/test.png';
     scope.setImage(img_url);
     expect(scope.selectedImage).toBe('./images/test.png');
+  });
+
+  it('should close sidenav', function() {
+    scope.close();
+    expect(close).toEqual('evcatNav');
+  });
+
+  it('should toggle sidenav', function() {
+    scope.toggleSidenav();
+    expect(nav).toEqual('evcatNav');
+  });
+
+  it('should test watch', function(){
+    state.current.name = 'events';
+    scope.$apply();
+    expect(scope.nextView).toBe(false);
+    expect(scope.popularEvent).toBe(false);
   });
 
 });

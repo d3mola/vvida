@@ -17,6 +17,7 @@
             }).then(function(image) {
               cb(null, image);
             }).catch(function(err) {
+              console.log(err, 'error!');
               cb(err, null);
             });
           } else {

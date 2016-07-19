@@ -37,6 +37,13 @@ describe('LoginCtrl tests', function() {
     state = $injector.get('$state');
   }));
 
+  it('should return a state', function () {
+    spyOn(state, 'go');
+    state.go('login');
+    expect(state.go).toHaveBeenCalledWith('login');
+  });
+
+
   it('should call the login function in the Users service', function() {
     spyOn(Users, 'login').and.callThrough();
     spyOn(Auth, 'setToken');

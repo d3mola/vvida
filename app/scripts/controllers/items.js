@@ -16,7 +16,7 @@
         };
 
         $scope.range = function(n) {
-          return new Array(n);
+          return new Array(n); 
         };
 
         $scope.rate = function(n) {
