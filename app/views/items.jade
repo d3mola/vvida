@@ -1,4 +1,4 @@
-div.top-margin(layout="row")
+div(layout="row")
   div.itemSideNav(layout="row")
     md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id="catNav" md-is-locked-open="$mdMedia(\"gt-md\")")
       md-toolbar
@@ -46,7 +46,7 @@ div.top-margin(layout="row")
                   i.fa.fa-star-o.colorpink(ng-repeat="i in range(5 - item.avg_rating) track by $index")
                   h4.md-subheader &nbsp;&nbsp;{{item.review_count}} {{pluralizeReview(item.review_count)}}
                 div(layout="column" layout-margin)
-                    i.fa.fa-map-marker.location.md-subheader
+                    i.fa.fa-map-marker.location.md-subheader 
                       | {{item.city}}
               md-card-actions(layout="row" layout-align="end center")
                 md-button.md-primary(ui-sref="viewItem({id:item.id})") Write Review
@@ -75,3 +75,4 @@ div.top-margin(layout="row")
                 h4.md-subheader - {{maxReview(item.Reviews).User.username}}
             md-card-actions(layout="row" layout-align="end center")
               md-button.md-primary(ui-sref="viewItem({id:item.id})") Write Review
+        
