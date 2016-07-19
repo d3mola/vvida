@@ -1,12 +1,12 @@
 (function() {
   'use strict';
-  var sequelize = require('./../config/db-connect');
 
   module.exports = function(app) {
     var Events = app.get('models').Events,
       Images = app.get('models').Images,
       Categories = app.get('models').Categories,
-      Reviews = app.get('models').Reviews;
+      Reviews = app.get('models').Reviews,
+      sequelize = require('./../config/db-connect');
 
     // Create event middlware
     return {
