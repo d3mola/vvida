@@ -23,7 +23,19 @@ img {
 }
 
 input {
-    width: 100%!important;
+    width: 100%;
+}
+
+#search:not([disabled]){
+    background-color: #F9BF3B;
+}
+
+#search:active {
+    background-color: transparent;
+}
+
+#search:hover {
+    font-weight: bold;
 }
 
 .text-center {
@@ -73,9 +85,13 @@ header {
     height: auto;
     margin-top: -2px;
     padding-bottom: 30px;
-    background-color: #222;
+    font-family: "tiny sans footer";
+    background-color: #435262;
     md-divider {
-        background-color: white;
+        border-color: rgba(255,255,255, 0.2);
+        border-width: 2px;
+        box-shadow: 0px -1px 1px 0px rgba(0,0,0, 0.5);
+        background-color: #435261;
     }
 }
 
@@ -101,6 +117,8 @@ header {
     text-align: left;
     color: white;
     font-size: 12px;
+    font-weight: 400;
+    font-family: 'Open Sans', 'sans-serif';
 }
 
 .nav-links {
@@ -122,12 +140,15 @@ header {
     text-align: center;
     color: white;
     font-size: 12px;
+    font-weight: 400;
+    font-family: 'Open Sans', 'sans-serif';
 }
 
 .footer-titles {
-    font-weight: normal;
-    color: grey;
+    font-weight: bold;
+    color: #c5cacf;
     font-size: 20px;
+    font-family: 'Open Sans', 'sans-serif';
 }
 
 .space {
@@ -198,6 +219,7 @@ md-card.jumbotron.search-jumbotron {
 .toolbar-fix {
     height: 48px;
     min-height: 48px;
+    padding-right: 2%;
 }
 
 md-toolbar,
@@ -212,6 +234,9 @@ md-toolbar,
 .jumbotron {
     margin: 0;
     padding: 0;
+    .jumbotron-word{
+        font-size: 55px;
+    }
 }
 
 .card-images {
@@ -219,6 +244,10 @@ md-toolbar,
     height: 260px;
     background: center center no-repeat;
     background-size: cover;
+}
+
+.center{
+    margin: auto;
 }
 
 .eventGridList,
@@ -236,10 +265,11 @@ md-toolbar,
 
 .jumbotron-image {
     width: 100%;
-    height: 400px;
+    height: 750px;
     padding-bottom: 0;
-    background: url(../images/jumbo-image.jpg) top center no-repeat;
+    background: url(../images/vvida.jpg)center no-repeat;
     background-size: cover;
+    background-position: center;
     .image-overlay {
         margin: auto;
         display: flex;
@@ -247,7 +277,6 @@ md-toolbar,
         height: inherit;
         padding-bottom: 0;
         text-align: center;
-        background: rgba(0, 0, 0, 0.45);
         .jumbotron-middle-small-text {
             display: block;
             margin-top: 0;
@@ -371,6 +400,10 @@ md-sidenav.md-sidenav-left {
     max-width: 250px;
 }
 
+.top-margin {
+    margin-top: 5%;
+}
+
 .events {
     md-content {
         background-color: #FAFAFA;
@@ -484,6 +517,7 @@ md-tabs {
             > md-pagination-wrapper {
                 > md-tab-item:not([disabled]).md-active {
                     color: #009090;
+
                 }
             }
         }
@@ -498,7 +532,7 @@ md-tabs {
 .sign-up {
     width: 700px;
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 6%;
     margin-bottom: 10px;
     .third-party-button {
         width: 150px;
@@ -519,6 +553,7 @@ md-sidenav.md-sidenav-left {
         text-align: left;
         border-radius: 0;
         text-color: #777;
+        float:right;
     }
 }
 
@@ -724,7 +759,7 @@ md-sidenav.md-sidenav-left {
         margin-left: 80px;
     }
     .button {
-        width: 200px;
+        width: 150px;
     }
 }
 
@@ -832,7 +867,6 @@ md-sidenav.md-sidenav-left {
 }
 
 .about {
-    margin: 0 auto;
     text-align: justify;
     h3 {
         color: #fefefe;
@@ -851,11 +885,119 @@ md-sidenav.md-sidenav-left {
     }
 }
 
+/*styling placeholder to white*/
+::-webkit-input-placeholder {
+   color: white;
+   font-weight: lighter;
+   font-family: "Lato";
+   font-size: 30px;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: white;
+   font-weight: lighter;
+   font-family: "Lato";
+   font-size: 30px;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: white;
+   font-weight: lighter;
+   font-family: "Lato";
+   font-size: 30px;
+}
+
+.md-button:not([disabled]):hover {
+    background-color: transparent;
+}
+
+.search > .search-div .md-button.md-accent.md-raised:not([disabled]):hover{
+    background-color: #F9BF3B;
+}
+
+.hide-sm .ng-scope:focus {
+    background-color:transparent;
+}
+
+.cardElements {
+    padding: 20px;
+}
+
+.brandColour {
+    color: #F9BF3B;
+    font-size: 20px;
+}
+
+.eventVenue{
+    margin-top: 10px;
+}
+
+.eventDescription {
+    padding-top: 10px;
+    max-height: 50px;
+    min-height: 50px;
+    overflow: visible;
+}
+
+.eventTimeLeft {
+    margin-left: 55%;
+    margin-top: 10px;
+}
+
+.eventsHeader {
+    height: 80px;
+    width: 100%;
+    background-color: #f4f4f4;
+}
+
+ .eventsHeader > span {
+    position: absolute;
+    text-align: center;
+    width: inherit;
+    margin-top: 32px;
+    font-weight: bold;
+    font-size: 25px;
+    color: #545454;
+    cursor: pointer;
+ }
+
+.visited:hover {
+    cursor: pointer;
+}
+
+.seperateFooter {
+    height: 30px;
+    background-color: #f4f4f4;
+}
+
+.image-container {
+    position: relative;
+    width: 200px;
+    height: 300px;
+}
+
+.image-container .after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    color: #FFF;
+}
+
+.image-container:hover .after {
+    display: block;
+    background: rgba(0, 0, 0, .6);
+}
+
 .search {
-    width: 70%;
+    width: 80%;
     margin: auto;
+    font-family: "Lato";
+    font-size: 20px;
     p {
-        font-family: 'PT Sans Narrow', sans-serif;
+        font-family: "PT Sans Narrow", sans-serif;
         display: inline-block;
         color: white;
         text-shadow: 0 0 4px #111;
@@ -864,33 +1006,50 @@ md-sidenav.md-sidenav-left {
     >.search-div {
         width: 100%;
         .md-button {
-            margin-left: 1px;
-            border-radius: 0;
+            margin-left: 0px;
+            margin-bottom: 1px;
+            border-top-right-radius: 48px;
+            border-bottom-right-radius: 48px;
+            width:16%;
+            height:69px;
+            background-color: rgba(0,0,0,0.2);
+            font-size: 26px;
         }
+
         > md-input-container {
             padding: 0;
             margin-top: 6px;
-            background-color: white;
-            width: 100%;
-            height: 36px;
+            background-color: rgba(0,0,0,0.2);
+            border-top-left-radius: 48px;
+            border-bottom-left-radius: 48px;
+            width: 84%;
+            height: 70px;
             md-icon {
                 margin-top: 5px;
             }
             > input {
-                margin-top: 5px;
-                font-size: 16px;
+                margin-top: 12px;
+                font-size: 30px;
                 border: none;
+                margin-left: 10%;
+                color: white;
+                text-overflow: ellipsis;
+                width: 89%;
             }
         }
     }
 }
 
 md-toolbar.navbar {
-    background-color: #fff;
+    background: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0));
     height: 70px;
+    position: absolute;
+    z-index: 51;
     & .md-button {
-        color: #ff4091;
-        font-weight: normal;
+        color: #white;
+        font-weight: bold;
+        font-family: "Lato";
+        font-size:18px;
     }
 }
 
@@ -1030,6 +1189,7 @@ a {
     color: #000;
 }
 
+
 .rating {
     text-align: center;
     font-size: 24px;
@@ -1117,17 +1277,52 @@ md-dialog {
     }
 }
 
-.Sections {
-    padding-top: 0px;
-    padding-bottom: 50px;
+.overlay {
+    background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.1),
+      rgba(0, 0, 0, 1)
+    );
+}
+
+.eventcards {
+    height: 400px;
+    max-height: 400px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    font-family: 'Open Sans', 'sans-serif'
+}
+
+
+.productCards {
+    background: linear-gradient(
+      rgba(0, 0, 0, 0.45),
+      rgba(0, 0, 0, 0.45)
+    );
+    background-position:center;
+    background-size: cover;
+    height:400px;
+}
+
+.sections {
+    background-color: #f4f4f4;
+    color: #ffffff;
     md-tabs.md-dynamic-height md-tabs-content-wrapper {
-        padding: 20px 50px;
+    padding: 10px 25px;
+}
+
+.tabCards-products {
+    padding: 1%;
+}
+
+.tabCards {
+    flex-wrap: wrap;
+    @media (min-width: 700px) {
+        margin: 1% 2% 0 2%;
+        padding-left:5%;
+        padding-right: 5%;
     }
-    .tabCards {
-        flex-wrap: wrap;
-        @media (min-width: 700px) {
-            margin: 0 60px 0 60px;
-        }
         margin: 0 auto;
         md-card {
             width: 90%;
@@ -1141,6 +1336,10 @@ md-dialog {
                     padding: 5px;
                     .my-mixin
                 }
+            }
+            md-card-title-event {
+                height: 200px;
+                margin-top: 188px;
             }
             md-card-content {
                 padding: 5px;

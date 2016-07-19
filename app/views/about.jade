@@ -1,4 +1,4 @@
-.about.md-padding
+.about.md-padding.top-margin
   md-grid-list.md-whiteframe-9dp(md-cols-sm='1', md-cols-md='3', md-cols-gt-md='3', md-row-height-gt-md='1:1', md-row-height='2:2', md-gutter='12px', md-gutter-gt-sm='8px')
     md-grid-tile.green(ng-repeat="developer in developers" style="background: url('{{developer.img_url}}') no-repeat; background-size: 100% 100%;")
       md-grid-tile-footer
@@ -6,9 +6,9 @@
         h3 {{developer.title}}
 
     md-grid-tile.red(md-rowspan='1', md-colspan='3', md-colspan-sm='1')
-      p 
+      p
         | Vvida&nbsp;
         b live the life
-        | &nbsp;let's you review events. products and other fun ammenities categorized for your perusal. 
+        | &nbsp;let's you review events. products and other fun ammenities categorized for your perusal.
       md-grid-tile-footer
         h3 About our developers

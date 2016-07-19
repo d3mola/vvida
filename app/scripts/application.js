@@ -41,6 +41,7 @@
 
   // Require Directives
   require('./directives/ng-thumb');
+  require('./directives/back-img');
 
   // Requier Filters
   require('./filters/clip-text');
