@@ -1,18 +1,24 @@
 (function() {
   'use strict';
   angular.module('vvida.controllers')
-    .controller('EventCtrl', ['$scope', '$state', '$stateParams',
+    .controller('EventCtrl', ['$rootScope', '$scope', '$state', '$stateParams',
       '$mdSidenav', 'Utils', 'Events', 'Categories', 'Reviews',
-      function($scope, $state, $stateParams, $mdSidenav,
+      function($rootScope, $scope, $state, $stateParams, $mdSidenav,
         Utils, Events, Categories, Reviews) {
 
         // initialize state data
         $scope.init = function() {
+          // Hides the error message container
+          $scope.showError = false;
+          $scope.userId = $rootScope.currentUser.id;
+          // Decides which button to display during edit
+          $scope.editing = false;
+          $scope.currentUserReview = {};
+          $scope.haveReviewed = false;
           // get all categories
           $scope.categories = Categories.query({
             type: 'Event'
           });
-
           $scope.eventReview = {};
           // get selected category id
           $scope.categoryId = $stateParams.catId;
@@ -70,6 +76,14 @@
             id: $stateParams.id
           }, function(event) {
             $scope.event = event;
+            for (var i = 0; i < event.Reviews.length; i++) {
+              if (event.Reviews[i].user_id === $scope.userId) {
+                $scope.currentUserReview = event.Reviews[i];
+                $scope.haveReviewed = true;
+                $scope.event.Reviews.splice(i, 1);
+                break;
+              }
+            }
           });
         };
 
@@ -87,12 +101,24 @@
         };
 
         $scope.addEventReview = function() {
+          $scope.showError = false;
           $scope.eventReview.eventId = $stateParams.id;
           Reviews.save($scope.eventReview, function(review) {
-            if (review) {
-              $scope.event.Reviews.push(review);
+            if (!review.error) {
+              $scope.currentUserReview = {
+                review: review.review,
+                review_title: review.review_title,
+                rating: review.rating,
+                id: review.id
+              };
+              $scope.haveReviewed = true;
               $scope.eventReview = {};
+              return;
             }
+
+            $scope.showError = true;
+            $scope.errorMessage = review.error;
+            return;
           });
         };
 
@@ -104,6 +130,45 @@
             });
             return Math.round(sum / eventReviews.length) || 0;
           }
+        };
+
+        $scope.enableReviewEdit = function(reviewObject) {
+          $scope.haveReviewed = false;
+          $scope.editing = true;
+          $scope.eventReview = {
+            review: reviewObject.review,
+            review_title: reviewObject.review_title,
+            rating: reviewObject.rating,
+            id: reviewObject.id
+          };
+        };
+
+        $scope.updateEvent = function(eventData) {
+          Reviews.update(eventData, function(review) {
+            if (!review.error) {
+              $scope.haveReviewed = true;
+              $scope.currentUserReview = eventData;
+              $scope.eventReview = {};
+              return;
+            }
+            $scope.showError = true;
+            $scope.errorMessage = review.error;
+            return;
+          });
+        };
+
+        $scope.cancelEventUpdate = function() {
+          $scope.haveReviewed = true;
+        };
+
+        $scope.removeEventReview = function(reviewId) {
+          Reviews.delete({ id: reviewId }, function(result) {
+            if (result.message) {
+              $scope.editing = false;
+              $scope.haveReviewed = false;
+              $scope.eventReview = {};
+            }
+          });
         };
 
         $scope.setImage = function(image) {

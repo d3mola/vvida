@@ -3,6 +3,7 @@ describe('UserEventsCtrl tests', function() {
   var scope,
     controller,
     Utils,
+    time = new Date(),
     Users = {
       events: function(currentUser, cb) {
         var res;
@@ -52,8 +53,8 @@ describe('UserEventsCtrl tests', function() {
       get: function(id, cb) {
         cb({
           message: 'Sample Event Message',
-          start_time: new Date(),
-          end_time: new Date()
+          start_time: time,
+          end_time: time
         });
       },
       query: function() {
@@ -142,8 +143,8 @@ describe('UserEventsCtrl tests', function() {
     expect(Events.get).toHaveBeenCalled();
     expect(scope.event).toEqual({
       message: 'Sample Event Message',
-      start_time: new Date(),
-      end_time: new Date()
+      start_time: time,
+      end_time: time
     });
   });
 

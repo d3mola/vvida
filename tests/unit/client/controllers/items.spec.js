@@ -29,6 +29,7 @@ describe('ItemCtrl tests', function() {
         }]);
       }
     },
+
     currentUser = {
       city: 'Nairobi',
       country: 'Kenya',
@@ -56,6 +57,12 @@ describe('ItemCtrl tests', function() {
       username: 'HannahCK',
     },
 
+    rootScope = {
+      currentUser: {
+        id: 1
+      }
+    },
+
     Reviews,
     Categories;
   beforeEach(function() {
@@ -66,6 +73,7 @@ describe('ItemCtrl tests', function() {
     var $controller = $injector.get('$controller');
     scope = $injector.get('$rootScope');
     controller = $controller('ItemCtrl', {
+      $rootScope: rootScope,
       $scope: scope,
       Items: Items,
     });
