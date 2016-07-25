@@ -1,4 +1,4 @@
-.events(layout="row")
+.top-margin(layout="row")
   div(layout="row")
     md-sidenav.md-sidenav-left.md-whiteframe-1dp(md-component-id="evcatNav" md-is-locked-open="$mdMedia(\"gt-md\")")
       md-toolbar
@@ -33,7 +33,7 @@
                   md-card-title-text(layout="column")
                     span.md-subhead.category {{event.Category.name}}
                     span.md-subheadline.name(ui-sref="viewEvent({id: event.id})") {{event.name}}
-                    i.fa.fa-map-marker.location.md-subheader 
+                    i.fa.fa-map-marker.location.md-subheader
                       | {{event.venue}}
                     span.time {{getTime(event.start_time).day}} @{{getTime(event.start_time).time}}
                 md-card-content
@@ -51,7 +51,7 @@
                 md-card-title-text(layout="column")
                   span.md-subhead.category {{event.catname}}
                   span.md-subheadline.name(ui-sref="viewEvent({id: event.id})") {{event.name}}
-                  i.fa.fa-map-marker.location.md-subheader 
+                  i.fa.fa-map-marker.location.md-subheader
                     | {{event.venue}}
                   span.time {{getTime(event.start_time).day}} @{{getTime(event.start_time).time}}
               md-card-content

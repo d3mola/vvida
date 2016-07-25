@@ -20,7 +20,7 @@
           });
         };
 
-        // signup
+        //  signup
         $scope.signup = function() {
           var validationResult = validate($scope.user);
           if (validationResult.is_valid) {
