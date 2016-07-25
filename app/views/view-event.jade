@@ -1,4 +1,4 @@
-md-content(layout='row' layout-margin layout-align="center start" flex="100" ng-init="getEvent()")
+md-content.top-margin(layout='row' layout-margin layout-align="center start" flex="100" ng-init="getEvent()")
   md-content.no-overflow(layout="column" layout-margin flex="60")
     h4.md-headline {{event.name}}
     p.md-subheader Gallery Images
@@ -30,27 +30,49 @@ md-content(layout='row' layout-margin layout-align="center start" flex="100" ng-
       span.emphasis {{event.sponsor}}
 
   md-content.no-overflow(layout="column" layout-margin flex="30")
-    h5.text-center Say something about this event
-    md-divider
-      md-input-container.no-padding
-        .rating(ng-init="eventReview.rating=0")
-          span(ng-repeat="i in range(5-eventReview.rating) track by $index" ng-click="rate(5-$index)") ☆   
-          span.stared(ng-if="eventReview.rating" ng-repeat="i in range(eventReview.rating) track by $index" ng-click="rate(eventReview.rating-$index)") ☆ 
-      md-input-container.no-padding
-        label Title
-        input(ng-model="eventReview.review_title")
-      md-input-container.no-padding
-        label Review
-        textarea(ng-model="eventReview.review" columns="1" md-maxlength="150" rows="2")
-      md-input-container.no-padding
-        md-button.md-raised.md-primary(ng-click="addEventReview()") Submit review
+    div(ng-if="haveReviewed === true")
+      h5.text-center What you said about this event
+      md-divider
+      div.md-3-line.md-long-text.edit-continer
+        md-input-container.no-padding.user-review-rating-star
+          span
+            i.fa.fa-star.colorpink(ng-if="currentUserReview.rating > 0" ng-repeat="i in range(currentUserReview.rating) track by $index")
+            i.fa.fa-star-o.colorpink(ng-repeat="i in range(5 - currentUserReview.rating) track by $index")
+        md-list-item-text.user-review-wrapper
+          h3.current-user-review-title {{currentUserReview.review_title}}
+          p.current-user-review {{currentUserReview.review}}
+          span.action-icons-container
+            i.md-accent.fa.fa-pencil.edit-icon(ng-click="enableReviewEdit(currentUserReview)")
+            i.md-accent.fa.fa-trash.delete-icon(ng-click="removeEventReview(currentUserReview.id)")
+    
+    div(ng-if="haveReviewed === false")
+      h5.text-center Say something about this event
+      md-divider
+        md-input-container.no-padding
+          .rating
+            span(ng-repeat="i in range(5-eventReview.rating) track by $index" ng-click="rate(5-$index)") ☆   
+            span.stared(ng-if="eventReview.rating" ng-repeat="i in range(eventReview.rating) track by $index" ng-click="rate(eventReview.rating-$index)") ☆ 
+        md-input-container.no-padding
+          label Title
+          input(ng-model="eventReview.review_title")
+        md-input-container.no-padding
+          label Review
+          textarea(ng-model="eventReview.review" columns="1" md-maxlength="150" rows="2")
+        md-input-container.no-padding
+          .error-message.animate-show(ng-Show="showError" ng-animate="'error-message'") 
+             i.md-accent.fa.fa-exclamation-triangle  {{errorMessage}}
+        md-input-container.no-padding(ng-if="editing === false")
+          md-button.md-raised.md-primary(ng-click="addEventReview()") Submit review
+        md-input-container.no-padding(ng-if="editing === true" layout="row" layout-align="center")
+          md-button.md-raised.md-primary.button-size(ng-click="updateEvent(eventReview)") Update review
+          md-button.md-raised.md-primary.button-size(ng-click="cancelEventUpdate()") Cancel
 
 
     h5.text-center What people are saying about this event
     md-divider
       md-virtual-repeat-container.container-height
         md-list
-          md-list-item.md-3-line(md-virtual-repeat="review in event.Reviews")
+          md-list-item.content.md-3-line(md-virtual-repeat="review in event.Reviews" )
             .md-list-item-text
               span.bold-text {{review.review_title}}
               br
@@ -58,3 +80,6 @@ md-content(layout='row' layout-margin layout-align="center start" flex="100" ng-
               p
               i.fa.fa-star.colorpink(ng-if="review.rating > 0" ng-repeat="i in range(review.rating) track by $index")
               i.fa.fa-star-o.colorpink(ng-repeat="i in range(5 - review.rating) track by $index")
+              span.action-icons-container(ng-if="review.user_id === userId")
+                i.md-accent.fa.fa-pencil.edit-icon(ng-click="removeEventReview(review.id)")
+                i.md-accent.fa.fa-trash.delete-icon(ng-click="removeEventReview($index)")
