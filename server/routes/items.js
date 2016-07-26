@@ -10,6 +10,10 @@
       .post(auth.authenticate, Items.create)
       .get(Items.all);
 
+    // get popular Items
+    app.route('/api/items/popular')
+      .get(Items.popularItems);
+
     app.route('/api/items/:id')
       // read items
       .get(Items.find)

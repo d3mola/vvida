@@ -1,9 +1,9 @@
 (function() {
   'use strict';
-  angular.module('vvida.controllers', []);
-  angular.module('vvida.services', []);
   angular.module('vvida.filters', []);
+  angular.module('vvida.services', []);
   angular.module('vvida.directives', []);
+  angular.module('vvida.controllers', []);
 
   //Require Services
   require('./services/utils');
@@ -36,11 +36,13 @@
   require('./controllers/user-profile/pictures');
   require('./controllers/user-profile/reviews');
   require('./controllers/items');
+  require('./controllers/search');
   require('./controllers/event-view');
   require('./controllers/event');
 
   // Require Directives
   require('./directives/ng-thumb');
+  require('./directives/back-img');
 
   // Requier Filters
   require('./filters/clip-text');
@@ -161,10 +163,10 @@
         .state('authSuccess', {
           url: '/auth/success/{token}/{id}',
           controller: ['$stateParams', 'Auth', '$state',
-          function($stateParams, Auth, $state) {
+            function($stateParams, Auth, $state) {
               Auth.setToken($stateParams.token);
               var loc = $state.href('userProfile',
-                {id : $stateParams.id}, {absolute:true});
+                { id: $stateParams.id }, { absolute: true });
               window.location.href = loc;
             }
           ]
@@ -179,8 +181,12 @@
           controller: 'ItemCtrl',
           templateUrl: 'views/items.html'
         })
-
-      .state('userProfile', {
+        .state('search', {
+          url: '/search?query',
+          controller: 'SearchCtrl',
+          templateUrl: 'views/search.html'
+        })
+        .state('userProfile', {
           url: '/user/{id}/profile',
           controller: 'UserProfileCtrl',
           templateUrl: 'views/user-profile.html'
@@ -241,10 +247,20 @@
           controller: 'ItemCtrl',
           templateUrl: 'views/view-item.html'
         })
+        .state('popularProducts', {
+          url: '/items/categories/popular',
+          controller: 'ItemCtrl',
+          templateUrl: 'views/items.html'
+        })
         .state('categoryItems', {
           url: '/items/categories/{catId}',
           controller: 'ItemCtrl',
           templateUrl: 'views/items.html'
+        })
+        .state('popularEvents', {
+          url: '/event/categories/popular',
+          controller: 'EventCtrl',
+          templateUrl: 'views/events.html'
         })
         .state('categoryEvents', {
           url: '/event/categories/{catId}',

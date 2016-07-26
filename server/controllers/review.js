@@ -4,17 +4,47 @@
   module.exports = function(app) {
     var Reviews = app.get('models').Reviews;
 
+    var makeReviewQuery = function(userId, itemDataObj) {
+      var queryObj = { where: { user_id: userId } };
+
+      if (itemDataObj.eventId) {
+        queryObj.where.event_id = itemDataObj.eventId;
+      } else {
+        queryObj.where.item_id = itemDataObj.itemId;
+      }
+
+      return queryObj;
+    };
+
+    var saveReview = function(res, userId, eventData) {
+      Reviews.create({
+        user_id: userId,
+        item_id: eventData.itemId,
+        event_id: eventData.eventId,
+        review: eventData.review,
+        review_title: eventData.review_title,
+        rating: eventData.rating
+      }).then(function(review) {
+        res.json(review);
+      }).catch(function(err) {
+        res.status(500).json({
+          error: err.message || err.errors[0].message
+        });
+      });
+    };
+
     return {
       create: function(req, res) {
-        Reviews.create({
-          user_id: req.decoded.id,
-          item_id: req.body.itemId,
-          event_id: req.body.eventId,
-          review: req.body.review,
-          review_title: req.body.review_title,
-          rating: req.body.rating
-        }).then(function(review) {
-          res.json(review);
+        var query = makeReviewQuery(req.decoded.id, req.body);
+        Reviews.findOne(query).then(function(review) {
+          if (!review) {
+            saveReview(res, req.decoded.id, req.body);
+          } else {
+            var errorName = req.body.itemId ? 'a product' : 'an event';
+            res.json({
+              error: 'Oops!!! You can\'t review ' + errorName + ' twice'
+            });
+          }
         }).catch(function(err) {
           res.status(500).json({
             error: err.message || err.errors[0].message

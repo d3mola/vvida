@@ -6,7 +6,8 @@
       Images = app.get('models').Images,
       Categories = app.get('models').Categories,
       Reviews = app.get('models').Reviews,
-      Users = app.get('models').Users;
+      Users = app.get('models').Users,
+      sequelize = require('./../config/db-connect');
 
     return {
       create: function(req, res) {
@@ -97,6 +98,35 @@
         });
       },
 
+      // Middleware to get all the Items
+      popularItems: function(req, res) {
+        var limit = req.query.limit || 4;
+        var offset = req.query.limit * req.query.page || 0;
+
+        var stmt =
+          'SELECT It1.*, array_agg(Im1.img_url) AS Images, ' +
+          'Cat1.name AS CatName, ' +
+          'COUNT(Rv1.id) AS review_count, ROUND(AVG(Rv1.rating)) ' +
+          'AS avg_rating FROM public."Items" AS It1 ' +
+          'LEFT JOIN public."Categories" AS Cat1 ON Cat1.id=It1.category_id ' +
+          'INNER JOIN public."Reviews" AS Rv1 ON It1.id=Rv1.item_id ' +
+          'LEFT JOIN public."Images" AS Im1 ON It1.id=Im1.item_id ' +
+          'GROUP BY It1.id, It1.name, It1.category_id, It1.description, ' +
+          'It1.phone, It1.city, It1.street, It1.email, It1.created_at, ' +
+          'It1.updated_at, It1.user_id, Cat1.id, Cat1.name ' +
+          'ORDER BY review_count DESC ' +
+          'LIMIT ' + limit + ' OFFSET ' + offset;
+
+        sequelize.query(stmt, {
+          type: sequelize.QueryTypes.SELECT
+        }).then(function(events) {
+          res.json(events);
+        }, function(err) {
+          res.status(500).json({
+            error: err.message || err.errors[0].message
+          });
+        });
+      },
       delete: function(req, res) {
         Items.destroy({
           where: {

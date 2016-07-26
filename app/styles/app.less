@@ -23,16 +23,33 @@ img {
 }
 
 input {
-    width: 100%!important;
+    width: 100%;
+}
+
+#search:not([disabled]){
+    background-color: #F9BF3B;
+}
+
+#search:active {
+    background-color: transparent;
+}
+
+#search:hover {
+    background-color: #E6AF32;
+}
+
+.edit-review {
+    width: 100%;
 }
 
 .text-center {
+    padding-top: 6px !important;
     text-align: center;
     .email-profile {
-        font-size: 16px;
+        font-size: 11px;
     }
     .user {
-        font-size: 14px;
+        font-size: 16px;
     }
 }
 
@@ -67,14 +84,37 @@ header {
     }
 }
 
+.user-review-rating-star{
+    text-align: center;
+    font-size: 20px;
+}
+
+.current-user-review-title {
+    margin-bottom: 0px;
+}
+
+.current-user-review {
+    margin-top: 4px;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.user-review-wrapper {
+    width: 100%;
+}
+
 .footer {
     width: 100%;
     height: auto;
     margin-top: -2px;
     padding-bottom: 30px;
-    background-color: #222;
+    font-family: "tiny sans footer";
+    background-color: #435262;
     md-divider {
-        background-color: white;
+        border-color: rgba(255,255,255, 0.2);
+        border-width: 2px;
+        box-shadow: 0px -1px 1px 0px rgba(0,0,0, 0.5);
+        background-color: #435261;
     }
 }
 
@@ -100,6 +140,8 @@ header {
     text-align: left;
     color: white;
     font-size: 12px;
+    font-weight: 400;
+    font-family: 'Open Sans', 'sans-serif';
 }
 
 .nav-links {
@@ -121,12 +163,15 @@ header {
     text-align: center;
     color: white;
     font-size: 12px;
+    font-weight: 400;
+    font-family: 'Open Sans', 'sans-serif';
 }
 
 .footer-titles {
-    font-weight: normal;
-    color: grey;
+    font-weight: bold;
+    color: #c5cacf;
     font-size: 20px;
+    font-family: 'Open Sans', 'sans-serif';
 }
 
 .space {
@@ -153,6 +198,34 @@ md-list-item.md-3-line {
             word-wrap: break-word;
         }
     }
+}
+
+.error-message {}
+
+.animate-show.ng-hide-add,
+.animate-show.ng-hide-remove {
+    transition: all linear 0.5s;
+}
+
+.animate-show.ng-hide {
+    line-height: 0;
+    opacity: 0;
+    padding: 0 10px;
+}
+
+.error-message {
+    margin-top: 11px;
+    padding: 6px;
+    margin-bottom: 4px;
+    border: 1px solid transparent;
+    border-radius: 1px;
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    margin-left: 2%;
+    margin-right: 2%;
+    font-size: 11px;
+    text-align: center;
 }
 
 .post {
@@ -185,8 +258,50 @@ md-card.jumbotron.search-jumbotron {
     }
 }
 
+.action-icons-container {
+    float: right;
+    color: rgba(135, 136, 136, 0.71);
+    margin-bottom: 12px;
+}
+
+.wrapper-sapce {
+    margin-left: 20px;
+}
+
 .text-white {
     color: white;
+}
+
+.button-size {
+    width: 40%;
+}
+
+.edit-continer:hover .action-icons-container {
+    .delete-icon {
+        color: #e23d3d;
+        cursor: pointer;
+    }
+    .edit-icon {
+        color: #009688;
+        cursor: pointer;
+    }
+}
+
+.delete-and-edit-container {
+    background: #fbfbfb;
+    width: 20px;
+    height: 19px;
+    text-align: center;
+    border: #e6e6e6 1px solid;
+}
+
+.delete-icon,
+.edit-icon {
+    .delete-and-edit-container;
+}
+
+.delete-icon {
+    margin-left: 5px;
 }
 
 .no-space {
@@ -197,6 +312,7 @@ md-card.jumbotron.search-jumbotron {
 .toolbar-fix {
     height: 48px;
     min-height: 48px;
+    padding-right: 2%;
 }
 
 md-toolbar,
@@ -211,6 +327,9 @@ md-toolbar,
 .jumbotron {
     margin: 0;
     padding: 0;
+    .jumbotron-word{
+        font-size: 55px;
+    }
 }
 
 .card-images {
@@ -218,6 +337,10 @@ md-toolbar,
     height: 260px;
     background: center center no-repeat;
     background-size: cover;
+}
+
+.center{
+    margin: auto;
 }
 
 .eventGridList,
@@ -235,10 +358,11 @@ md-toolbar,
 
 .jumbotron-image {
     width: 100%;
-    height: 400px;
+    height: 750px;
     padding-bottom: 0;
-    background: url(../images/jumbo-image.jpg) top center no-repeat;
+    background: url(../images/vvida.jpg)center no-repeat;
     background-size: cover;
+    background-position: center;
     .image-overlay {
         margin: auto;
         display: flex;
@@ -246,7 +370,6 @@ md-toolbar,
         height: inherit;
         padding-bottom: 0;
         text-align: center;
-        background: rgba(0, 0, 0, 0.45);
         .jumbotron-middle-small-text {
             display: block;
             margin-top: 0;
@@ -370,6 +493,10 @@ md-sidenav.md-sidenav-left {
     max-width: 250px;
 }
 
+.top-margin {
+    margin-top: 5%;
+}
+
 .events {
     md-content {
         background-color: #FAFAFA;
@@ -483,6 +610,7 @@ md-tabs {
             > md-pagination-wrapper {
                 > md-tab-item:not([disabled]).md-active {
                     color: #009090;
+
                 }
             }
         }
@@ -497,7 +625,7 @@ md-tabs {
 .sign-up {
     width: 700px;
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 6%;
     margin-bottom: 10px;
     .third-party-button {
         width: 150px;
@@ -518,6 +646,7 @@ md-sidenav.md-sidenav-left {
         text-align: left;
         border-radius: 0;
         text-color: #777;
+        float:right;
     }
 }
 
@@ -723,7 +852,7 @@ md-sidenav.md-sidenav-left {
         margin-left: 80px;
     }
     .button {
-        width: 200px;
+        width: 150px;
     }
 }
 
@@ -831,7 +960,6 @@ md-sidenav.md-sidenav-left {
 }
 
 .about {
-    margin: 0 auto;
     text-align: justify;
     h3 {
         color: #fefefe;
@@ -850,11 +978,145 @@ md-sidenav.md-sidenav-left {
     }
 }
 
+@media only screen and (max-width: 600px) {
+    /*styling placeholder to white*/
+    ::-webkit-input-placeholder {
+       color: white;
+       font-weight: lighter;
+       font-family: "Lato";
+       font-size: 20px;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+       color: white;
+       font-weight: lighter;
+       font-family: "Lato";
+       font-size: 20px;
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+       color: white;
+       font-weight: lighter;
+       font-family: "Lato";
+       font-size: 20px;
+    }
+}
+
+@media only screen and (min-width: 601px) {
+    /*styling placeholder to white*/
+    ::-webkit-input-placeholder {
+       color: white;
+       font-weight: lighter;
+       font-family: "Lato";
+       font-size: 30px;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+       color: white;
+       font-weight: lighter;
+       font-family: "Lato";
+       font-size: 30px;
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+       color: white;
+       font-weight: lighter;
+       font-family: "Lato";
+       font-size: 30px;
+    }
+}
+
+.md-button:not([disabled]):hover {
+    background-color: transparent;
+}
+
+.search > .search-div .md-button.md-accent.md-raised:not([disabled]):hover{
+    background-color: #F9BF3B;
+}
+
+.hide-sm .ng-scope:focus {
+    background-color:transparent;
+}
+
+.cardElements {
+    padding: 20px;
+}
+
+.brandColour {
+    color: #F9BF3B;
+    font-size: 20px;
+}
+
+.eventVenue{
+    margin-top: 10px;
+}
+
+.eventDescription {
+    padding-top: 10px;
+    max-height: 50px;
+    min-height: 50px;
+    overflow: visible;
+}
+
+.eventTimeLeft {
+    margin-left: 55%;
+    margin-top: 10px;
+}
+
+.eventsHeader {
+    height: 80px;
+    width: 100%;
+    background-color: #f4f4f4;
+}
+
+ .eventsHeader > span {
+    position: absolute;
+    text-align: center;
+    width: inherit;
+    margin-top: 32px;
+    font-weight: bold;
+    font-size: 25px;
+    color: #545454;
+    cursor: pointer;
+ }
+
+.visited:hover {
+    cursor: pointer;
+}
+
+.seperateFooter {
+    height: 30px;
+    background-color: #f4f4f4;
+}
+
+.image-container {
+    position: relative;
+    width: 200px;
+    height: 300px;
+}
+
+.image-container .after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    color: #FFF;
+}
+
+.image-container:hover .after {
+    display: block;
+    background: rgba(0, 0, 0, .6);
+}
+
 .search {
-    width: 70%;
+    width: 80%;
     margin: auto;
+    font-family: "Lato";
+    font-size: 20px;
     p {
-        font-family: 'PT Sans Narrow', sans-serif;
+        font-family: "PT Sans Narrow", sans-serif;
         display: inline-block;
         color: white;
         text-shadow: 0 0 4px #111;
@@ -862,34 +1124,82 @@ md-sidenav.md-sidenav-left {
     }
     >.search-div {
         width: 100%;
-        .md-button {
-            margin-left: 1px;
-            border-radius: 0;
+
+        md-progress-linear {
+            display: none;
+            opacity: 0;
         }
-        > md-input-container {
-            padding: 0;
-            margin-top: 6px;
-            background-color: white;
+        .md-button {
+            margin: 0px;
+            width: 140px;
+            border-radius: 0px 100px 100px 0px;
+            font-size: 30px;
+            text-align: center;
+            font-family: 'PT Sans Narrow', sans-serif;
+        }
+        > .search-autocomplete {
             width: 100%;
-            height: 36px;
+            height: 60px;
+            border-radius: 100px 0px 0px 100px;
+            background-color: rgba(0, 0, 0, 0.3);
             md-icon {
                 margin-top: 5px;
             }
-            > input {
-                margin-top: 5px;
-                font-size: 16px;
-                border: none;
+            input, md-autocomplete-wrap {
+                height: 100%;
+                border-radius: 100px 0px 0px 100px;
+                color: white;
+            }
+            input {
+                font-size: 30px;
+                text-align: center;
+                font-family: 'PT Sans Narrow', sans-serif;
             }
         }
     }
 }
 
+md-virtual-repeat-container {
+    border-radius: 3px;
+    margin-top: 10px !important;
+}
+
+.vvida-autocomplete {
+    
+    li {
+        vertical-align: top;
+        padding: 10px;
+        .item-container {
+            display: flex;
+        }
+
+        div {
+            display: inline-block;
+            height: 50px;
+        }
+
+        .item-img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .item-text {
+            padding: 5px;
+            box-sizing: border-box;
+        }
+    }
+}
+
 md-toolbar.navbar {
-    background-color: #fff;
+    background: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0));
     height: 70px;
+    position: absolute;
+    z-index: 51;
     & .md-button {
-        color: #ff4091;
-        font-weight: normal;
+        color: #white;
+        font-weight: bold;
+        font-family: "Lato";
+        font-size:18px;
     }
 }
 
@@ -1029,6 +1339,7 @@ a {
     color: #000;
 }
 
+
 .rating {
     text-align: center;
     font-size: 24px;
@@ -1080,6 +1391,18 @@ a {
     margin-left: 140px;
 }
 
+.edit-rating {
+    .rating;
+    font-size: 18px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.edit-review-btn {
+    float: right;
+    width: 29%;
+}
+
 .average-rating {
     width: 80px;
     height: 80px;
@@ -1116,17 +1439,52 @@ md-dialog {
     }
 }
 
-.Sections {
-    padding-top: 0px;
-    padding-bottom: 50px;
+.overlay {
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.1), 
+        rgba(0, 0, 0, 0.6), 
+        rgba(0, 0, 0, 1)
+        );
+}
+
+.eventcards {
+    height: 400px;
+    max-height: 400px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    font-family: 'Open Sans', 'sans-serif'
+}
+
+
+.productCards {
+    background: linear-gradient(
+      rgba(0, 0, 0, 0.45),
+      rgba(0, 0, 0, 0.45)
+    );
+    background-position:center;
+    background-size: cover;
+    height:400px;
+}
+
+.sections {
+    background-color: #f4f4f4;
+    color: #ffffff;
     md-tabs.md-dynamic-height md-tabs-content-wrapper {
-        padding: 20px 50px;
+    padding: 10px 25px;
+}
+
+.tabCards-products {
+    padding: 1%;
+}
+
+.tabCards {
+    flex-wrap: wrap;
+    @media (min-width: 700px) {
+        margin: 1% 2% 0 2%;
+        padding-left:5%;
+        padding-right: 5%;
     }
-    .tabCards {
-        flex-wrap: wrap;
-        @media (min-width: 700px) {
-            margin: 0 60px 0 60px;
-        }
         margin: 0 auto;
         md-card {
             width: 90%;
@@ -1140,6 +1498,10 @@ md-dialog {
                     padding: 5px;
                     .my-mixin
                 }
+            }
+            md-card-title-event {
+                height: 200px;
+                margin-top: 188px;
             }
             md-card-content {
                 padding: 5px;

@@ -33,6 +33,10 @@
           return review.length > 1 ? 'reviews' : 'review';
         };
 
+        $scope.pluralizeReview = function(review) {
+          return review > 1 ? 'reviews' : 'review';
+        };
+
         $scope.averageReview = function(itemReviews) {
           if (itemReviews) {
             var sum = 0;
@@ -61,10 +65,54 @@
           $scope.itemReview.itemId = $stateParams.id;
           Reviews.save($scope.itemReview, function(review) {
             if (review) {
-              $scope.item.Reviews.push(review);
+              $scope.currentUserReview = {
+                review: review.review,
+                review_title: review.review_title,
+                rating: review.rating,
+                id: review.id
+              };
+              $scope.haveReviewed = true;
               $scope.itemReview = {};
             }
           });
+        };
+
+        $scope.updateItemReview = function(itemData) {
+          Reviews.update(itemData, function(review) {
+            if (!review.error) {
+              $scope.haveReviewed = true;
+              $scope.currentUserReview = itemData;
+              $scope.itemReview = {};
+              return;
+            }
+            $scope.errorMessage = review.error;
+            return;
+          });
+        };
+
+        $scope.removeEventReview = function(reviewId) {
+          Reviews.delete({ id: reviewId }, function(result) {
+            if (result.message) {
+              $scope.editing = false;
+              $scope.haveReviewed = false;
+              $scope.itemReview = {};
+            }
+          });
+        };
+
+        $scope.cancelEventUpdate = function() {
+          $scope.haveReviewed = true;
+        };
+
+        $scope.enableReviewEdit = function(reviewObject) {
+          $scope.haveReviewed = false;
+          $scope.editing = true;
+          $scope.itemReview = {
+            review: reviewObject.review,
+            review_title: reviewObject.review_title,
+            rating: reviewObject.rating,
+            id: reviewObject.id
+          };
         };
 
         $scope.init = function() {
@@ -72,10 +120,40 @@
           $scope.categories = Categories.query({
             type: 'Item'
           });
-          // get Recent Items
+          $scope.userId = $rootScope.currentUser.id;
+          // Hides the error message container
+          $scope.haveReviewed = false;
+          // Decides which button to display during edit
+          $scope.editing = false;
+          $scope.currentUserReview = {};
+          $scope.itemReview = {};
           $scope.recentItems = Items.query();
           // get selected category id
           $scope.categoryId = $stateParams.catId;
+
+          // get Pouplar Items
+          Items.popularProducts(function(err, res) {
+            if (err) {
+              $scope.errMessage = 'Error Ecountered';
+              return;
+            }
+
+            $scope.popularItems = res;
+          });
+
+          // Watches the popularProducts state and set showPopularOnly true
+          $scope.$watch(function() {
+              return $state.current.name;
+            },
+            function(name) {
+              if (name === 'popularProducts') {
+                $scope.showPopularOnly = true;
+                return;
+              }
+
+              $scope.showPopularOnly = false;
+            });
+
           // initialize scope.item for model
           $scope.getItem = function() {
             $scope.itemId = $stateParams.id;
@@ -83,6 +161,14 @@
               id: $stateParams.id
             }, function(item) {
               $scope.item = item;
+              for (var i = 0; i < item.Reviews.length; i++) {
+                if (item.Reviews[i].user_id === $scope.userId) {
+                  $scope.currentUserReview = item.Reviews[i];
+                  $scope.haveReviewed = true;
+                  $scope.item.Reviews.splice(i, 1);
+                  break;
+                }
+              }
             });
           };
           //initialize current tab

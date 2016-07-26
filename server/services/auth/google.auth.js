@@ -34,7 +34,7 @@ module.exports = function(app, passport, config) {
                 name: profile.displayName,
                 google_auth_token: accessToken,
                 img_url: profile.photos[0].value,
-                gender: ucfirst(profile.gender)
+                gender: (profile.gender)? ucfirst(profile.gender) : 'Hidden'
               })
               // save the user instance build
               .save()

@@ -17,7 +17,8 @@ describe('EventCtrl tests', function() {
       },
       get: function(id, cb) {
         cb({
-          message: 'Sample Event Message'
+          message: 'Sample Event Message',
+          Reviews: ['me', 'you', 'i']
         });
       },
       query: function(id, params) {
@@ -34,6 +35,12 @@ describe('EventCtrl tests', function() {
             return [1, 2, 3, 4, 5, 6].slice(start, end);
           }
         }
+      }
+    },
+
+    rootScope = {
+      currentUser: {
+        id: 1
       }
     },
 
@@ -92,6 +99,7 @@ describe('EventCtrl tests', function() {
     var $controller = $injector.get('$controller');
     scope = $injector.get('$rootScope');
     controller = $controller('EventCtrl', {
+      $rootScope: rootScope,
       $scope: scope,
       Events: Events,
       Categories: Categories,

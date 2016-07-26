@@ -11,7 +11,6 @@
       Reviews = app.get('models').Reviews,
       Images = app.get('models').Images,
       stripUser = function(user) {
-        user.password = null;
         user.facebook_auth_id = null;
         user.facebook_auth_token = null;
         user.img_public_id = null;
