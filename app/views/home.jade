@@ -4,11 +4,16 @@ md-card.jumbotron.search-jumbotron
       .search(layout="column" layout-margin layout-align="center center")
         p.jumbotron-word Find exciting events to attend and new places to visit
         .search-div(layout="row" flex)
-          md-input-container.md-block(md-no-float).hide-sm
-            input(type="text" ng-model="search.searchItem" placeholder="Hotels, clubs, food, transport or anything you like")
-          md-input-container.md-block(md-no-float).hide-gt-sm
-            input(type="text"  ng-model="search.searchItem" placeholder="Find Places and events").md-input
-          md-button.md-raised.md-accent(md-no-ink id="search") Search
+          md-autocomplete.search-autocomplete.md-block(md-selected-item='selectedItem', md-search-text='searchText', md-items='item in getMatches(searchText)', md-item-text='item.name', md-menu-class='vvida-autocomplete', md-min-length='2', md-delay='1000', placeholder="Find any event", md-no-float)
+            md-item-template
+              div(class='item-container', ui-sref='viewEvent({id: item.id})')
+                div(class='item-img', back-img="{{item.Images[0].img_url}}")
+                div(class='item-text')
+                  span {{item.name}}
+            md-not-found Nothing found
+
+          md-button.md-raised.md-accent(id='search', ng-click='goToSearchPage(searchText)') Search
+
 .sections(layout="column" flex-xs flex-gt-xs="50")
   div.eventsHeader
     span Events
@@ -38,4 +43,3 @@ md-card.jumbotron.search-jumbotron
           span.md-subhead.category.eventDescription
           span.md-subhead.category.eventTimeLeft
 div.seperateFooter
-

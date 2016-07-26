@@ -36,6 +36,7 @@
   require('./controllers/user-profile/pictures');
   require('./controllers/user-profile/reviews');
   require('./controllers/items');
+  require('./controllers/search');
   require('./controllers/event-view');
   require('./controllers/event');
 
@@ -180,8 +181,12 @@
           controller: 'ItemCtrl',
           templateUrl: 'views/items.html'
         })
-
-      .state('userProfile', {
+        .state('search', {
+          url: '/search?query',
+          controller: 'SearchCtrl',
+          templateUrl: 'views/search.html'
+        })
+        .state('userProfile', {
           url: '/user/{id}/profile',
           controller: 'UserProfileCtrl',
           templateUrl: 'views/user-profile.html'
