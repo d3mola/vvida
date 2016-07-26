@@ -13,7 +13,7 @@
     "angular-ui-router": "~0.2.15",
     "font-awesome": "fontawesome#~4.4.0",
     "lodash": "latest",
-    "moment": "latest"
+    "moment": "^2.14.1"
   },
   "resolutions": {
     "angular": "~1.4.8"

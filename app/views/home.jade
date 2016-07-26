@@ -29,7 +29,7 @@ md-card.jumbotron.search-jumbotron
           span.md-subhead.category.eventDescription {{event.description}}
           span.md-subhead.category.eventTimeLeft
             i.fa.fa-clock-o.brandColour &nbsp;
-            span 500 days left
+            span {{timeLeft(event.start_time)}}
 .sections(layout="column" flex-xs flex-gt-xs="50")
   div.eventsHeader
     span Products
