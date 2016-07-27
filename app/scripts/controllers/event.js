@@ -10,7 +10,11 @@
         $scope.init = function() {
           // Hides the error message container
           $scope.showError = false;
-          $scope.userId = $rootScope.currentUser.id;
+          if ($rootScope.currentUser) {
+            $scope.userId = $rootScope.currentUser.id;
+          } else {
+            $scope.userId = null;
+          }
           // Decides which button to display during edit
           $scope.editing = false;
           $scope.currentUserReview = {};
