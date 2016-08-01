@@ -79,8 +79,11 @@ div.item-padding.top-margin(layout="column" ng-init="getItem()")
             h2.md-header.title-color(layout layout-padding) Reviews for {{item.name}} in {{item.city}}
             md-divider
             md-list-item.md-3-line(ng-repeat="review in item.Reviews")
-              .md-list-item-text
+            img.review-image(ng-src="{{review.User.img_url}} || {images[0].img_url}")              
+            .md-list-item-text
                 h4.review_title {{review.review_title}}
+                .reviewer-name
+                  span By {{review.User.username || review.User.name}}
                 p.review_text {{review.review}}
                 i.fa.fa-star.colorpink(ng-if="review.rating > 0" ng-repeat="i in range(review.rating) track by $index")
                 i.fa.fa-star-o.colorpink(ng-repeat="i in range(5 - review.rating) track by $index")
