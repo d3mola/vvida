@@ -6,6 +6,7 @@
     var Events = app.get('models').Events,
       Images = app.get('models').Images,
       Categories = app.get('models').Categories,
+      Users = app.get('models').Users,
       Reviews = app.get('models').Reviews;
 
     // Create event middlware
@@ -95,7 +96,11 @@
           where: {
             id: req.params.id,
           },
-          include: [Images, Reviews]
+          include: [
+            Images, {
+            model: Reviews,
+            include: [Users]
+          }]
         }).then(function(event) {
           if (!event) {
             res.status(404).json({
