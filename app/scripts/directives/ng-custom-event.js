@@ -16,6 +16,15 @@ function getById(element) {
   return document.getElementById(element);
 }
 
+/*
+ * @param(String) tag DOM element Tag
+ * get the first element in the node list returned
+ * @return {Object} DOM element
+ */
+function getFirstElementByTag(tag) {
+  return document.getElementsByTagName(tag)[0];
+}
+
 /**
  * @param  {Object} element DOM element
  * @param  {String} type event to register
@@ -37,8 +46,8 @@ var previousPlaceholder = '';
  * @return {Void}
  */
 function onFocus() {
-  previousPlaceholder = getById('input-0').placeholder;
-  getById('input-0').placeholder = '';
+  previousPlaceholder = getFirstElementByTag('input').placeholder;
+  getFirstElementByTag('input').placeholder = '';
 }
 
 /*
@@ -47,6 +56,6 @@ function onFocus() {
  * @return {Void}
  */
 function onBlur() {
-  getById('input-0').placeholder = previousPlaceholder;
+  getFirstElementByTag('input').placeholder = previousPlaceholder;
 }
 
