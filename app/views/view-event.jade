@@ -73,13 +73,12 @@ md-content.top-margin(layout='row' layout-margin layout-align="center start" fle
       md-virtual-repeat-container.container-height
         md-list
           md-list-item.content.md-3-line(md-virtual-repeat="review in event.Reviews" )
+            img.review-image(ng-src="{{review.User.img_url}} || {{images[0].img_url}}")
             .md-list-item-text
               span.bold-text {{review.review_title}}
-              br
+              .reviewer-name 
+                span By {{review.User.username || review.User.name}}
               span.small-font {{review.review}}
               p
               i.fa.fa-star.colorpink(ng-if="review.rating > 0" ng-repeat="i in range(review.rating) track by $index")
               i.fa.fa-star-o.colorpink(ng-repeat="i in range(5 - review.rating) track by $index")
-              span.action-icons-container(ng-if="review.user_id === userId")
-                i.md-accent.fa.fa-pencil.edit-icon(ng-click="removeEventReview(review.id)")
-                i.md-accent.fa.fa-trash.delete-icon(ng-click="removeEventReview($index)")

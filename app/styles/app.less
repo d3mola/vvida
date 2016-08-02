@@ -65,6 +65,23 @@ input {
     overflow: hidden;
 }
 
+.reviewer-name {
+  font-size: 11px;
+  font-weight: 600;
+  color: #737373;
+  span {
+    color: #252525;
+  }
+}
+
+.review-image {
+  height: 50px;
+  width: 50px;
+  margin-top: 7px;
+  margin-right: 7px;
+  background-size: cover !important;
+}
+
 header {
     overflow: auto;
     height: 50px;
@@ -860,6 +877,30 @@ md-sidenav.md-sidenav-left {
     border: none;
 }
 
+.md-datepicker-calendar, .md-datepicker-input-mask-opaque {
+    background: rgb(255,255,255);
+}
+
+.md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator,
+.md-calendar-date.md-focus.md-calendar-selected-date
+.md-calendar-date-selection-indicator {
+    background: rgb(0,150,136);
+    color: rgb(255,255,255);
+    border-color: transparent;
+}
+
+.md-calendar-date-selection-indicator:hover {
+    background: rgb(0,150,136);
+}
+
+.md-calendar-day-header {
+    background: rgb(0,150,136);
+    color: rgba(0,0,0,0.87);
+}
+
+.md-calendar-date-disabled, .md-calendar-month-label-disabled {
+    color: rgba(0,0,0,0.26);
+}
 
 /*REVIEW STYLES*/
 
@@ -1165,7 +1206,6 @@ md-virtual-repeat-container {
 }
 
 .vvida-autocomplete {
-    
     li {
         vertical-align: top;
         padding: 10px;
@@ -1441,8 +1481,8 @@ md-dialog {
 
 .overlay {
     background: linear-gradient(
-        rgba(0, 0, 0, 0.1), 
-        rgba(0, 0, 0, 0.6), 
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.6),
         rgba(0, 0, 0, 1)
         );
 }

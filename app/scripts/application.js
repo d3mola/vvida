@@ -43,6 +43,7 @@
   // Require Directives
   require('./directives/ng-thumb');
   require('./directives/back-img');
+  require('./directives/ng-custom-event');
 
   // Requier Filters
   require('./filters/clip-text');

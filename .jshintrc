@@ -32,7 +32,9 @@
     "by",
     "exports",
     "sinon",
-    "spyOn"
+    "spyOn",
+    "moment",
+    "_"
   ],
   "quotmark": true,
   "trailing": true,

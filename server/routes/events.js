@@ -17,7 +17,7 @@
 
     app.route('/api/events/search')
       // search events route
-      .get(Events.search)
+      .get(Events.search);
 
     app.route('/api/events/:id')
       // read events route

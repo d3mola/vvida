@@ -4,7 +4,7 @@ md-card.jumbotron.search-jumbotron
       .search(layout="column" layout-margin layout-align="center center")
         p.jumbotron-word Find exciting events to attend and new places to visit
         .search-div(layout="row" flex)
-          md-autocomplete.search-autocomplete.md-block(md-selected-item='selectedItem', md-search-text='searchText', md-items='item in getMatches(searchText)', md-item-text='item.name', md-menu-class='vvida-autocomplete', md-min-length='2', md-delay='1000', placeholder="Find any event", md-no-float)
+          md-autocomplete.search-autocomplete.md-block(md-selected-item='selectedItem', id='searchInput', autocomplete-blur, md-search-text='searchText', md-items='item in getMatches(searchText)', md-item-text='item.name', md-menu-class='vvida-autocomplete', md-min-length='2', md-delay='1000', placeholder="Find any event", md-no-float)
             md-item-template
               div(class='item-container', ui-sref='viewEvent({id: item.id})')
                 div(class='item-img', back-img="{{item.Images[0].img_url}}")
@@ -29,7 +29,7 @@ md-card.jumbotron.search-jumbotron
           span.md-subhead.category.eventDescription {{event.description}}
           span.md-subhead.category.eventTimeLeft
             i.fa.fa-clock-o.brandColour &nbsp;
-            span 500 days left
+            span {{timeLeft(event.start_time)}}
 .sections(layout="column" flex-xs flex-gt-xs="50")
   div.eventsHeader
     span Products

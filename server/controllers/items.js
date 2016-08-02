@@ -66,7 +66,14 @@
           where: {
             id: req.params.id
           },
-          include: [Images, Reviews, Categories]
+          include: [
+            Images,
+            {
+              model: Reviews,
+              include: [Users]
+            },
+            Categories
+          ]
         }).then(function(item) {
           if (!item) {
             res.status(404).json({
