@@ -1,11 +1,11 @@
 angular.module('vvida.directives')
-.directive('backImg', function(){
-    return function(scope, element, attrs){
-        var url = attrs.backImg;
-        element.css({
-            'background-image': 'url(' + url +')',
-            'background-size' : 'cover',
-            'background-position': 'center'
-        });
-    };
-});
+  .directive('backImg', function(){
+      return function(scope, element, attrs){
+          var url = attrs.backImg;
+          element.css({
+              'background-image': 'url(' + url +')',
+              'background-size' : 'cover',
+              'background-position': 'center'
+          });
+      };
+  });
