@@ -100,6 +100,12 @@
         state: 'items'
       }];
 
+      $rootScope.activeClass = 'Home';
+
+      $rootScope.focusSection = function (menuName) {
+        $rootScope.activeClass = menuName;
+      };
+
       $rootScope.openLeftMenu = function() {
         $mdSidenav('left').toggle();
       };
