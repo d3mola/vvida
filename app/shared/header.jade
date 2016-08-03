@@ -4,9 +4,10 @@ md-toolbar.navbar.header-spacing(ng-controller="HeaderCtrl" layout="row" layout-
       i.fa.fa-bars.fa-2x
     a(ui-sref="home")
       img(src="images/logo-white.png" height="24" hide-sm)
+    event-autocomplete-searchbar(placeholder="Search vvida...", ng-if="showSearch")
     span(flex)
-    a.home-menu(ng-class="{activeClass : activeClass === menuItem.name}" ng-click="focusSection(menuItem.name)" ng-repeat="menuItem in menu" ui-sref="{{menuItem.state}}" hide-sm)
-      md-button
+    a.home-menu(ng-class="{activeClass : activeClass === menuItem.name}" ng-click="focusSection(menuItem.name)" ng-repeat="menuItem in menu" ui-sref="{{menuItem.state}}" ui-sref-active="active" hide-sm)
+      md-button(md-no-ink)
         | {{menuItem.name}}
     a(ng-if="currentUser" ui-sref="userProfile({id:currentUser.id})" ui-sref-opts="{reload:true}")
       md-button.md-icon-button.icon-button(aria-label="Comment")

@@ -43,7 +43,7 @@
   // Require Directives
   require('./directives/ng-thumb');
   require('./directives/back-img');
-  require('./directives/ng-custom-event');
+  require('./directives/event-autocomplete-searchbar');
 
   // Requier Filters
   require('./filters/clip-text');
@@ -95,9 +95,6 @@
       }, {
         name: 'Events',
         state: 'events'
-      }, {
-        name: 'Products',
-        state: 'items'
       }];
 
       $rootScope.activeClass = 'Home';
