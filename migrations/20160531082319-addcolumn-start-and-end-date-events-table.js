@@ -28,7 +28,7 @@
         Example:
         return queryInterface.dropTable('users');
       */
-     
+
       return queryInterface.removeColumn('Events', 'end_time')
         .then(function() {
           return queryInterface.renameColumn('Events', 'start_time', 'time');

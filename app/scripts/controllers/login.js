@@ -3,8 +3,8 @@
 
   angular.module('vvida.controllers')
     .controller('LoginCtrl', ['$rootScope', '$scope', '$state',
-      '$window', 'Users', 'Auth',
-      function($rootScope, $scope, $state, $window, Users, Auth){
+      '$window', 'Users', 'Auth', 'Utils',
+      function($rootScope, $scope, $state, $window, Users, Auth, Utils){
         // login
         $scope.login = function() {
           Users.login($scope.user, function(err, res) {
@@ -15,7 +15,7 @@
                 id: $rootScope.currentUser.id
               });
             } else {
-              $scope.messageLogin = err.error || err || err[0].message;
+              Utils.toast(err.error || err || err[0].message);
             }
           });
         };
@@ -37,13 +37,15 @@
               });
             }, function(err) {
               if (err.data.error === 'Validation error'){
-                $scope.messageSignup = 'Email already exists';
+                Utils.toast('Email already exists');
               } else {
-                $scope.messageSignup = 'An error occurred, try again later';
+                Utils.toast('An error occurred, try again later');
+
               }
             });
           } else {
-            $scope.messageSignup = validationResult.message;
+            Utils.toast(validationResult.message);
+
           }
         };
 

@@ -29,7 +29,7 @@ module.exports = function(sequelize, DataType) {
       start_time: {
         type: DataType.DATE
       },
-      
+
       // end time
       end_time: {
         type: DataType.DATE

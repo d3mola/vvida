@@ -28,7 +28,7 @@
             res.json(stripUser(user));
           } else {
             res.status(401).json({
-              error: 'Authentication failed.'
+              error: 'Incorrect Password.'
             });
           }
         })(req, res, next);
