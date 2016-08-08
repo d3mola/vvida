@@ -4,14 +4,11 @@ angular.module('vvida.controllers')
     '$q',
     '$state',
     '$timeout',
-    'Items',
     'Events',
     'Reviews',
-    function($scope, $q, $state, $timeout, Items, Events, Reviews) {
+    function($scope, $q, $state, $timeout, Events, Reviews) {
 
       $scope.header_image = 'images/vvidaLogo.png';
-      // get all items
-      $scope.items = Items.query();
 
       // Get all reviews
       $scope.reviews = Reviews.query();

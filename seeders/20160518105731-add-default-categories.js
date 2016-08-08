@@ -9,30 +9,6 @@
        * @param  queryInterface, Sequelize
        */
       return queryInterface.bulkInsert('Categories', [{
-        type: 'Item',
-        name: 'Office Tools'
-      }, {
-        type: 'Item',
-        name: 'Food'
-      }, {
-        type: 'Item',
-        name: 'Fitness and Health'
-      }, {
-        type: 'Item',
-        name: 'Clothing and Fashion'
-      }, {
-        type: 'Item',
-        name: 'Computers'
-      }, {
-        type: 'Item',
-        name: 'Household Appliances'
-      }, {
-        type: 'Item',
-        name: 'Food'
-      }, {
-        type: 'Item',
-        name: 'Hardware'
-      }, {
         type: 'Event',
         name: 'Exhibition and Showcases'
       }, {

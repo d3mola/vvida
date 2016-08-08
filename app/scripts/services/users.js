@@ -35,22 +35,6 @@
       });
     };
 
-    obj.items = function(user, cb) {
-      $http.get('/api/users/' + user.id + '/items').success(function(res) {
-        cb(null, res);
-      }).error(function(err) {
-        cb(err);
-      });
-    };
-
-    obj.itemsCount = function(user, cb) {
-      $http.get('/api/users/' + user.id + '/items/no').success(function(res) {
-        cb(null, res);
-      }).error(function(err) {
-        cb(err);
-      });
-    };
-
     obj.reviews = function(user, cb) {
       $http.get('/api/users/' + user.id + '/reviews').success(function(res) {
         cb(null, res);

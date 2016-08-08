@@ -2,7 +2,6 @@ describe('WelcomeCtrl tests', function() {
   'use strict';
   var scope,
     controller,
-    Items,
     Events;
   beforeEach(function() {
     module('vvida');
@@ -15,7 +14,6 @@ describe('WelcomeCtrl tests', function() {
       $scope: scope
 
     });
-    Items = $injector.get('Items');
     Events = $injector.get('Events');
     scope.init();
   }));
@@ -25,7 +23,5 @@ describe('WelcomeCtrl tests', function() {
   it('should set some variables', function() {
     expect(scope.todos).toBeTruthy();
     expect(scope.events).toBeTruthy();
-    expect(scope.items).toBeTruthy();
-    expect(scope.item).toBeTruthy();
   });
 });
