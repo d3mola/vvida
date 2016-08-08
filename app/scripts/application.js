@@ -11,6 +11,7 @@
   require('./services/categories');
   require('./services/countries');
   require('./services/images');
+  require('./services/items');
   require('./services/events');
   require('./services/reviews');
   require('./services/token');
@@ -31,8 +32,10 @@
   require('./controllers/header');
   require('./controllers/user-profile/index');
   require('./controllers/user-profile/events');
+  require('./controllers/user-profile/items');
   require('./controllers/user-profile/pictures');
   require('./controllers/user-profile/reviews');
+  require('./controllers/items');
   require('./controllers/search');
   require('./controllers/event-view');
   require('./controllers/event');
@@ -177,6 +180,11 @@
           controller: 'EventCtrl',
           templateUrl: 'views/view-event.html'
         })
+        .state('items', {
+          url: '/items',
+          controller: 'ItemCtrl',
+          templateUrl: 'views/items.html'
+        })
         .state('search', {
           url: '/search?query',
           controller: 'SearchCtrl',
@@ -205,6 +213,18 @@
             }
           }
         })
+        .state('userProfile.editItem', {
+          url: '/items/{id}/edit',
+          params: {
+            tabIndex: 0
+          },
+          views: {
+            'inner-view@userProfile': {
+              controller: 'UserProductsCtrl',
+              templateUrl: 'views/edit-item.html'
+            }
+          }
+        })
         .state('userProfile.events', {
           url: '/events',
           views: {
@@ -225,6 +245,21 @@
               templateUrl: 'views/edit-event.html'
             }
           }
+        })
+        .state('viewItem', {
+          url: '/items/{id}',
+          controller: 'ItemCtrl',
+          templateUrl: 'views/view-item.html'
+        })
+        .state('popularProducts', {
+          url: '/items/categories/popular',
+          controller: 'ItemCtrl',
+          templateUrl: 'views/items.html'
+        })
+        .state('categoryItems', {
+          url: '/items/categories/{catId}',
+          controller: 'ItemCtrl',
+          templateUrl: 'views/items.html'
         })
         .state('popularEvents', {
           url: '/event/categories/popular',
