@@ -4,19 +4,20 @@ md-toolbar.navbar.header-spacing(ng-controller="HeaderCtrl" layout="row" layout-
       i.fa.fa-bars.fa-2x
     a(ui-sref="home")
       img(src="images/logo-white.png" height="24" hide-sm)
+    event-autocomplete-searchbar(placeholder="Search vvida...", ng-if="showSearch")
     span(flex)
-    a(ng-repeat="menuItem in menu" ui-sref="{{menuItem.state}}" hide-sm)
-      md-button(md-no-ink="true" md-no-focus-style="false")
+    a.home-menu(ng-class="{activeClass : activeClass === menuItem.name}" ng-click="focusSection(menuItem.name)" ng-repeat="menuItem in menu" ui-sref="{{menuItem.state}}" ui-sref-active="active" hide-sm)
+      md-button(md-no-ink)
         | {{menuItem.name}}
     a(ng-if="currentUser" ui-sref="userProfile({id:currentUser.id})" ui-sref-opts="{reload:true}")
       md-button.md-icon-button.icon-button(aria-label="Comment")
         img(ng-src="{{currentUser.img_url}}")
         md-tooltip {{currentUser.name}}
-    a(ng-if="currentUser")
+    a.home-menu(ng-if="currentUser")
       md-button(md-no-ink aria-label="Sign out" ng-click="logout()")
         span Logout
         md-tooltip Sign out
-    a(ng-if="!currentUser" ui-sref="login")
+    a.home-menu(ng-if="!currentUser" ui-sref="login")
       md-button.md-icon-button
         span.md-accent.fa.fa-sign-in
         md-tooltip Sign in
