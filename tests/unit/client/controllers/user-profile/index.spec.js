@@ -10,13 +10,6 @@ describe('UserProfileCtrl tests', function() {
           cb(!currentUser);
         }
       },
-      itemsCount: function(currentUser, cb) {
-        if (currentUser) {
-          cb(null, 3);
-        } else {
-          cb(!currentUser);
-        }
-      },
       reviewsCount: function(currentUser, cb) {
         if (currentUser) {
           cb(null, 3);
@@ -72,12 +65,9 @@ describe('UserProfileCtrl tests', function() {
     scope.currentUser = false;
     spyOn(Users, 'eventsCount').and.callThrough();
     spyOn(Users, 'reviewsCount').and.callThrough();
-    spyOn(Users, 'itemsCount').and.callThrough();
     scope.init();
     expect(Users.eventsCount).toHaveBeenCalled();
     expect(Users.reviewsCount).toHaveBeenCalled();
-    expect(Users.itemsCount).toHaveBeenCalled();
-    expect(scope.itemsCount).not.toBeDefined();
     expect(scope.eventsCount).not.toBeDefined();
     expect(scope.reviewsCount).not.toBeDefined();
     expect(scope.message).toBe('Error loading page');
@@ -87,12 +77,9 @@ describe('UserProfileCtrl tests', function() {
     scope.currentUser = currentUser;
     spyOn(Users, 'eventsCount').and.callThrough();
     spyOn(Users, 'reviewsCount').and.callThrough();
-    spyOn(Users, 'itemsCount').and.callThrough();
     scope.init();
     expect(Users.eventsCount).toHaveBeenCalled();
     expect(Users.reviewsCount).toHaveBeenCalled();
-    expect(Users.itemsCount).toHaveBeenCalled();
-    expect(scope.itemsCount).toBe(3);
     expect(scope.eventsCount).toBe(3);
     expect(scope.reviewsCount).toBe(3);
   });

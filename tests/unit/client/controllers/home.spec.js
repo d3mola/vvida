@@ -1,3 +1,5 @@
+
+
 describe('HomeCtrl tests', function() {
   'use strict';
   var scope,
@@ -17,11 +19,6 @@ describe('HomeCtrl tests', function() {
   it('should define header_image', function() {
     expect(scope.header_image).toBeDefined();
     expect(typeof scope.header_image).toBe('string');
-  });
-
-  it('should define items', function() {
-    expect(scope.items).toBeDefined();
-    expect(typeof scope.items).toBe('object');
   });
 
   it('should define events', function() {

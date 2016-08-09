@@ -7,9 +7,9 @@ module.exports = function(sequelize, DataType) {
         validate: {
           isIn: {
             args: [
-              ['Item', 'Event']
+              ['Event']
             ],
-            msg: 'Must be either Item, Event'
+            msg: 'Must be an Event'
           }
         },
         allowNull: false
