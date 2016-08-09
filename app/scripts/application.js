@@ -41,6 +41,7 @@
   require('./directives/ng-thumb');
   require('./directives/back-img');
   require('./directives/event-autocomplete-searchbar');
+  require('./directives/vvida-card');
 
   // Requier Filters
   require('./filters/clip-text');

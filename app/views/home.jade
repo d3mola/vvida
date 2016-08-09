@@ -11,16 +11,5 @@ md-card.jumbotron.search-jumbotron
   div.eventsHeader
     span Events
   div.tabCards(ng-if="events.length > 0" layout="row" layout-sm="column" flex  layout-align="start center")
-    md-card(ng-repeat="event in events | limitTo : 3" flex flex-md="45" flex-gt-md="{{events.length > 0? \"\": \"25\"}}" back-img="{{event.Images[0].img_url}}"
-     ).eventcards
-      md-card-title-event.overlay.cardElements
-        md-card-title-text(layout="column" layout-align="end start")
-          span.md-subheadline.name.visited(ui-sref="viewEvent({id: event.id})") {{event.name}}
-          span.md-subhead.category.eventVenue
-            i.fa.fa-map-marker.brandColour &nbsp;
-            span {{event.location}} , {{event.venue}}
-          span.md-subhead.category.eventDescription {{event.description}}
-          span.md-subhead.category.eventTimeLeft
-            i.fa.fa-clock-o.brandColour &nbsp;
-            span {{timeLeft(event.start_time)}}
+   vvida-card(ng-repeat="event in events | limitTo : 3" flex flex-md="45" flex-gt-md="{{events.length > 0? \"\": \"25\"}}" events="event").eventcards
 div.seperateFooter
