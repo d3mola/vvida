@@ -1,10 +1,11 @@
 angular.module('vvida.controllers')
   .controller('HeaderCtrl', ['$rootScope', '$scope', '$state', 'Users', 'Auth',
     function($rootScope, $scope, $state, Users, Auth) {
-      var toolbar;
+      var mainContent,
+        toolbar;
 
       function solidify() {
-        var scroll = window.pageYOffset || document.documentElement.scrollTop;
+        var scroll = mainContent.scrollTop;
         var opacity = scroll / 150;
 
         toolbar.style
@@ -13,26 +14,27 @@ angular.module('vvida.controllers')
 
       var transparentScrollHeader = function() {
         toolbar = document.querySelector('md-toolbar.navbar');
-
+        mainContent = document.querySelector('md-content.main-md-content');
+        
         $scope.showSearch = $state.current.name !== 'home';
 
         if (!$scope.showSearch) {
           toolbar.style
             .backgroundColor = 'RGBA(249, 191, 59, 0)';
-          
           solidify();
-          window.addEventListener('scroll', solidify, false);
+          mainContent.addEventListener('scroll', solidify, false);
         } else {
-          window.removeEventListener('scroll', solidify, false);
-          
+          mainContent.removeEventListener('scroll', solidify, false);
           toolbar.style
             .backgroundColor = 'RGBA(249, 191, 59, 1)';
         }
       };
 
-      transparentScrollHeader();
-
-      $rootScope.$on('$stateChangeSuccess', transparentScrollHeader);
+      $rootScope.$on('$stateChangeSuccess', function() {
+        setTimeout(function() {
+          transparentScrollHeader();
+        }, 0);
+      });
 
       $scope.showSearch = false;
 
