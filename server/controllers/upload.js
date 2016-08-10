@@ -13,7 +13,7 @@
               event_id: req.body.eventId,
               user_id: req.body.userId,
               public_id: result.public_id,
-              img_url: result.url
+              img_url: result.url.replace(/http:/gi, 'https:')
             }).then(function(image) {
               cb(null, image);
             }).catch(function(err) {
