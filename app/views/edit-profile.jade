@@ -52,7 +52,7 @@ div.md-margin(layout='column' flex='90')
             md-select.md-padding.md-margin(placeholder='Gender' ng-model='userData.gender' aria-label='Gender' flex)
               md-option(ng-repeat='type in gender' ng-value='type.type') {{type.type}}
         p {{message}}
-        div(layout='row' flex layout-align='center end')
+        #update-user-data(layout='row' flex layout-align='center end')
           md-button.md-raised.md-warn.md-padding.md-margin.button(flex='70')
             md-icon(class='fa fa-send')
             | Update Profile
