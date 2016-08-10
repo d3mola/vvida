@@ -1606,6 +1606,55 @@ md-dialog {
         );
 }
 
+.blink {
+   animation: blinker 1s linear infinite;
+ }
+
+ @keyframes blinker {
+   50% { opacity: 0.0; }
+ }
+
+ .box-sizing(@a: border-box) {
+     -webkit-box-sizing: @a;
+        -moz-box-sizing: @a;
+         -ms-box-sizing: @a;
+          -o-box-sizing: @a;
+             box-sizing: @a;
+ }
+
+ .clear-loading {
+     text-align: center;
+     margin: 0 20px;
+     position: relative;
+     .box-sizing();
+     display: inline-block;
+ }
+
+ .preloader-img {
+     top: 25%;
+     position: absolute;
+ }
+
+ .center {
+     margin:auto;
+     clear:both;
+     padding-top: 3%;
+     padding-left: 46%;
+     height: 100%;
+ }
+
+ .overlay-preloader {
+     opacity:    1;
+     background-color: #435261;
+     width:      100%;
+     height:     100%;
+     z-index:    999;
+     top:        0;
+     left:       0;
+     position:   fixed;
+     padding-top: 35%;
+ }
+
 .eventcards {
     height: 400px;
     max-height: 400px;
