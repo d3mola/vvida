@@ -7,5 +7,4 @@ describe('vvida landing page', function() {
   it('should check title of loaded landing page', function() {
     expect(browser.getTitle()).toEqual('Vvida');
   });
-
 });
