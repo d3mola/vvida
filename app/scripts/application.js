@@ -42,6 +42,8 @@
   require('./directives/back-img');
   require('./directives/event-autocomplete-searchbar');
   require('./directives/vvida-card');
+  require('./directives/vvida-preloader');
+
 
   // Requier Filters
   require('./filters/clip-text');
