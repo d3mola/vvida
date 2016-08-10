@@ -5,6 +5,10 @@ body {
     font-size: 1em;
 }
 
+md-content.main-md-content {
+    height: 100%;
+}
+
 h1,
 h2,
 h3,
@@ -199,7 +203,7 @@ header {
     flex: 2;
 }
 
-button.md-button {
+.md-button {
     font-size: 14px;
     .fa {
         margin-right: 5%;
@@ -238,11 +242,12 @@ md-list-item.md-3-line {
 
     button {
         height: 42px;
+        background-color: transparent !important;
     }
 
     span {
-        border-bottom: 2px solid #f9bf3b;
-        padding: 0px 7px 10px 7px;
+        border-bottom: 2px solid #fff;
+        padding: 0px 7px 15px 7px;
         margin-bottom: 10px;
         transition: all 0.2s;
 
@@ -258,7 +263,6 @@ md-list-item.md-3-line {
 
     }
 }
-
 
 .error-message {
     margin-top: 11px;
@@ -541,7 +545,7 @@ md-sidenav.md-sidenav-left {
 }
 
 .top-margin {
-    margin-top: 5%;
+    margin-top: 60px;
 }
 
 .events {
@@ -1097,10 +1101,6 @@ md-sidenav.md-sidenav-left {
     }
 }
 
-.md-button:not([disabled]):hover {
-    background-color: transparent;
-}
-
 .search > .search-div .md-button.md-accent.md-raised:not([disabled]):hover{
     background-color: #F9BF3B;
 }
@@ -1282,13 +1282,21 @@ md-virtual-repeat-container {
     }
 }
 
+md-menu-item {
+    .md-button {
+        display: inline-block !important;
+        line-height: 45px;
+    }
+}
+
 md-toolbar.navbar {
     background-color: #F9BF3B;
     height: 60px;
-    position: fixed;
+    position: absolute;
     z-index: 51;
     padding-left: 150px;
     padding-right: 150px;
+
     & .md-button {
         color: #fff;
         font-weight: bold;
@@ -1297,11 +1305,42 @@ md-toolbar.navbar {
         transition: all 0.1s;
     }
 
+    md-menu {
+        padding: 0px;
+    }
+
+    .button-drawer {
+        min-width: 40px;
+        margin: 0px;
+
+        .fa {
+            line-height: 47px;
+        }
+    }
+
     .search-autocomplete {
-        margin-left: 30px;
-        background: rgba(255, 255, 255, 0.5);
+        margin-left: 15px;
+        background: transparent;
         width: 350px;
         font-family: "Lato";
+
+        input {
+            transition: all 0.4s;
+            background: rgba(255, 255, 255, 0.5);
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.9);
+            }
+            &:focus {
+                background: rgba(255, 255, 255, 1);
+            }
+        }
+
+        button {
+            position: absolute;
+            right: 0px;
+            height: 100%;
+        }
 
         md-autocomplete-wrap {
             box-shadow: none !important;
@@ -1392,14 +1431,6 @@ md-toolbar.navbar {
 
 .md-padding {
     padding: 15px;
-}
-
-a {
-    text-decoration: none;
-    color: #ff4081;
-    &:visited {
-        color: #009090;
-    }
 }
 
 .truncate {
