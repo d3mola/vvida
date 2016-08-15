@@ -10,8 +10,8 @@ div.top-margin
 .profile-page(ng-if='currentUser' layout ng-init="init()")
   div(layout="row")
     md-sidenav.md-sidenav-left.md-whiteframe-z2(layout="column", md-component-id='profileSideNav', md-is-locked-open="$mdMedia(\"gt-md\")")
-      md-toolbar.md-tall.md-hue-2.toolbar-header
-        .md-toolbar-tools-bottom.inset(layout='column')
+      md-toolbar.md-tall.toolbar-header(class='toolbar-header')
+        .md-toolbar-tools-bottom.inset(layout='column' class="toolbar-inset")
           img(class='profile-pic' ng-src='{{currentUser.img_url}}')
           .text-center.md-padding
             .user {{currentUser.username || currentUser.name}}

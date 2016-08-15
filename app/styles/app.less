@@ -368,6 +368,11 @@ md-card.jumbotron.search-jumbotron {
 
 md-toolbar,
 .md-toolbar-tools {
+    .toolbar-inset{
+      background-color: rgb(67, 82, 98);
+      color: rgb(255,255,255);
+  }
+
     .toolbar-fix;
 }
 
@@ -909,31 +914,60 @@ md-sidenav.md-sidenav-left {
 
 .md-datepicker-input-container {
     border: none;
+    background-color:rgb(67, 82, 98);
+    color: rgb(255,255,255);
+}
+
+.date{
+  background-color:rgb(67, 82, 98);
+  color: rgb(255,255,255);
 }
 
 .md-datepicker-calendar, .md-datepicker-input-mask-opaque {
-    background: rgb(255,255,255);
+    background: rgb(67, 82, 98);
 }
 
 .md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator,
 .md-calendar-date.md-focus.md-calendar-selected-date
 .md-calendar-date-selection-indicator {
-    background: rgb(0,150,136);
+    background: rgb(67, 82, 98);
     color: rgb(255,255,255);
     border-color: transparent;
 }
 
 .md-calendar-date-selection-indicator:hover {
-    background: rgb(0,150,136);
+    background: rgb(255, 255, 255);
 }
 
 .md-calendar-day-header {
-    background: rgb(0,150,136);
+    background: rgb(255, 255, 255);
     color: rgba(0,0,0,0.87);
 }
 
 .md-calendar-date-disabled, .md-calendar-month-label-disabled {
     color: rgba(0,0,0,0.26);
+}
+
+.upload-button{
+  color: black;
+  background-color:#F9BF3B;
+  height: 30px;
+  width:40px;
+}
+
+.profile-form{
+  background-color: rgb(67, 82, 98);
+  color: rgb(255,255,255);
+}
+.picture-upload{
+  height: 120px;
+  width: 120px;
+  background: rgb(104,104,104);
+  border-radius: none;
+}
+.save-button{
+  width: 30px;
+  background: green;
 }
 
 /*REVIEW STYLES*/
@@ -964,7 +998,7 @@ md-sidenav.md-sidenav-left {
 }
 
 .profile-header {
-    background-color: rgb(241, 241, 241);
+    background-color: rgb(0, 105, 92);
 }
 
 .space-right {
@@ -1370,6 +1404,45 @@ md-toolbar.navbar {
     }
 }
 
+// CUSTOM STYLES
+.file-input-wrapper {
+  display: inline-block;
+  overflow-y: hidden;
+  .file-input-button {
+    color: white;
+    border: 1px solid #222;
+    background: #F9BF3B;
+    box-sizing: border-box;
+    font-family: Lato;
+    width: 140px;
+    height: 40px;
+    display: inline;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 400;
+    margin-top: 20px;
+    padding-top: 9px;
+    text-align: center;
+    transition: color 500ms, background-color 500ms;
+    -moz-transition: color 500ms, background-color 500ms;
+    -webkit-transition: color 500ms, background-color 500ms;
+    -o-transition: color 500ms, background-color 500ms;
+    -ie-transition: color 500ms, background-color 500ms;
+    &:hover {
+      color: #fff;
+      background: #F9BF3B;
+      text-decoration: none;
+    }
+  }
+  input {
+    display: none;
+  }
+}
+
+md-toolbar.md-default-theme:not(.md-menu-toolbar),
+md-toolbar:not(.md-menu-toolbar){
+  background-color: rgb(67, 82, 98);
+}
 .popular-events {
     md-grid-tile-footer {
         opacity: 0.8;
@@ -1393,9 +1466,11 @@ md-toolbar.navbar {
 .upload-div {
     max-width: 700px;
     .upload-btn {
-        width: 90px;
+        width: 50px;
         margin: 20px;
     }
+    background-color: rgb(67, 82, 98);
+    color: rgb(255,255,255);
 }
 
 .profile-page {
