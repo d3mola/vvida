@@ -1,0 +1,28 @@
+div.full
+div.dim
+  div.center-div
+    div.form-div
+      span Create Account
+    form(method="post" ng-submit="signup()")
+      div.form-div
+        input(ng-model="user.name" placeholder="FullName" ng-required="true").log-sign-input
+      div.form-div
+        input(ng-model="user.emailSignup" type="email" placeholder="Email" ng-required="true").log-sign-input
+      div.form-div
+        input(ng-model="user.username" placeholder="Username" ng-required="true").log-sign-input
+      div.form-div
+        input(ng-model="user.passwordSignup" type="password" placeholder="Password" ng-required="true").log-sign-input
+      div.form-div
+        input(ng-model="user.confirmPassword" type="password" placeholder="Confirm password" ng-required="true").log-sign-input
+      div.form-div
+        span.terms By clicking the sign up button you agree with our
+        a(ui-sref="#")  terms and conditions
+      div.form-div
+        md-button.md-raised.log-sign-button(type="submit") Sign Up
+    div.left-pad
+      md-button.md-raised.md-accent.media-button.fb(aria-label="FacebookSignUp" ng-click="facebook()") Facebook
+      md-button.md-raised.md-accent.media-button.google(aria-label="GoogleSignUp" ng-click="google()") Google+
+    div.form-div
+      span Already have an account ?
+      a(ui-sref="login") Log in
+
