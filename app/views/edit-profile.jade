@@ -1,58 +1,55 @@
-div.md-margin(layout='column' flex='90')
-  .md-padding(layout='column' layout-align='center center')
-    div(layout='column' layout-align='center center')
-      p
-        | Welcome. The email address you have provided is&nbsp;
-        span.email {{userData.email}}.
-      span Please complete the following form with your details to complete your registration.
-  md-card-content.md-margin.content(layout-gt-md='row' layout='column')
-    div(layout='column' flex)
-      md-card.md-padding.upload-div(layout='column' layout-align='start center' flex)
-        p.packed-bottom Pick your profile picture and click UPLOAD.
-        p.packed-top Click REMOVE to cancel.
-        input.upload-btn(type="file" nv-file-select="" uploader="uploader" ng-click='uploader.clearQueue()')
-        div(layout='column' layout-align='center center' ng-repeat='item in uploader.queue')
-          div(ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }")
-          md-subheader {{ item.file.name }}
-        p.md-title Progress
-        md-progress-linear.md-primary(md-mode='determinate', value='{{uploader.progress}}')
-        br
-        div(ng-init="showToast() && uploader.clearQueue()" ng-if="uploader.progress === 100 && !uploader.isUploading")
-        .md-padding(layout='row' layout-align='center end' flex layout-sm='column')
-          md-button.md-raised.md-primary.md-padding(ng-click='uploader.uploadAll()', ng-disabled='!uploader.getNotUploadedItems().length && uploader.isUploading' flex)
-            i.fa.fa-cloud-upload
-            | upload
-          md-button.md-raised.md-warn.md-padding(ng-click='uploader.cancelAll()', ng-disabled='!uploader.isUploading' flex)
-            i.fa.fa-ban
-            | cancel
-          md-button.md-raised.md-warn.md-padding(ng-click='uploader.clearQueue()', ng-disabled='!uploader.queue.length' flex)
-            i.fa.fa-remove
-            | Remove
-    form(method='post' ng-submit='editProfile()' flex layout='column')
-      md-card.md-padding.md-padding(flex)
-        div(layout='row' layout-align='center center')
-        md-input-container
-          md-icon(class='fa fa-user-secret')
-          input(ng-model='userData.username' type='text' placeholder='Username' ng-required='true')
-        md-input-container(flex)
-            md-icon(class='fa fa-user')
-            input(ng-model='userData.name' type='text' placeholder='Names' ng-required='true')
-        div(layout='row' layout-sm='column')
-          md-input-container(flex)
-            md-icon(class='fa fa-building')
-            input(ng-model='userData.city' type='text' placeholder='City' ng-required='true')
-          md-datepicker.datepicker(md-placeholder='Date of Birth' ng-model='userData.dob' aria-label='Date of Birth')
-        div(layout='row' style='margin-left: 10px' layout-sm='column')
-          md-input-container(layout='row' layout-align='center center' flex)
-            md-icon(class='fa fa-globe')
-            md-select.md-padding.md-margin(placeholder='Country' ng-model='userData.country' aria-label='Country' flex)
-              md-option(ng-repeat='country in countries' ng-value='country.name') {{country.name}}
-          md-input-container(layout='row' layout-align='center center' flex)
-            md-icon(class='fa fa-venus-mars')
-            md-select.md-padding.md-margin(placeholder='Gender' ng-model='userData.gender' aria-label='Gender' flex)
-              md-option(ng-repeat='type in gender' ng-value='type.type') {{type.type}}
-        p {{message}}
-        #update-user-data(layout='row' flex layout-align='center end')
-          md-button.md-raised.md-warn.md-padding.md-margin.button(flex='70')
-            md-icon(class='fa fa-send')
-            | Update Profile
+.edit-profile-wrapper
+  header
+    h3
+      | Account
+    span Change your profile picture
+    hr
+  section.profile-wrapper
+    .profile-pix
+      img(ng-src="{{currentUser.img_url}}" alt="profile" class="update-profile-pic")
+    .action-buttons
+      label.file-input-button.md-raised(for="upload-file" class="fa fa-cloud-upload") Upload
+      input#upload-file(type="file" name="image" nv-file-select="" uploader='uploader' ng-click='uploader.clearQueue()')
+      div(layout='column' layout-align='center center' ng-repeat='item in uploader.queue')
+        div(ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }")
+        md-subheadr {{ item.file.name }}
+      div(ng-init="showToast() && uploader.clearQueue()" ng-if="uploader.progress === 100 && !uploader.isUploading")
+      md-button.save-button.md-raised(ng-click='uploader.uploadAll()', ng-disabled='!uploader.getNotUploadedItems().length && uploader.isUploading' class="save-button" flex)
+        i.fa.fa-check-circle-o
+        | Save
+  section
+    p.change-info
+      | Change your basic information
+      hr
+    form
+      .group
+        label(for='username')
+          | Username
+        input#username(type='text', ng-model='userData.username' name='input' placeholder='sheyoo')
+      .group
+        label(for='name')
+          | Name
+        input#name(type='text', ng-model='userData.name' name='name' placeholder='Adekoya Seyi')
+      .group
+        label(for='city')
+          | City
+        input#city(type='text', ng-model='userData.city' name='city' placeholder='Lagos')
+      .group
+        label(for='country')
+          | Country
+        select(type='text', name='country' ng-model='userData.country' placeholder='Country')
+          option(ng-repeat='country in countries' ng-value='country.name') {{country.name}}
+      .group
+        label(for='birthday')
+          | Birthday
+        input#birthday(type='date', ng-model='userData.dob' class="date" aria-label='Date of Birth' name='birthday' md-placeholder='Date of Birth')
+      .group
+        label(for='gender')
+          | Gender
+        select(type='text', name='gender' ng-model='userData.gender' placeholder='Gender' aria-label='Gender')
+          option(ng-repeat='type in gender' ng-value='type.type') {{type.type}}
+    p {{message}}
+    #update-user-data(layout='row' flex layout-align='center end')
+      md-button.md-raised.save-button
+        i.fa.fa-check-circle-o
+        | Save
