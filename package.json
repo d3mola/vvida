@@ -38,6 +38,7 @@
     "gulp-concat": "^2.6.0",
     "gulp-imagemin": "^2.3.0",
     "gulp-jade": "^1.1.0",
+    "gulp-jshint": "^2.0.0",
     "gulp-karma": "0.0.4",
     "gulp-less": "^3.0.3",
     "gulp-mocha": "^2.2.0",
@@ -55,6 +56,7 @@
     "karma-jasmine": "^0.3.6",
     "karma-phantomjs-launcher": "^0.2.3",
     "karma-sinon": "^1.0.4",
+    "lodash": "^4.14.2",
     "method-override": "^2.3.5",
     "moment": "^2.10.6",
     "morgan": "^1.6.1",
@@ -74,9 +76,7 @@
     "sinon": "^1.17.2",
     "stringify": "^3.1.0",
     "superagent": "^1.4.0",
-    "vinyl-source-stream": "^1.1.0",
-    "method-override": "^2.3.5",
-    "gulp-jshint": "^2.0.0"
+    "vinyl-source-stream": "^1.1.0"
   },
   "engines": {
     "node": "0.12.5"

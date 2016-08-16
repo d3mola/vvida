@@ -22,8 +22,10 @@ describe('HomeCtrl tests', function() {
   });
 
   it('should define events', function() {
-    expect(scope.events).toBeDefined();
-    expect(typeof scope.events).toBe('object');
+    expect(scope.recentEvents).toBeDefined();
+    expect(scope.popularEvents).toBeDefined();
+    expect(typeof scope.recentEvents).toBe('object');
+    expect(typeof scope.popularEvents).toBe('object');
   });
 
   it('should define reviews', function() {

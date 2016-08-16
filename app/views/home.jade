@@ -7,9 +7,14 @@ md-card.jumbotron.search-jumbotron
           event-autocomplete-searchbar(placeholder="Find any event")
           md-button.md-raised.md-accent(id="search", ng-click="goToSearchPage(searchText)") Search
 
-.sections(layout="column" flex-xs flex-gt-xs="50")
+.sections(ng-if="recentEvents.length" layout="column" flex-xs flex-gt-xs="50")
   div.eventsHeader
-    span Events
-  div.tabCards(ng-if="events.length > 0" layout="row" layout-sm="column" flex  layout-align="start center")
-   vvida-card(ng-repeat="event in events | limitTo : 3" flex flex-md="45" flex-gt-md="{{events.length > 0? \"\": \"25\"}}" events="event").eventcards
+    span Recent Events
+  div.tabCards(layout="row" layout-sm="column" flex  layout-align="start center")
+   vvida-card(ng-repeat="event in recentEvents | limitTo : 3" flex flex-md="45" flex-gt-md="{{recentEvents.length > 0? \"\": \"25\"}}" events="event").eventcards
+.sections(ng-if="popularEvents.length" layout="column" flex-xs flex-gt-xs="50")
+  div.eventsHeader
+    span Popular Events
+  div.tabCards(layout="row" layout-sm="column" flex  layout-align="start center")
+   vvida-card(ng-repeat="event in popularEvents | limitTo : 3" flex flex-md="45" flex-gt-md="{{popularEvents.length > 0? \"\": \"25\"}}" events="event").eventcards
 div.seperateFooter
