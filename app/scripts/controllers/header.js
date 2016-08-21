@@ -3,6 +3,7 @@ angular.module('vvida.controllers')
     function($rootScope, $scope, $state, Users, Auth) {
       var mainContent,
         toolbar;
+      var userUrl = /user\/\d/;
 
       function solidify() {
         var scroll = mainContent.scrollTop;
@@ -12,10 +13,27 @@ angular.module('vvida.controllers')
           .backgroundColor = 'RGBA(249, 191, 59,' + opacity + ')';
       }
 
+      function changeHeader() {
+        if (userUrl.test(window.location.pathname)) {
+          toolbar.classList.add('header-overlay');
+          toolbar.style.borderBottom = '5px rgb(249, 191, 59) solid';
+          toolbar.style.height = '98px';
+          toolbar.style.backgroundRepeat = 'no-repeat';
+          toolbar.style.backgroundSize = '100%';
+          toolbar.style.backgroundPositionY = '-310px';
+        } else {
+          toolbar.style.borderBottom = 'none';
+          toolbar.style.height ='60px';
+          toolbar.style.backgroundImage = 'none';
+          toolbar.classList.remove('header-overlay');
+        }
+
+      }
+
       var transparentScrollHeader = function() {
         toolbar = document.querySelector('md-toolbar.navbar');
         mainContent = document.querySelector('md-content.main-md-content');
-        
+
         $scope.showSearch = $state.current.name !== 'home';
 
         if (!$scope.showSearch) {
@@ -28,6 +46,9 @@ angular.module('vvida.controllers')
           toolbar.style
             .backgroundColor = 'RGBA(249, 191, 59, 1)';
         }
+
+        changeHeader();
+
       };
 
       $rootScope.$on('$stateChangeSuccess', function() {
