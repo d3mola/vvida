@@ -12,33 +12,30 @@ angular.module('vvida.controllers')
       $scope.recentEvents = [];
       $scope.popularEvents = [];
 
-      // Get recent events
-      Events.recentEvents(function (err, events) {
+      $scope.imgsToHttps = function(events) {
         events.forEach(function (event) {
           if(event.Images.length) {
-           event.Images[0].img_url = httpsConversion(event.Images[0].img_url);
+           var img_url = event.Images[0].img_url;
+           event.Images[0].img_url = img_url.replace(/http:/gi, 'https:');
           }
         });
-        $scope.recentEvents = events;
+
+        return events;
+      };
+
+      // Get recent events
+      Events.recentEvents(function (err, events) {
+        $scope.recentEvents = $scope.imgsToHttps(events);
       });
 
       // Get popular events
       Events.popularEvents(function (err, events) {
-        events.forEach(function (event) {
-          if(event.Images.length) {
-           event.Images[0].img_url = httpsConversion(event.Images[0].img_url);
-          }
-        });
-        $scope.popularEvents = events;
+        $scope.popularEvents = $scope.imgsToHttps(events);
       });
 
       $scope.timeLeft = function (startTime) {
         return moment(new Date(startTime)).from(new Date());
       };
-      //Regex to replace http with https
-      function httpsConversion(data) {
-        return data.replace(/http:/gi, 'https:');
-      }
 
       // Get reviews from the db
       $scope.reviews = Reviews.query();
