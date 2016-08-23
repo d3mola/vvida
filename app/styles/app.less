@@ -1306,7 +1306,8 @@ md-toolbar.navbar {
     }
 
     md-menu {
-        padding: 0px;
+        padding: 0px !important;
+        margin-right: 0px !important;
     }
 
     .button-drawer {
@@ -1321,7 +1322,7 @@ md-toolbar.navbar {
     .search-autocomplete {
         margin-left: 15px;
         background: transparent;
-        width: 350px;
+        width: 300px;
         font-family: "Lato";
 
         input {
@@ -1363,10 +1364,23 @@ md-toolbar.navbar {
     }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1060px) {
+    md-toolbar.navbar {
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
     md-toolbar.navbar {
         padding-left: 0px;
         padding-right: 0px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .search-autocomplete {
+        width: 250px !important;
     }
 }
 
