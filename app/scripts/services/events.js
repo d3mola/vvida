@@ -22,6 +22,14 @@ angular.module('vvida.services')
       });
     };
 
+    obj.recentEvents = function(cb) {
+      $http.get('/api/events/recent').success(function(res) {
+        cb(null, res);
+      }).error(function(err) {
+        cb(err);
+      });
+    };
+
     obj.search = function(searchTerm, cb) {
       $http.get('/api/events/search?q=' + searchTerm).success(function(res) {
         cb(null, res);
