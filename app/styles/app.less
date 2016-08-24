@@ -701,6 +701,54 @@ md-sidenav.md-sidenav-left {
     }
 }
 
+.profile-sidenav {
+    background-color: #fff;
+    color: #333 !important;
+    min-height: 600px;
+    z-index: 10;
+    border-right: solid 2px #f6f6f6;
+
+    > md-toolbar {
+        background-color: transparent !important;
+    }
+
+    md-list {
+        padding-top: 0px;
+    }
+
+    .user-profile-menu-item {
+        display: inline-block;
+        width: 100%;
+        box-sizing: border-box;
+
+        &.active {
+            border-right: solid 4px #F9BF3B;
+        }
+    }
+
+    .profile-caption {
+        font-weight: bold;
+        font-size: 12px;
+        color: #777;
+    }
+
+    md-list-item {
+        color: #777;
+        font-weight: bolder;
+    }
+
+    md-divider {
+        height: 1px;
+        background: #eee;
+        border: none;
+    }
+
+    .fa {
+        color: #aaa;
+        font-size: 20px;
+    }
+}
+
 .items {
     max-width: 900px;
     margin: 0 auto;
