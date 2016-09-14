@@ -244,6 +244,11 @@
           controller: 'LoginCtrl',
           templateUrl: 'views/login.html'
         })
+        .state('signup', {
+          url: '/users/signup',
+          controller: 'LoginCtrl',
+          templateUrl: 'views/sign-up.html'
+        })
         .state('welcome', {
           url: '/welcome',
           controller: 'WelcomeCtrl',
