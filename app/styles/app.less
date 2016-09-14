@@ -9,6 +9,7 @@ body {
 
 md-content.main-md-content {
     height: 100%;
+
 }
 
 h1,
@@ -898,6 +899,124 @@ md-sidenav.md-sidenav-left {
     border-color: transparent rgb(198, 198, 198);
 }
 
+.dim {
+    height: 700px;
+    background-image: url(../images/sign-log-bg.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding-top: 15%;
+}
+
+.center-div {
+    margin: auto;
+    clear: both;
+    width: 50%;
+    background-color: #f7f7f7;
+}
+
+@media only screen and (max-width: 601px) {
+    .center-div {
+        margin: auto;
+        clear: both;
+        width: 90%;
+        background-color: transparent;
+        color: white;
+    }
+
+    .dim {
+        display: block;
+        background: rgba(0, 0, 0, .6);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 700px;
+    }
+
+    .full {
+        height: 700px;
+        background-image: url(../images/sign-log-bg.jpg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        padding-top: 15%;
+    }
+
+    .form-div a {
+        color: #ffffff !important;
+        font-weight: bolder;
+        margin-left: 2px;
+    }
+}
+
+.terms {
+    font-size: 15px;
+}
+
+.form-div a {
+    color: #3a4046;
+    font-weight: bolder;
+    margin-left: 2px;
+}
+
+.form-div {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    text-align: center;
+}
+
+.log-sign-input {
+    border-radius: 25px;
+    background-color: #eaeaea;
+    border: 2px solid #7f7f7f;
+    height: 40px;
+    text-align: center;
+    font-weight: bolder;
+    color:  #3a4046;
+}
+
+input:focus {
+    outline:none;
+}
+
+.log-sign-button {
+    width: 100%;
+    border-radius: 25px;
+    font-weight: bolder;
+    background-color: #f9bf3b !important;
+    .buttons-radius();
+}
+
+.left-pad {
+    padding-left: 10%;
+}
+
+.media-button {
+    width: 43%;
+    .buttons-radius();
+}
+
+.fb {
+    background-color: #3f5996 !important;
+}
+
+.google {
+    background-color: #d24437 !important;
+}
+
+.right-button {
+     margin-left: 30%;
+}
+
+.buttons-radius {
+  border-radius: 25px;
+  box-shadow:none !important;
+  height: 45px;
+}
+
 .email {
     margin: 0 10px;
     color: #106CC8;
@@ -1119,6 +1238,13 @@ md-sidenav.md-sidenav-left {
        font-family: "Lato";
        font-size: 20px;
     }
+
+    .log-sign-input::-webkit-input-placeholder {
+       color: #7f7f7f;
+       font-weight: bolder;
+       font-family: "Lato";
+       font-size: 15px;
+    }
 }
 
 @media only screen and (min-width: 601px) {
@@ -1142,6 +1268,13 @@ md-sidenav.md-sidenav-left {
        font-weight: lighter;
        font-family: "Lato";
        font-size: 30px;
+    }
+
+    .log-sign-input::-webkit-input-placeholder {
+       color: #7f7f7f;
+       font-weight: bolder;
+       font-family: "Lato";
+       font-size: 15px;
     }
 }
 
