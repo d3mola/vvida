@@ -4,6 +4,7 @@ angular.module('vvida.controllers')
       var mainContent,
         toolbar;
       var userUrl = /user\/\d/;
+      var eventUrl = /events\/\d/;
 
       function solidify() {
         var scroll = mainContent.scrollTop;
@@ -14,20 +15,22 @@ angular.module('vvida.controllers')
       }
 
       function changeHeader() {
-        if (userUrl.test(window.location.pathname)) {
-          toolbar.classList.add('header-overlay');
-          toolbar.style.borderBottom = '5px rgb(249, 191, 59) solid';
-          toolbar.style.height = '98px';
-          toolbar.style.backgroundRepeat = 'no-repeat';
-          toolbar.style.backgroundSize = '100%';
-          toolbar.style.backgroundPositionY = '-310px';
-        } else {
-          toolbar.style.borderBottom = 'none';
-          toolbar.style.height ='60px';
-          toolbar.style.backgroundImage = 'none';
-          toolbar.classList.remove('header-overlay');
-        }
-
+        if (eventUrl.test(window.location.pathname) ||
+          userUrl.test(window.location.pathname)) {
+            toolbar.classList.add('header-overlay');
+            toolbar.style.borderBottom = '5px rgb(249, 191, 59) solid';
+            toolbar.style.height = '98px';
+            toolbar.style.backgroundRepeat = 'no-repeat';
+            toolbar.style.backgroundSize = '100%';
+            toolbar.style.paddingBottom = '20px';
+            toolbar.style.backgroundPosition = 'center';
+          } else {
+            toolbar.style.borderBottom = 'none';
+            toolbar.style.paddingBottom = '0px';
+            toolbar.style.height = '60px';
+            toolbar.style.backgroundImage = 'none';
+            toolbar.classList.remove('header-overlay');
+          }
       }
 
       var transparentScrollHeader = function() {
@@ -48,7 +51,6 @@ angular.module('vvida.controllers')
         }
 
         changeHeader();
-
       };
 
       $rootScope.$on('$stateChangeSuccess', function() {

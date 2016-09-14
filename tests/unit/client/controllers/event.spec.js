@@ -18,7 +18,8 @@ describe('EventCtrl tests', function() {
       get: function(id, cb) {
         cb({
           message: 'Sample Event Message',
-          Reviews: ['me', 'you', 'i']
+          Reviews: ['me', 'you', 'i'],
+          Images: ['img1', 'img2']
         });
       },
       query: function(id, params) {
@@ -93,6 +94,11 @@ describe('EventCtrl tests', function() {
     state, stateParams;
   beforeEach(function() {
     module('vvida');
+  });
+
+  beforeAll(function() {
+    var dummyElement = document.createElement('div');
+    sinon.stub(document, 'querySelector').returns(dummyElement);
   });
 
   beforeEach(inject(function($injector) {

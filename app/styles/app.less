@@ -1,3 +1,5 @@
+@coloryellow: #FBBD55;
+
 body {
     width: 100%;
     text-transform: none;
@@ -17,6 +19,9 @@ h5 {
     margin: 0 0 5px 0;
     &.md-padding {
         margin: 0;
+    }
+    &.md-content {
+        font-weight: 800;
     }
 }
 
@@ -38,6 +43,14 @@ input {
     background-color: transparent;
 }
 
+.layout-align-center-start{
+    md-content {
+        h4{
+            font-weight: 800;
+        }
+    }
+}
+
 #search:hover {
     background-color: #E6AF32;
 }
@@ -47,8 +60,7 @@ input {
 }
 
 .text-center {
-    padding-top: 6px !important;
-    text-align: center;
+    padding-top: 19px !important;
     .email-profile {
         font-size: 11px;
     }
@@ -422,7 +434,8 @@ md-toolbar,
 .event-main-img {
     width: inherit;
     height: 300px;
-    background-size: cover;
+    background-size: 100% !important;
+    box-shadow: none;
 }
 
 .jumbotron-image {
@@ -898,6 +911,19 @@ md-sidenav.md-sidenav-left {
     opacity: 100%;
     background-color: white;
     font-size: 5px;
+}
+
+.header-overlay {
+    &:before {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background-color: rgba(0, 0, 0, 0.51);
+    }
 }
 
 .user-name {
@@ -1440,17 +1466,34 @@ md-toolbar.navbar {
 .face {
     width: 100px;
     height: 100px;
-    margin: 10px;
+    margin-right: 10px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 0px;
 }
 
 .thumbs {
     width: 350px;
     height: 100px;
-    margin: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    margin: 10px 10px 10px 0px;
+    min-width: 240px;
+    border: 1px solid #979797;
+    background-color: #D8D8D8;
+    border-radius: 0px;
+}
+
+.event-desc {
+    @media only screen and (max-width: 1030px) {
+       display: block;
+        md-content {
+            max-width: 100% !important;
+        }
+    }
+}
+
+.image-slider-content {
+    @media only screen and (max-width: 640px) {
+        display: block;
+    }
 }
 
 .btn-style {
@@ -1483,7 +1526,10 @@ md-toolbar.navbar {
     color: #009090;
     font-size: 1.2em;
 }
-
+.coloryellow {
+    color: @coloryellow;
+    font-size: 1.2em;
+}
 .colorpink {
     color: #ff4081;
     font-size: 1.2em;
@@ -1533,10 +1579,16 @@ md-toolbar.navbar {
 
 
 .rating {
-    text-align: center;
+    text-align: left;
     font-size: 24px;
     unicode-bidi: bidi-override;
+    margin-bottom: 18px;
     direction: rtl;
+    div {
+        font-size: 18px;
+        color: rgba(0, 0, 0, 0.26);
+        margin-top: 8px;
+    }
 }
 
 .container-height {
@@ -1559,11 +1611,22 @@ md-toolbar.navbar {
     content: "\2605";
     position: absolute;
     left: 0;
-    color: #ff4081;
+    color: @coloryellow;
 }
 
 .stared {
-    color: #ff4081;
+    color: @coloryellow;
+}
+
+.review-container {
+    margin: 80px 55px 0px 7%;
+}
+
+.submit {
+    display: block;
+    button {
+        margin-left: 0px;
+    }
 }
 
 .item-title {
@@ -1576,11 +1639,22 @@ md-toolbar.navbar {
 }
 
 .no-padding {
-    padding: 0
+    padding: 0;
 }
 
 .rating-box {
     margin-left: 140px;
+    padding: 10px;
+    min-width: 243px;
+    @media only screen and (max-width: 640px) {
+        display: -webkit-inline-box;
+        padding-left: 0px;
+        margin-left: 0px;
+    }
+}
+
+.event-top-margin {
+    margin-top: 100px;
 }
 
 .edit-rating {
@@ -1596,14 +1670,16 @@ md-toolbar.navbar {
 }
 
 .average-rating {
-    width: 80px;
-    height: 80px;
-    background: #009090;
-    line-height: 80px;
+    width: 100px;
+    height: 100px;
+    background: #425260;
+    line-height: 93px;
+    border: 1px solid #203D4F;
     > h3 {
+        font-size: 40px;
         display: block;
         margin: 0 auto;
-        color: #fff;
+        color: #FBBD55;
     }
 }
 
@@ -1628,6 +1704,23 @@ md-dialog {
         md-content {
             overflow-x: hidden;
         }
+    }
+}
+
+.event-icon {
+    font-size: 33px;
+    color: #595959;
+    span {
+        font-size: 12px;
+        color: #6a6a6a;
+        font-family: "Open Sans";
+    }
+}
+
+md-content {
+    .header {
+        font-weight: 800;
+        color: #595959;
     }
 }
 
