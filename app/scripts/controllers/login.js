@@ -27,7 +27,9 @@
           if (validationResult.is_valid) {
             var user = {
               email: $scope.user.emailSignup,
-              password: $scope.user.passwordSignup
+              password: $scope.user.passwordSignup,
+              username: $scope.user.username,
+              name: $scope.user.name
             };
 
             Users.save(user, function(res) {
@@ -51,13 +53,26 @@
           }
         };
 
+        function alphaNumeric(data) {
+          return /[0-9]/.test(data);
+        }
+
         function validate(signUpDetails) {
           var obj = {};
+
+          if((!signUpDetails.name.length) || alphaNumeric(signUpDetails.name)){
+             obj.message = 'Please Enter a valid name';
+             return obj;
+          }
+
+          if(!signUpDetails.username.length) {
+             obj.message = 'Please Enter a username';
+             return obj;
+          }
 
           //If it throws an eror just remove this function
           if(!signUpDetails.passwordSignup.length) {
              obj.message = 'Please Enter a password';
-
           }
 
           else if (signUpDetails.passwordSignup.trim().length < 8) {

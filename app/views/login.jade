@@ -1,53 +1,18 @@
-.sign-up.md-whiteframe-z3( layout="column" style="padding-bottom: 20px;")
-  div(ng-cloak="")
-    md-content.md-padding
-      md-tabs.md-dynamic-height
-        md-tab.md-accent(label="Login")
-          md-content.md-padding
-            .custom-signup(layout="column")
-              form(method="post" ng-submit="login()" flex)
-                md-input-container
-                  label Email
-                  input(ng-model="user.email" type="email" ng-required="true")
-                md-input-container
-                  label Password
-                  input(ng-model="user.password" type="password")
-                p.md-body-1.md-padding.md-margin {{messageLogin}}
-                div(layout layout-align="center center")
-                  md-button.md-raised.md-accent(class="login-button" type="submit")
-                    i.fa.fa-send
-                    | Login
-
-              section(layout="row" layout-sm="column" layout-align="center center" layout-wrap="" flex-sm="55")
-                md-button.md-raised.md-primary.md-hue-2(class="third-party-button" aria-label="Facebook" ng-click="facebook()")
-                  i(class="fa fa-facebook")
-                  | Facebook
-                md-button.md-raised.md-warn(class="third-party-button" aria-label="Google" ng-click="google()")
-                  i(class="fa fa-google-plus")
-                  | Google
-
-        md-tab(label="sign Up")
-          md-content.md-padding
-            .custom-signup
-              form(method="post" ng-submit="signup()" flex)
-                md-input-container
-                  md-icon(class="fa fa-envelope ")
-                  input(ng-model="user.emailSignup" type="email" placeholder="Email" ng-required="true")
-                md-input-container
-                  md-icon(class="fa fa-key")
-                  input(ng-model="user.passwordSignup" type="password" placeholder="Password")
-                md-input-container
-                  md-icon(class="fa fa-key")
-                  input(ng-model="user.confirmPassword" type="password" placeholder="Confirm password")
-                p.md-body-1.md-padding.md-margin {{messageSignup}}
-                div(layout="column" layout-align="center center")
-                  md-button.md-raised.md-accent.md-hue-2(class="sign-up-button" type="submit")
-                    i(class="fa fa-send")
-                    | Sign Up
-              section(layout="row" layout-sm="column" layout-align="center center" layout-wrap="" flex-sm="55")
-                md-button.md-raised.md-primary.md-hue-2(class="third-party-button" aria-label="FacebookSignUp" ng-click="facebook()")
-                  i(class="fa fa-facebook")
-                    | Facebook
-                md-button.md-raised.md-warn(class="third-party-button" aria-label="GoogleSignUp" ng-click="google()")
-                  i(class="fa fa-google-plus")
-                    | Google
+div.full
+div.dim
+  div.center-div
+    form(method="post" ng-submit="login()")
+      div.form-div
+        span Sign in to Vvida
+      div.form-div
+        input(placeholder="Email" ng-model="user.email" type="email" ng-required="true").log-sign-input
+      div.form-div
+        input(placeholder="Password" ng-model="user.password" type="password").log-sign-input
+      div.form-div
+        md-button.md-raised.log-sign-button(type="submit") Log In
+    div.left-pad
+      md-button.md-raised.md-accent.media-button.fb(aria-label="Facebook" ng-click="facebook()") Facebook
+      md-button.md-raised.md-accent.media-button.google(aria-label="Google" ng-click="google()") Google+
+    div.form-div
+      span Dont' have an account ?
+      a(ui-sref="signup") Sign Up
