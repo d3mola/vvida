@@ -2,7 +2,7 @@
   'use strict';
 
   module.exports = {
-    up: function (queryInterface, Sequelize) {
+    up: function (queryInterface) {
       return queryInterface.dropTable('Items').then(function() {
         return queryInterface.dropTable('ItemPromotions');
       });
