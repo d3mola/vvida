@@ -1,0 +1,70 @@
+div.item-padding(layout="column" ng-init="getItem()")
+  div.md-padding(layout="row")
+    a.md-subheadline(ui-sref="items") Products
+    span &nbsp;&gt;
+    a.md-subheadline(ui-sref="categoryItems({catId: item.category_id})") &nbsp;{{item.Category.name}}
+    span &nbsp;&gt;
+    span.md-subheadline &nbsp;{{item.name}}
+
+  div(layout="row" layout-sm="column" layout-align="start start" flex)
+    .products-desc(layout="column" flex="66" flex-sm="100")
+      h3.md-subheader.md-padding Gallery Images - {{item.name}}
+      h2.item-title {{item.name}}
+      div(layout="column" layout-margin)
+        md-whiteframe.md-whiteframe-5dp(flex="66" flex-sm="100" style="height: 300px; background: url('{{selectedImage.img_url || images[0].img_url}}') no-repeat center center; background-size:cover; margin-left:10px; display:block;")
+        div(layout="row")  
+          md-virtual-repeat-container.thumbs(md-orient-horizontal layout-align="center center")
+            img.face(ng-click="setImage(image)" md-virtual-repeat="image in images" ng-src="{{image.img_url}}")
+          div.md-padding.rating-box(layout="row" layout-align="end center")    
+            div.average-rating(layout="row")    
+              h3 {{averageReview(item.Reviews)}}
+            div.md-padding.average-stars
+              i.fa.fa-star.colorpink(ng-if="averageReview(item.Reviews) > 0" ng-repeat="i in range(averageReview(item.Reviews)) track by $index")
+              i.fa.fa-star-o.colorpink(ng-repeat="i in range(5 - averageReview(item.Reviews)) track by $index")
+              p.small Average rating
+
+      md-divider.event-divider
+      div(layout-margin layout-padding)
+        h2.title-color Description 
+        span {{item.description}}
+      md-divider
+      
+      div(layout-padding layout-margin layout="column")
+        h2.title-color Contact Address
+        i.event-decription.fa.fa-street-view.fa-style 
+          span.address {{item.street}} 
+        i.event-decription.fa.fa-globe.fa-style
+          span.address {{item.city}}
+        i.event-decription.fa.fa-mobile.fa-style 
+          span.address {{item.phone}}
+
+    div.item-review-info.left-border(layout="column")
+      div.md-padding(layout="row" layout-align="start start" flex)
+        div.md-padding(flex="100")
+          p.md-accent Your Review
+          form
+            md-input-container.no-padding
+              div.rating(ng-init="itemReview.rating=0") 
+                span(ng-repeat="i in range(5-itemReview.rating) track by $index" ng-click="rate(5-$index)") ☆   
+                span.stared(ng-if="itemReview.rating" ng-repeat="i in range(itemReview.rating) track by $index" ng-click="rate(itemReview.rating-$index)") ☆ 
+            md-input-container.no-padding
+              label Title
+              input(ng-model="itemReview.review_title")
+            md-input-container.review-container.no-padding
+              label Review
+              textarea.text-width(ng-model="itemReview.review" columns="1" md-maxlength="150" rows="3")
+            md-input-container.no-padding
+              md-button.review-post.md-raised.md-primary.post(ng-click="addItemReview()") Post
+
+      div.md-padding(flex="100")
+        md-content.container-height
+          md-list
+            h2.md-header.title-color(layout layout-padding) Reviews for {{item.name}} in {{item.city}}
+            md-divider
+            md-list-item.md-3-line(ng-repeat="review in item.Reviews")
+              .md-list-item-text
+                h4.review_title {{review.review_title}} 
+                p.review_text {{review.review}}
+                i.fa.fa-star.colorpink(ng-if="review.rating > 0" ng-repeat="i in range(review.rating) track by $index")
+                i.fa.fa-star-o.colorpink(ng-repeat="i in range(5 - review.rating) track by $index")
+              md-divider
