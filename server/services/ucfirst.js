@@ -1,4 +1,4 @@
-/*ucFirst (typeof String): returns the String in 
+/*ucFirst (typeof String): returns the String in
 question but changes the First Character to an Upper case*/
 module.exports = function(string) {
   var word = string,
@@ -18,7 +18,7 @@ module.exports = function(string) {
         // capitalize the letter, then convert it back to decimal value
         character = String.fromCharCode(asciiCode - 32);
       }
-      /*lowercase any of the letters that are not in the 
+      /*lowercase any of the letters that are not in the
       1st postion that are in uppercase*/
       else if (isUpperCase && x > 0) {
         // lower case the letter, converting it back to decimal value

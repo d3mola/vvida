@@ -1,26 +1,31 @@
-md-toolbar.md-whiteframe-z3.navbar.header-spacing(ng-controller="HeaderCtrl" layout="row" layout-align="center center")
+.fixed-header-support
+md-toolbar.navbar.header-spacing(ng-controller="HeaderCtrl" layout="row" layout-align="center center")
   .md-toolbar-tools
-    md-button.md-icon-button.show-sm.hide-gt-sm(ng-click="openLeftMenu()", aria-label="openLeftMenu")
+    md-button.button-drawer.md-icon-button(hide-gt-md ng-click="openLeftMenu()" aria-label="openLeftMenu" md-no-ink)
       i.fa.fa-bars.fa-2x
-    a(ui-sref="home")
-      img(src="images/logo.png" height="24" align="middle" hide-sm)
-    .menu-container
-      a(ng-repeat="menuItem in menu" ui-sref="{{menuItem.state}}" hide-sm)
-        md-button
-          | {{menuItem.name}}
-      a(ng-if="currentUser" ui-sref="userProfile({id:currentUser.id})" ui-sref-opts="{reload:true}")
-        md-button.md-icon-button.icon-button(aria-label="Comment")
-          img(ng-src="{{currentUser.img_url}}")
-          md-tooltip {{currentUser.name}}
-      a(ng-if="currentUser")
-        md-button.md-icon-button(aria-label="Sign out" ng-click="logout()")
-          i.md-accent.fa.fa-sign-out
-          md-tooltip Sign out
-      a(ng-if="!currentUser" ui-sref="login")
-        md-button.md-icon-button
-          span.md-accent.fa.fa-sign-in
-          md-tooltip Sign in
-md-sidenav.md-sidenav-left(md-component-id="left" hide-gt-sm)
+    a(ui-sref="home" hide show-gt-md)
+      img(src="images/logo-white.png" height="24")
+    event-autocomplete-searchbar(placeholder="Search vvida...", ng-if="showSearch")
+    span(flex)
+    a.home-menu(ng-class="{activeClass : activeClass === menuItem.name}" ng-click="focusSection(menuItem.name)" ng-repeat="menuItem in menu" ui-sref="{{menuItem.state}}" ui-sref-active="active" hide show-gt-md)
+      md-button(md-no-ink)
+        | {{menuItem.name}}
+    md-menu(ng-if="currentUser")
+      md-button.md-icon-button.icon-button(aria-label="Menu" ng-click="$mdOpenMenu($event)")
+        img(ng-src="{{currentUser.img_url}}")
+      md-menu-content(width="4")
+        md-menu-item
+          md-button(ui-sref="userProfile({id:currentUser.id})" ui-sref-opts="{reload:true}" aria-label="Profile")
+            i.fa.fa-user
+            span My profile
+        md-menu-item
+          md-button(ng-click="logout()" aria-label="Sign out")
+            i.fa.fa-sign-out
+            span Logout
+    md-button.md-raised.md-primary.md-hue-2(ng-if="!currentUser" ui-sref="login")
+      span Login
+      
+md-sidenav.md-sidenav-left(md-component-id="left" hide-gt-md)
   md-toolbar.md-accent
     h1.md-toolbar-tools
       a(ui-sref="home")

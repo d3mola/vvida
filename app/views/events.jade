@@ -1,43 +1,43 @@
-.events(layout="row")
-  div.side-nav(layout="row")
+.top-margin(layout="row")
+  div(layout="row")
     md-sidenav.md-sidenav-left.md-whiteframe-1dp(md-component-id="evcatNav" md-is-locked-open="$mdMedia(\"gt-md\")")
       md-toolbar
         h1.md-toolbar-tools(ui-sref="events.all({view:\"grid\", page: 1})") Events - All
       md-content
+        md-button.btn-style(md-ink-ripple ui-sref="popularEvents") Popular Events
         md-button.btn-style(md-ink-ripple ng-repeat="category in categories" ui-sref="events.categoryEvents({catId: category.id})")  {{category.name}}
         md-divider
         md-button.btn-style(md-ink-ripple hide-gt-md ng-click="close()") Close Navbar
 
-  div.event-holder(layout="column" flex layout-padding)
-    div.holder-child(layout="row" layout-align="start center")
+  div(layout="column" flex layout-padding)
+    div(layout="row" layout-align="start center")
       md-button.md-icon-button(md-no-ink ng-click="toggleSidenav()" aria-label="Menu" hide-gt-md)
         i.fa.fa-bars
       h3.md-subheader.sidenav(hide-gt-md) Categories
       span.no_events_msg.md-padding(ng-if="recentEvents.length === 0 && popularEvents.length === 0 && !nextView") There are currently no events.
     md-divider
 
-    .event-list-container
-      .eventsList(layout="column" ng-if="!nextView")
-        div
-          .md-padding.recentEvents(layout="row" layout-align="start center" ng-if="recentEvents.length > 0")
-            .recent-event
-              h3.md-subheader Recent Events
-          .all-event
-            md-button(ui-sref="events.all({view:\"grid\", page: 1})") See All Events
+    div
+      .eventsList(layout="column" ng-if="!nextView || popularEvent")
+        .md-padding.recentEvents(layout="row" layout-align="start center" ng-if="recentEvents.length > 0 && !popularEvent")
+          h3.md-subheader Recent Events
+          span(flex)
+          md-button(ui-sref="events.all({view:\"grid\", page: 1})") See All Events
 
-          md-divider.event-divider
-        div.gridItems(flex layout="row" layout-sm="column" layout-align="start start")
-          md-card(flex flex-sm="50" flex-md="45" ng-repeat="event in recentEvents | orderBy:'-time' ")
-            img.md-card-image(ng-src="{{event.Images[0].img_url}}")
-            md-card-title(layout="column"  layout-align="end start")
-              md-card-title-text(layout="column")
-                span.md-subhead.category {{event.Category.name}}
-                span.md-subheadline.name(ui-sref="viewEvent({id: event.id})") {{event.name}}
-                i.fa.fa-map-marker.location.md-subheader 
-                  | {{event.venue}}
-                span.time {{getTime(event.time).day}} @{{getTime(event.time).time}}
-            md-card-content
-              md-button.md-raised(md-ink-ripple ui-sref="viewEvent({id: event.id})") Review
+        md-divider(ng-if="!popularEvent")
+        div.gridItems(flex layout="row" layout-sm="column" layo ut-align="start start" ng-if="!popularEvent")
+            md-card(flex flex-sm="50" flex-md="45" ng-repeat="event in recentEvents | orderBy:'-time' ")
+              a(ui-sref="viewEvent({id: event.id})")
+                img.md-card-image(ng-src="{{event.Images[0].img_url}}")
+                md-card-title(layout="column"  layout-align="end start")
+                  md-card-title-text(layout="column")
+                    span.md-subhead.category {{event.Category.name}}
+                    span.md-subheadline.name(ui-sref="viewEvent({id: event.id})") {{event.name}}
+                    i.fa.fa-map-marker.location.md-subheader
+                      | {{event.venue}}
+                    span.time {{getTime(event.start_time).day}} @{{getTime(event.start_time).time}}
+                md-card-content
+                  md-button.md-raised(md-ink-ripple ui-sref="viewEvent({id: event.id})") Review
 
         md-divider
         .md-padding(layout="row" layout-align="start center" ng-if="popularEvents.length > 0")
@@ -45,18 +45,16 @@
         md-divider
         div.gridItems(flex layout="row" layout-sm="column" layout-align="start start")
           md-card(flex flex-sm="50" flex-md="45" ng-repeat="event in popularEvents")
-            img.md-card-image(ng-src="{{event.images[0]}}")
-            md-card-title(layout="column"  layout-align="end start")
-              md-card-title-text(layout="column")
-                span.md-subhead.category {{event.catname}}
-                span.md-subheadline.name(ui-sref="viewEvent({id: event.id})") {{event.name}}
-                i.fa.fa-map-marker.location.md-subheader 
-                  | {{event.venue}}
-                span.time {{getTime(event.time).day}} @{{getTime(event.time).time}}
-            md-card-content
-              md-button.md-raised(md-ink-ripple ui-sref="viewEvent({id: event.id})") Review
+            a(ui-sref="viewEvent({id: event.id})")
+              img.md-card-image(ng-src="{{event.images[0]}}")
+              md-card-title(layout="column"  layout-align="end start")
+                md-card-title-text(layout="column")
+                  span.md-subhead.category {{event.catname}}
+                  span.md-subheadline.name(ui-sref="viewEvent({id: event.id})") {{event.name}}
+                  i.fa.fa-map-marker.location.md-subheader
+                    | {{event.venue}}
+                  span.time {{getTime(event.start_time).day}} @{{getTime(event.start_time).time}}
+              md-card-content
+                md-button.md-raised(md-ink-ripple ui-sref="viewEvent({id: event.id})") Review
 
       div(ui-view="inner")
-
-
-

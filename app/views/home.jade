@@ -2,35 +2,19 @@ md-card.jumbotron.search-jumbotron
   .jumbotron-image.md-card-image
     .image-overlay
       .search(layout="column" layout-margin layout-align="center center")
-        p Find exciting events to attend and new places to visit 
+        p.jumbotron-word Find exciting events to attend and new places to visit
         .search-div(layout="row" flex)
-          md-input-container.md-block(md-no-float)
-            md-icon(md-font-set="fa fa-search")
-            input(type="text" ng-model="search.searchItem" placeholder="Search for hotels, clubs, food, transport or anything you like")
-          md-button.md-raised.md-accent Search
+          event-autocomplete-searchbar(placeholder="Find any event")
+          md-button.md-raised.md-accent(id="search", ng-click="goToSearchPage(searchText)") Search
 
-.Sections(layout="column" flex-xs flex-gt-xs="50")
-  md-tabs.md-dynamic-height(md-selected="data.selectedIndex")
-    md-tab(label="Events")
-      div.tabCards(ng-if="events.length > 0" layout="row" layout-sm="column" flex  layout-align="start center")
-        md-card(ng-repeat="event in events | limitTo : 4" flex flex-md="45" flex-gt-md="{{events.length > 3? \"\": \"25\"}}")
-          img.md-card-image(ng-src="{{event.Images[0].img_url}}")
-          md-card-title(layout="column"  layout-align="end start")
-            md-card-title-text(layout="column")
-              span.md-subhead.category {{event.Category.name}}
-              span.md-subheadline.name(ui-sref="viewEvent({id: event.id})") {{event.name}}
-              i.fa.fa-map-marker.location.md-subheader 
-                | {{event.venue}}
-          md-card-content
-            p {{event.description | ngClipText : 70}}
-
-    md-tab(label="Products")
-      div.tabCards(ng-if="items.length > 0" layout="row" layout-sm="column" flex  layout-align="start center")
-        md-card(ng-repeat="item in items | limitTo : 4" flex flex-md="45" flex-gt-md="{{items.length > 3? \"\": \"25\"}}")
-          img.md-card-image(ng-src="{{item.Images[0].img_url}}")
-          md-card-title
-            md-card-title-text(layout="column" layout-align="end start")
-              span.md-subhead.category {{item.Category.name}}
-              span.md-subheadline.name(ui-sref="viewItem({id: item.id})") {{item.name}}
-          md-card-content
-            p {{item.description | ngClipText : 70}}
+.sections(ng-if="recentEvents.length" layout="column" flex-xs flex-gt-xs="50")
+  div.eventsHeader
+    span Recent Events
+  div.tabCards(layout="row" layout-sm="column" flex  layout-align="start center")
+   vvida-card(ng-repeat="event in recentEvents | limitTo : 3" flex flex-md="45" flex-gt-md="{{recentEvents.length > 0? \"\": \"25\"}}" events="event").eventcards
+.sections(ng-if="popularEvents.length" layout="column" flex-xs flex-gt-xs="50")
+  div.eventsHeader
+    span Popular Events
+  div.tabCards(layout="row" layout-sm="column" flex  layout-align="start center")
+   vvida-card(ng-repeat="event in popularEvents | limitTo : 3" flex flex-md="45" flex-gt-md="{{popularEvents.length > 0? \"\": \"25\"}}" events="event").eventcards
+div.seperateFooter

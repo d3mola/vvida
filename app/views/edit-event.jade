@@ -31,7 +31,10 @@ md-card.items(layout='column' flex='55' ng-init="getEvent()")
               input(ng-model="event.venue" type="text" ng-required="true" rows='2' aria-label="event.venue")
             span Start Date
             br   
-            md-datepicker(ng-model='event.time', md-placeholder='Start date')
+            md-datepicker(ng-model='event.start_time', md-placeholder='Start date')
+            span End Date
+            br   
+            md-datepicker(ng-model='event.end_time', md-placeholder='Start date')
             md-divider
             br
             md-input-container

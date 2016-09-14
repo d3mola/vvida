@@ -1,22 +1,22 @@
-md-content.content.user-profile(ng-if="currentUser" ng-init="init()")
-  p.md-headline.user-events-msg(ng-if="message") {{message}}
-  div.userCards(flex layout="row" layout-sm="column" layout-align="start center")
+md-content.main-md-content(flex)
+  md-content.content.user-profile(ng-if="currentUser" ng-init="init()")
+    p.md-headline.user-events-msg(ng-if="message") {{message}}
+    div.userCards(flex layout="row" layout-sm="column" layout-align="start center")
+      
+      md-card.md-whiteframe-z5(ng-repeat="event in events.Events" flex flex-sm="50" flex-md="45" back-img='{{event.Images[0].img_url}}')
+        md-card-title.event-overlay.card-elements(layout-sm="column" layout-gt-md="row" layout-md="column")
+          md-card-title-text.layout-align-end-start.layout-column.md-margin(layout="column" flex-sm flex-md )
+            span.md-subheadline.name.visited.ng-binding(ui-sref='viewEvent({id: event.id})') {{event.name}}
+            div
+              i.fa.fa-map-marker.brand-colour.location 
+              span {{event.venue}}
+            span.md-caption {{event.location}}
+            span.md-subhead.category.event-description.ng-binding {{event.description}}
+            md-card-actions(layout="row" layout-align-gt-sm="end center" layout-align-sm="center center")
+              md-button.edit-button.md-raised(ui-sref="userProfile.editEvent({id: event.id})") Edit
+              md-button.md-warn.md-raised(ng-click="deleteEvent(event.id)") Delete
+    md-button.md-fab.add-btn(ng-click="addEventModal($event)")
+      span.fa.fa-plus
+      md-tooltip(md-direction='left') Add a new event
 
-    md-card.md-whiteframe-z5(ng-repeat="event in events.Events" flex flex-sm="50" flex-md="45")
-      md-card-title(layout-sm="column" layout-gt-md="row" layout-md="column")
-        md-card-title-text.md-margin(layout="column" flex-sm flex-md)
-          span.category {{event.Category.name}}
-          span.md-title.name {{event.name}}
-          i.fa.fa-map-marker.location.md-subheader 
-            | {{event.venue}}
-          span.md-caption {{event.location}}
-          span.md-caption {{parseDate(event.time).day}}
-          span.md-caption {{parseDate(event.time).time}}
-        md-card-title-media
-          .md-media-md(style="background-image: url({{event.Images[0].img_url}});")
-      md-card-actions(layout="row" layout-align-gt-sm="end center" layout-align-sm="center center")
-        md-button.md-primary.md-raised(ui-sref="userProfile.editEvent({id: event.id})") Edit
-        md-button.md-warn.md-raised(ng-click="deleteEvent(event.id)") Delete
-  md-button.md-fab.add-btn(ng-click="addEventModal($event)")
-    span.fa.fa-plus
-    md-tooltip(md-direction='left') Add a new event
+

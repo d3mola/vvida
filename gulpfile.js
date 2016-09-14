@@ -109,7 +109,7 @@ gulp.task('test:fend', ['browserify', 'bower'], function() {
     });
 });
 
-gulp.task('test:bend', ['test:fend'], function() {
+gulp.task('test:bend', function() {
   return gulp.src(paths.serverTests)
     .pipe(mocha({
       reporter: 'spec'
@@ -123,10 +123,10 @@ gulp.task('test:e2e', function(cb) {
   gulp.src(['./tests/e2e/*.js'])
     .pipe(protractor({
       configFile: './protractor.conf.js',
-      args: ['--baseUrl', 'http://127.0.0.1:8000']
+      args: ['--baseUrl', process.env.E2E_URL]
     }))
     .on('error', function(e) {
-      console.log(e);
+      throw e;
     })
     .on('end', cb);
 });
@@ -155,5 +155,6 @@ gulp.task('build', ['jade', 'less', 'static-files',
 gulp.task('heroku:production', ['build']);
 gulp.task('heroku:staging', ['build']);
 gulp.task('production', ['nodemon', 'build']);
-gulp.task('test', ['test:fend', 'test:bend', 'codeclimate-reporter']);
+gulp.task('test', ['test:fend', 'test:bend', 'test:e2e',
+ 'codeclimate-reporter']);
 gulp.task('default', ['nodemon', 'watch', 'build']);

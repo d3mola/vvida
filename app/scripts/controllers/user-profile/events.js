@@ -13,7 +13,11 @@ angular.module('vvida.controllers')
     function($scope, $rootScope, $state, $stateParams,
       Users, Utils, Events, FileUploader, Categories, $mdDialog) {
 
+      var toolbar;
+
       $scope.init = function() {
+        toolbar = document.querySelector('md-toolbar.navbar');
+        toolbar.style.backgroundImage = 'url("./../../../images/daytime1.jpg")';
 
         Users.events($rootScope.currentUser, function(err, res) {
           if (err) {
@@ -74,7 +78,8 @@ angular.module('vvida.controllers')
           id: $stateParams.id
         }, function(event) {
           $scope.event = event;
-          $scope.event.time = new Date(event.time);
+          $scope.event.start_time = new Date(event.start_time);
+          $scope.event.end_time = new Date(event.end_time);
         });
 
         $scope.categories = Categories.query({

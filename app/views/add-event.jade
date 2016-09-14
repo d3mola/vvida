@@ -21,8 +21,8 @@ md-content(ng-controller="UserEventsCtrl" layout='column' flex='100' ng-init="in
       label
         i.fa.fa-university &nbsp;&nbsp;&nbsp;Venue
       input(ng-model='event.venue', type='text', ng-required='true', rows='2', aria-label='event.venue')
-    md-datepicker(ng-model='event.time', md-placeholder='Start date')
-    md-datepicker(ng-model='event.time', md-placeholder='End date')
+    md-datepicker(ng-model='event.start_time', md-placeholder='Start date')
+    md-datepicker(ng-model='event.end_time', md-placeholder='End date')
     br
     md-input-container
       label

@@ -17,7 +17,9 @@ describe('EventCtrl tests', function() {
       },
       get: function(id, cb) {
         cb({
-          message: 'Sample Event Message'
+          message: 'Sample Event Message',
+          Reviews: ['me', 'you', 'i'],
+          Images: ['img1', 'img2']
         });
       },
       query: function(id, params) {
@@ -34,6 +36,12 @@ describe('EventCtrl tests', function() {
             return [1, 2, 3, 4, 5, 6].slice(start, end);
           }
         }
+      }
+    },
+
+    rootScope = {
+      currentUser: {
+        id: 1
       }
     },
 
@@ -88,10 +96,16 @@ describe('EventCtrl tests', function() {
     module('vvida');
   });
 
+  beforeAll(function() {
+    var dummyElement = document.createElement('div');
+    sinon.stub(document, 'querySelector').returns(dummyElement);
+  });
+
   beforeEach(inject(function($injector) {
     var $controller = $injector.get('$controller');
     scope = $injector.get('$rootScope');
     controller = $controller('EventCtrl', {
+      $rootScope: rootScope,
       $scope: scope,
       Events: Events,
       Categories: Categories,

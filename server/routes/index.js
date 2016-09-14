@@ -6,7 +6,6 @@
     require('./auth/facebook.auth')(app, passport);
     require('./auth/google.auth')(app, passport);
     require('./events')(app, auth);
-    require('./items')(app, auth);
     require('./uploads')(app);
     require('./countries')(app);
     require('./categories')(app, auth);

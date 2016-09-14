@@ -2,7 +2,12 @@ angular.module('vvida.services', [])
   .service('Utils', function($mdToast, $mdDialog, $filter) {
 
     this.toast = function(msg) {
-      $mdToast.show($mdToast.simple().content(msg));
+      $mdToast.show(
+        $mdToast.simple()
+          .position('top right')
+          .content(msg)
+          .hideDelay(3000)
+      );
     };
 
     this.dialog = function(title, message, event, callback) {
