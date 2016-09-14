@@ -1,4 +1,3 @@
-/*
 describe('Test sign up page', function() {
   var signUpTab, email, password, errorMessage, submitButton,
     confirmPassword;
@@ -104,4 +103,3 @@ describe('Test sign up page', function() {
     });
   });
 });
-*/

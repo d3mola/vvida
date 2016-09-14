@@ -1,4 +1,3 @@
-/*
 describe('Login user', function() {
   var email, password, signInBtn;
 
@@ -73,4 +72,3 @@ describe('Edit user Profile', function() {
     });
   });
 });
-*/
