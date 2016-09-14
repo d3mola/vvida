@@ -4,27 +4,41 @@ angular.module('vvida.controllers')
     '$q',
     '$state',
     '$timeout',
-    'Items',
     'Events',
     'Reviews',
-    function($scope, $q, $state, $timeout, Items, Events, Reviews) {
+    function($scope, $q, $state, $timeout, Events, Reviews) {
 
       $scope.header_image = 'images/vvidaLogo.png';
-      // get all items
-      $scope.items = Items.query();
+      $scope.recentEvents = [];
+      $scope.popularEvents = [];
 
-      // Get all reviews
-      $scope.reviews = Reviews.query();
+      $scope.imgsToHttps = function(events) {
+        events.forEach(function (event) {
+          if(event.Images.length) {
+           var img_url = event.Images[0].img_url;
+           event.Images[0].img_url = img_url.replace(/http:/gi, 'https:');
+          }
+        });
 
-      // Get all the events
-      $scope.events = Events.query();
+        return events;
+      };
+
+      // Get recent events
+      Events.recentEvents(function (err, events) {
+        $scope.recentEvents = $scope.imgsToHttps(events);
+      });
+
+      // Get popular events
+      Events.popularEvents(function (err, events) {
+        $scope.popularEvents = $scope.imgsToHttps(events);
+      });
 
       $scope.timeLeft = function (startTime) {
         return moment(new Date(startTime)).from(new Date());
       };
+
       // Get reviews from the db
       $scope.reviews = Reviews.query();
+
     }
   ]);
-
-

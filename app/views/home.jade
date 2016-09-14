@@ -7,32 +7,14 @@ md-card.jumbotron.search-jumbotron
           event-autocomplete-searchbar(placeholder="Find any event")
           md-button.md-raised.md-accent(id="search", ng-click="goToSearchPage(searchText)") Search
 
-.sections(layout="column" flex-xs flex-gt-xs="50")
+.sections(ng-if="recentEvents.length" layout="column" flex-xs flex-gt-xs="50")
   div.eventsHeader
-    span Events
-  div.tabCards(ng-if="events.length > 0" layout="row" layout-sm="column" flex  layout-align="start center")
-    md-card(ng-repeat="event in events | limitTo : 3" flex flex-md="45" flex-gt-md="{{events.length > 0? \"\": \"25\"}}" back-img="{{event.Images[0].img_url}}"
-     ).eventcards
-      md-card-title-event.overlay.cardElements
-        md-card-title-text(layout="column" layout-align="end start")
-          span.md-subheadline.name.visited(ui-sref="viewEvent({id: event.id})") {{event.name}}
-          span.md-subhead.category.eventVenue
-            i.fa.fa-map-marker.brandColour &nbsp;
-            span {{event.location}} , {{event.venue}}
-          span.md-subhead.category.eventDescription {{event.description}}
-          span.md-subhead.category.eventTimeLeft
-            i.fa.fa-clock-o.brandColour &nbsp;
-            span {{timeLeft(event.start_time)}}
-.sections(layout="column" flex-xs flex-gt-xs="50")
+    span Recent Events
+  div.tabCards(layout="row" layout-sm="column" flex  layout-align="start center")
+   vvida-card(ng-repeat="event in recentEvents | limitTo : 3" flex flex-md="45" flex-gt-md="{{recentEvents.length > 0? \"\": \"25\"}}" events="event").eventcards
+.sections(ng-if="popularEvents.length" layout="column" flex-xs flex-gt-xs="50")
   div.eventsHeader
-    span Products
-  div.tabCards(ng-if="items.length > 0" layout="row" layout-sm="column" flex  layout-align="start center")
-    md-card(ng-repeat="item in items | limitTo : 3" flex flex-md="45" flex-gt-md="{{items.length > 0? \"\": \"25\"}}" back-img="{{item.Images[0].img_url}}"
-     ).eventcards
-      md-card-title-event.overlay.cardElements
-        md-card-title-text(layout="column" layout-align="end start")
-          span.md-subhead.category.visited(ui-sref="viewItem({id: item.id})") {{item.name | ngClipText : 70}}
-          span.md-subheadline.name.eventDescription {{item.description}}
-          span.md-subhead.category.eventDescription
-          span.md-subhead.category.eventTimeLeft
+    span Popular Events
+  div.tabCards(layout="row" layout-sm="column" flex  layout-align="start center")
+   vvida-card(ng-repeat="event in popularEvents | limitTo : 3" flex flex-md="45" flex-gt-md="{{popularEvents.length > 0? \"\": \"25\"}}" events="event").eventcards
 div.seperateFooter

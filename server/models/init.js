@@ -8,10 +8,8 @@ var models = [
   'categories',
   'events',
   'images',
-  'items',
   'messages',
   'notifications',
-  'promotions',
   'reviews',
   'rsvp',
   'users'

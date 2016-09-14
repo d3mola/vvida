@@ -19,6 +19,7 @@ describe('LoginCtrl tests', function() {
     },
     state,
     Auth,
+    Utils,
     controller;
 
   beforeEach(function() {
@@ -35,6 +36,7 @@ describe('LoginCtrl tests', function() {
     });
     Auth = $injector.get('Auth');
     state = $injector.get('$state');
+    Utils = $injector.get('Utils');
   }));
 
   it('should call the login function in the Users service', function() {
@@ -54,6 +56,7 @@ describe('LoginCtrl tests', function() {
     spyOn(Users, 'login').and.callThrough();
     spyOn(Auth, 'setToken');
     spyOn(state, 'go');
+    spyOn(Utils, 'toast');
     scope.user = null;
     scope.login();
     expect(Users.login).toBeDefined();
@@ -61,7 +64,7 @@ describe('LoginCtrl tests', function() {
     expect(Auth.setToken).not.toHaveBeenCalled();
     expect(state.go).not.toHaveBeenCalled();
     expect(scope.currentUser).not.toBeDefined();
-    expect(scope.messageLogin).toBeDefined();
+    expect(Utils.toast).toBeDefined();
   });
 
   it('should call the save function in the Users service', function() {
@@ -80,38 +83,37 @@ describe('LoginCtrl tests', function() {
   });
 
   it('should reject short passwords', function() {
+    spyOn(Utils, 'toast');
     scope.user = {
       passwordSignup: 'Pass',
       confirmPassword: 'Pass'
     };
     scope.signup();
-    expect(scope.messageSignup).toBeDefined();
-    expect(scope.messageSignup).
-    toEqual('Your password needs to have a length greater than 8 characters');
-    expect(typeof scope.messageSignup).toBe('string');
+    expect(Utils.toast).toBeDefined();
+    expect(Utils.toast).toHaveBeenCalled();
+    expect(typeof Utils.toast).toBe('function');
   });
 
   it('should ensure password is alphanumeric', function() {
+    spyOn(Utils, 'toast');
     scope.user = {
       passwordSignup: 'Passworder',
       confirmPassword: 'Passworder'
     };
     scope.signup();
-    expect(scope.messageSignup).toBeDefined();
-    expect(scope.messageSignup).
-    toEqual
-    ('Your password need to contain both numbers and non-word characters');
+    expect(Utils.toast).toBeDefined();
+    expect(Utils.toast).toHaveBeenCalled();
   });
 
   it('should ensure password as both case characters', function() {
+    spyOn(Utils, 'toast');
     scope.user = {
       passwordSignup: 'password1234',
       confirmPassword: 'password1234'
     };
     scope.signup();
-    expect(scope.messageSignup).toBeDefined();
-    expect(scope.messageSignup).toEqual
-    ('Your password should contain uppercase and lower characters');
+    expect(Utils.toast).toBeDefined();
+    expect(Utils.toast).toHaveBeenCalled();
   });
 
 

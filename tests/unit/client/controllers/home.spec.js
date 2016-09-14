@@ -1,3 +1,5 @@
+
+
 describe('HomeCtrl tests', function() {
   'use strict';
   var scope,
@@ -19,14 +21,11 @@ describe('HomeCtrl tests', function() {
     expect(typeof scope.header_image).toBe('string');
   });
 
-  it('should define items', function() {
-    expect(scope.items).toBeDefined();
-    expect(typeof scope.items).toBe('object');
-  });
-
   it('should define events', function() {
-    expect(scope.events).toBeDefined();
-    expect(typeof scope.events).toBe('object');
+    expect(scope.recentEvents).toBeDefined();
+    expect(scope.popularEvents).toBeDefined();
+    expect(typeof scope.recentEvents).toBe('object');
+    expect(typeof scope.popularEvents).toBe('object');
   });
 
   it('should define reviews', function() {

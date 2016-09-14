@@ -188,6 +188,32 @@
         });
     });
 
+    it('should return recently uploaded events', function(done) {
+      request
+        .get(resourceApiURL + '/recent')
+        .set('X-Access-Token', authToken)
+        .accept('application/json')
+        .end(function(err, res) {
+          var ordered = true,
+            prevDate;
+
+          res.body.forEach(function(event) {
+            if (!prevDate) {
+              prevDate = event.created_at;
+            }
+
+            if (event.created_at >= prevDate) {
+              ordered = false;
+            }
+
+            prevDate = event.created_at;
+          });
+
+          _expect(ordered).to.be.ok;
+          done();
+        });
+    });
+
     /**
      * Update the specified resource in storage.
      * PUT /items/{id}

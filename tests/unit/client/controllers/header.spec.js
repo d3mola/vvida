@@ -17,15 +17,6 @@ describe('HeaderCtrl tests', function() {
     module('vvida');
   });
 
-  beforeAll(function() {
-    var dummyElement = document.createElement('div');
-    sinon.stub(document, 'querySelector').returns(dummyElement);
-  });
-
-  afterAll(function() {
-    document.querySelector.restore();
-  });
-
   beforeEach(inject(function($injector) {
     var $controller = $injector.get('$controller');
     scope = $injector.get('$rootScope');

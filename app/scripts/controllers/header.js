@@ -1,38 +1,63 @@
 angular.module('vvida.controllers')
   .controller('HeaderCtrl', ['$rootScope', '$scope', '$state', 'Users', 'Auth',
     function($rootScope, $scope, $state, Users, Auth) {
-      var toolbar;
+      var mainContent,
+        toolbar;
+      var userUrl = /user\/\d/;
+      var eventUrl = /events\/\d/;
 
       function solidify() {
-        var scroll = window.pageYOffset || document.documentElement.scrollTop;
+        var scroll = mainContent.scrollTop;
         var opacity = scroll / 150;
 
         toolbar.style
           .backgroundColor = 'RGBA(249, 191, 59,' + opacity + ')';
       }
 
+      function changeHeader() {
+        if (eventUrl.test(window.location.pathname) ||
+          userUrl.test(window.location.pathname)) {
+            toolbar.classList.add('header-overlay');
+            toolbar.style.borderBottom = '5px rgb(249, 191, 59) solid';
+            toolbar.style.height = '98px';
+            toolbar.style.backgroundRepeat = 'no-repeat';
+            toolbar.style.backgroundSize = '100%';
+            toolbar.style.paddingBottom = '20px';
+            toolbar.style.backgroundPosition = 'center';
+          } else {
+            toolbar.style.borderBottom = 'none';
+            toolbar.style.paddingBottom = '0px';
+            toolbar.style.height = '60px';
+            toolbar.style.backgroundImage = 'none';
+            toolbar.classList.remove('header-overlay');
+          }
+      }
+
       var transparentScrollHeader = function() {
         toolbar = document.querySelector('md-toolbar.navbar');
+        mainContent = document.querySelector('md-content.main-md-content');
 
         $scope.showSearch = $state.current.name !== 'home';
 
         if (!$scope.showSearch) {
           toolbar.style
             .backgroundColor = 'RGBA(249, 191, 59, 0)';
-          
           solidify();
-          window.addEventListener('scroll', solidify, false);
+          mainContent.addEventListener('scroll', solidify, false);
         } else {
-          window.removeEventListener('scroll', solidify, false);
-          
+          mainContent.removeEventListener('scroll', solidify, false);
           toolbar.style
             .backgroundColor = 'RGBA(249, 191, 59, 1)';
         }
+
+        changeHeader();
       };
 
-      transparentScrollHeader();
-
-      $rootScope.$on('$stateChangeSuccess', transparentScrollHeader);
+      $rootScope.$on('$stateChangeSuccess', function() {
+        setTimeout(function() {
+          transparentScrollHeader();
+        }, 0);
+      });
 
       $scope.showSearch = false;
 

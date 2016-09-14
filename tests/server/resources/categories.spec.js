@@ -11,7 +11,7 @@
         return {
           // catId: faker.random.number(),
           name: faker.commerce.department(),
-          category: 'Item'
+          category: 'Event'
         };
       },
       authToken = null,
@@ -93,7 +93,7 @@
       request
         .get(resourceApiUrl)
         .query({
-          'type': 'Item'
+          'type': 'Event'
         })
         .accept('application/json')
         .end(function(err, res) {
@@ -132,7 +132,7 @@
       request
         .get(resourceApiUrl + '/' + id)
         .query({
-          'model': 'Items'
+          'model': 'Events'
         })
         .accept('application/json')
         .end(function(err, res) {
@@ -165,7 +165,7 @@
       request
         .get(resourceApiUrl + '/' + id)
         .query({
-          'model': 'Items'
+          'model': 'Events'
         })
         .accept('application/json')
         .end(function(err, res) {

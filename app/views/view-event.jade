@@ -1,43 +1,43 @@
-md-content.top-margin(layout='row' layout-margin layout-align="center start" flex="100" ng-init="getEvent()")
+md-content.event-desc.event-top-margin(layout='row' layout-margin layout-align="center start" flex="100" ng-init="getEvent()")
   md-content.no-overflow(layout="column" layout-margin flex="60")
     h4.md-headline {{event.name}}
     p.md-subheader Gallery Images
     br
     md-whiteframe.md-whiteframe-5dp.event-main-img(style="background: url('{{selectedImage.img_url || event.Images[0].img_url}}') no-repeat center center;")
-    div(layout="row")
+    div.image-slider-content(layout="row")
       md-virtual-repeat-container.thumbs(md-orient-horizontal layout-align="start start")
         img.face(ng-click="setImage(image)"  md-virtual-repeat="image in event.Images" ng-src="{{image.img_url}}")
-      .md-padding.rating-box(layout="row" layout-align="end center")
+      .rating-box(layout="row" layout-align="end center")
         .average-rating(layout="row")
           h3 {{averageReview(event.Reviews)}}
         .md-padding.average-stars
-          i.fa.fa-star.colorpink(ng-if="averageReview(event.Reviews) > 0" ng-repeat="i in range(averageReview(event.Reviews)) track by $index")
-          i.fa.fa-star-o.colorpink(ng-repeat="i in range(5 - averageReview(event.Reviews)) track by $index")
+          i.fa.fa-star.coloryellow(ng-if="averageReview(event.Reviews) > 0" ng-repeat="i in range(averageReview(event.Reviews)) track by $index")
+          i.fa.fa-star-o.coloryellow(ng-repeat="i in range(5 - averageReview(event.Reviews)) track by $index")
           p.small Average rating
     br
-    p.md-subheader Description
+    p.header.md-subheader Description
     br
     span.small-font {{event.description}}
     br
-    p.md-subheader Details
+    p.header.md-subheader Details
     br
-    i.fa.fa-map-marker &nbsp;&nbsp;
+    i.event-icon.fa.fa-map-marker &nbsp;&nbsp;
       span.emphasis {{event.venue}} &nbsp;
         span @ &nbsp;
       span.emphasis {{event.location}}
     br
-    i.fa.fa-group &nbsp;&nbsp; 
+    i.event-icon.fa.fa-group &nbsp;&nbsp;
       span.emphasis {{event.sponsor}}
 
-  md-content.no-overflow(layout="column" layout-margin flex="30")
+  md-content.no-overflow.review-container(layout="column" layout-margin flex="25")
     div(ng-if="haveReviewed === true")
       h5.text-center What you said about this event
       md-divider
       div.md-3-line.md-long-text.edit-continer
         md-input-container.no-padding.user-review-rating-star
           span
-            i.fa.fa-star.colorpink(ng-if="currentUserReview.rating > 0" ng-repeat="i in range(currentUserReview.rating) track by $index")
-            i.fa.fa-star-o.colorpink(ng-repeat="i in range(5 - currentUserReview.rating) track by $index")
+            i.fa.fa-star.coloryellow(ng-if="currentUserReview.rating > 0" ng-repeat="i in range(currentUserReview.rating) track by $index")
+            i.fa.fa-star-o.coloryellow(ng-repeat="i in range(5 - currentUserReview.rating) track by $index")
         md-list-item-text.user-review-wrapper
           h3.current-user-review-title {{currentUserReview.review_title}}
           p.current-user-review {{currentUserReview.review}}
@@ -46,12 +46,8 @@ md-content.top-margin(layout='row' layout-margin layout-align="center start" fle
             i.md-accent.fa.fa-trash.delete-icon(ng-click="removeEventReview(currentUserReview.id)")
     
     div(ng-if="haveReviewed === false")
-      h5.text-center Say something about this event
-      md-divider
-        md-input-container.no-padding
-          .rating
-            span(ng-repeat="i in range(5-eventReview.rating) track by $index" ng-click="rate(5-$index)") ☆   
-            span.stared(ng-if="eventReview.rating" ng-repeat="i in range(eventReview.rating) track by $index" ng-click="rate(eventReview.rating-$index)") ☆ 
+      h5 Say something about this event
+      div
         md-input-container.no-padding
           label Title
           input(ng-model="eventReview.review_title")
@@ -59,16 +55,21 @@ md-content.top-margin(layout='row' layout-margin layout-align="center start" fle
           label Review
           textarea(ng-model="eventReview.review" columns="1" md-maxlength="150" rows="2")
         md-input-container.no-padding
+          .rating
+            div Rate
+            span(ng-repeat="i in range(5-eventReview.rating) track by $index" ng-click="rate(5-$index)") ☆
+            span.stared(ng-if="eventReview.rating" ng-repeat="i in range(eventReview.rating) track by $index" ng-click="rate(eventReview.rating-$index)") ☆
+        md-input-container.no-padding
           .error-message.animate-show(ng-Show="showError" ng-animate="'error-message'") 
              i.md-accent.fa.fa-exclamation-triangle  {{errorMessage}}
-        md-input-container.no-padding(ng-if="editing === false")
-          md-button.md-raised.md-primary(ng-click="addEventReview()") Submit review
+        md-input-container.no-padding.submit(ng-if="editing === false")
+          md-button.md-raised.md-primary(ng-click="addEventReview()") Submit
         md-input-container.no-padding(ng-if="editing === true" layout="row" layout-align="center")
           md-button.md-raised.md-primary.button-size(ng-click="updateEvent(eventReview)") Update review
           md-button.md-raised.md-primary.button-size(ng-click="cancelEventUpdate()") Cancel
 
 
-    h5.text-center What people are saying about this event
+    h5.text-center What people are saying
     md-divider
       md-virtual-repeat-container.container-height
         md-list
@@ -80,5 +81,5 @@ md-content.top-margin(layout='row' layout-margin layout-align="center start" fle
                 span By {{review.User.username || review.User.name}}
               span.small-font {{review.review}}
               p
-              i.fa.fa-star.colorpink(ng-if="review.rating > 0" ng-repeat="i in range(review.rating) track by $index")
-              i.fa.fa-star-o.colorpink(ng-repeat="i in range(5 - review.rating) track by $index")
+              i.fa.fa-star.coloryellow(ng-if="review.rating > 0" ng-repeat="i in range(review.rating) track by $index")
+              i.fa.fa-star-o.coloryellow(ng-repeat="i in range(5 - review.rating) track by $index")

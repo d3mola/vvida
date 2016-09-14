@@ -7,10 +7,6 @@ angular.module('vvida.controllers')
           link: 'userProfile.events',
           title: 'Events',
           icon: 'fa fa-calendar'
-        }, {
-          link: 'userProfile.products',
-          title: 'Products',
-          icon: 'fa fa-th-list'
         }];
 
         $scope.ownerMenu = [{
@@ -38,14 +34,6 @@ angular.module('vvida.controllers')
             $scope.message = 'Error loading page';
           } else {
             $scope.eventsCount = res;
-          }
-        });
-
-        Users.itemsCount($rootScope.currentUser, function(err, res) {
-          if (err) {
-            $scope.message = 'Error loading page';
-          } else {
-            $scope.itemsCount = res;
           }
         });
 

@@ -4,8 +4,12 @@ html(lang='en' ng-app="vvida")
     link(rel='icon', href='images/favicon.ico')
     include shared/head
   body
-    main
-      include shared/header
-      md-content(ui-view)
-  footer
-    include shared/footer
+    div(vvida-preloader).overlay-preloader
+      div.center
+        img.clear-loading.preloader-img.blink(ng-src='images/logo-white.png')
+    include shared/header
+    md-content.main-md-content(flex)
+      div(ui-view flex)
+      footer
+        include shared/footer
+
