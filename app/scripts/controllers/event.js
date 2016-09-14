@@ -6,8 +6,11 @@
       function($rootScope, $scope, $state, $stateParams, $mdSidenav,
         Utils, Events, Categories, Reviews) {
 
+        var toolbar;
+
         // initialize state data
         $scope.init = function() {
+          toolbar = document.querySelector('md-toolbar.navbar');
           // Hides the error message container
           $scope.showError = false;
           if ($rootScope.currentUser) {
@@ -79,6 +82,8 @@
           Events.get({
             id: $stateParams.id
           }, function(event) {
+            toolbar.style
+              .backgroundImage = 'url("' + event.Images[0].img_url + '")';
             $scope.event = event;
             for (var i = 0; i < event.Reviews.length; i++) {
               if (event.Reviews[i].user_id === $scope.userId) {
