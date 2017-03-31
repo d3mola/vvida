@@ -72,6 +72,8 @@ describe('LoginCtrl tests', function() {
     spyOn(Auth, 'setToken');
     spyOn(state, 'go');
     scope.user = {
+      username: 'Joliphizzle01',
+      name: 'LekeSeyiSteveLove',
       passwordSignup: 'Password1234',
       confirmPassword: 'Password1234'
     };
@@ -82,9 +84,39 @@ describe('LoginCtrl tests', function() {
     expect(scope.currentUser).toBeDefined();
   });
 
+  it('should reject name with numbers', function() {
+    spyOn(Utils, 'toast');
+    scope.user = {
+      username: 'Joliphizzle01',
+      name: 'LekeSeyiSteveLove023',
+      passwordSignup: 'Pass',
+      confirmPassword: 'Pass'
+    };
+    scope.signup();
+    expect(Utils.toast).toBeDefined();
+    expect(Utils.toast).toHaveBeenCalled();
+    expect(typeof Utils.toast).toBe('function');
+  });
+
+  it('should reject non defined name', function() {
+    spyOn(Utils, 'toast');
+    scope.user = {
+      username: 'Joliphizzle01',
+      name: '',
+      passwordSignup: 'Pass',
+      confirmPassword: 'Pass'
+    };
+    scope.signup();
+    expect(Utils.toast).toBeDefined();
+    expect(Utils.toast).toHaveBeenCalled();
+    expect(typeof Utils.toast).toBe('function');
+  });
+
   it('should reject short passwords', function() {
     spyOn(Utils, 'toast');
     scope.user = {
+      username: 'Joliphizzle01',
+      name: 'LekeSeyiSteveLove',
       passwordSignup: 'Pass',
       confirmPassword: 'Pass'
     };
@@ -98,7 +130,9 @@ describe('LoginCtrl tests', function() {
     spyOn(Utils, 'toast');
     scope.user = {
       passwordSignup: 'Passworder',
-      confirmPassword: 'Passworder'
+      confirmPassword: 'Passworder',
+      username: 'Joliphizzle01',
+      name: 'LekeSeyiSteveLove'
     };
     scope.signup();
     expect(Utils.toast).toBeDefined();
@@ -109,7 +143,9 @@ describe('LoginCtrl tests', function() {
     spyOn(Utils, 'toast');
     scope.user = {
       passwordSignup: 'password1234',
-      confirmPassword: 'password1234'
+      confirmPassword: 'password1234',
+      username: 'Joliphizzle01',
+      name: 'LekeSeyiSteveLove'
     };
     scope.signup();
     expect(Utils.toast).toBeDefined();

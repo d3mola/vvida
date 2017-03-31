@@ -1,7 +1,6 @@
 (function() {
   'use strict';
-  var sequelize = require('./../config/db-connect');
-
+  
   module.exports = function(app) {
     var Events = app.get('models').Events,
       Images = app.get('models').Images,
@@ -68,10 +67,10 @@
         if (limit > 10) {
           limit = 5;
         }
-        
+
         Reviews.findAll({
           attributes: [
-            'event_id', 
+            'event_id',
             [Sequelize.fn('AVG', Sequelize.col('rating')), 'avg_rating']
           ],
           group: 'event_id',
@@ -105,7 +104,7 @@
 
         if (limit > 10) {
           limit = 5;
-        }        
+        }
 
         Events.findAll({
           limit: limit,

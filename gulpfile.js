@@ -49,11 +49,7 @@ gulp.task('jade', function() {
 
 gulp.task('images', function() {
   gulp.src(paths.images)
-    .pipe(imagemin({
-      optimizationLevel: 3,
-      progressive: true,
-      interlaced: true
-    }))
+    .pipe(imagemin())
     .pipe(gulp.dest('./public/images/'));
 });
 
